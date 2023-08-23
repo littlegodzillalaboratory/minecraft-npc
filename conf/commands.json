@@ -1,0 +1,14 @@
+{
+  "commands": {
+    "start": {
+      "desc": "Start running Minecraft Bob",
+      "options": [
+        { "arg": "-h, --host <host>", "desc": "Minecraft server host, default: localhost" },
+        { "arg": "-p, --port <port>", "desc": "Minecraft server port, default: 25565" },
+        { "arg": "-r, --viewer-port <viewerPort>", "desc": "Minecraft viewer port, default: 3000" },
+        { "arg": "-u, --username <username>", "desc": "Bot username, default: bob" },
+        { "arg": "-w, --password <password>", "desc": "Bot password, needed for online mode" }
+      ]
+    }
+  }
+}

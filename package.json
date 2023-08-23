@@ -1,0 +1,51 @@
+{
+  "name": "minecraft-bob",
+  "type": "module",
+  "description": "TODO",
+  "keywords": [
+    "TODO"
+  ],
+  "version": "0.9.0",
+  "homepage": "https://github.com/cliffano/minecraft-bob",
+  "author": "Cliffano Subagio cliffano@gmail.com (blog.cliffano.com)",
+  "contributors": [
+    "All contributors (https://github.com/cliffano/minecraft-bob/graphs/contributors)"
+  ],
+  "main": "./lib/minecraft-bob.js",
+  "bin": {
+    "minecraft-bob": "./bin/minecraft-bob.js"
+  },
+  "preferGlobal": true,
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/cliffano/minecraft-bob.git"
+  },
+  "bugs": {
+    "url": "http://github.com/cliffano/minecraft-bob/issues"
+  },
+  "directories": {
+    "bin": "./bin",
+    "lib": "./lib",
+    "test": "./test"
+  },
+  "dependencies": {
+    "bagofcli": "^2.4.1",
+    "mineflayer": "^4.10.1",
+    "mineflayer-viewer": "^1.0.2",
+    "prismarine-viewer": "^1.25.0"
+  },
+  "devDependencies": {
+    "sinon": "^15.2.0",
+    "@sinonjs/referee": "^10.0.1"
+  },
+  "scripts": {},
+  "engines": {
+    "node": ">= 18.0.0"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/cliffano/minecraft-bob/raw/master/LICENSE"
+    }
+  ]
+}
