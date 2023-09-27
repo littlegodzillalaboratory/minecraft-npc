@@ -11,3 +11,14 @@ Minecraft Bob
 -------------
 
 ![Bob logs screenshot](docs/images/bob-logs.png "Bob logs screenshot")
+
+Configuration
+-------------
+
+| Property | Description | Mandatory/Optional | Default Value |
+|----------|-------------|--------------------|---------------|
+| Host | Minecraft server host | Optional | `localhost` |
+| Port | Minecraft server port | Optional | `25565` |
+| Viewer Port | Minecraft viewer port | Optional | `3000` |
+| Username | Minecraft username | Optional, only needed on online mode | |
+| Password | Minecraft password | Optional, only needed on online mode | |

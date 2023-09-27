@@ -33,13 +33,21 @@ describe('cli - start', function() {
 
   it('should contain start command and delegate to minecraftbob start when exec is called', function (done) {
     // this.mockBag.expects('logStepHeading').withExactArgs('Creating example AE86 project');
-    sinon.stub(bag, 'command').value(function (base, actions) {
-      actions.commands.start.action({
+    sinon.stub(bag, 'lookupConfig').value(function (keys, opts, cb) {
+      assert.equals(keys, ['host', 'port', 'viewer_port', 'username', 'password', 'init_coords']);
+      assert.equals(opts.file, 'someconffile.yaml');
+      cb(null, {
         host: 'localhost',
         port: 25565,
-        viewerPort: 3000,
-        username: 'someuser',
-        password: 's0m3p4ss'
+        viewer_port: 3000,
+        username: 'bob',
+        password: undefined,
+        init_coords: [0, 0, 0]
+      });
+    });
+    sinon.stub(bag, 'command').value(function (base, actions) {
+      actions.commands.start.action({
+        confFile: 'someconffile.yaml'
       });
     });
     sinon.stub(MinecraftBob.prototype, 'start').value(function (cb) {
