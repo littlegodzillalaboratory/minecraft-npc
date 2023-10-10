@@ -1,6 +1,6 @@
 "use strict"
 /* eslint no-unused-vars: 0 */
-import MinecraftBob from '../lib/minecraftbob.js';
+import MinecraftNpc from '../lib/minecraftnpc.js';
 import bag from 'bagofcli';
 import cli from '../lib/cli.js';
 import referee from '@sinonjs/referee';
@@ -31,7 +31,7 @@ describe('cli - start', function() {
     this.mockBag.restore();
   });
 
-  it('should contain start command and delegate to minecraftbob start when exec is called', function (done) {
+  it('should contain start command and delegate to minecraftnpc start when exec is called', function (done) {
     // this.mockBag.expects('logStepHeading').withExactArgs('Creating example AE86 project');
     sinon.stub(bag, 'lookupConfig').value(function (keys, opts, cb) {
       assert.equals(keys, ['host', 'port', 'viewer_port', 'username', 'password', 'init_coords']);
@@ -50,7 +50,7 @@ describe('cli - start', function() {
         confFile: 'someconffile.yaml'
       });
     });
-    sinon.stub(MinecraftBob.prototype, 'start').value(function (cb) {
+    sinon.stub(MinecraftNpc.prototype, 'start').value(function (cb) {
       assert.equals(typeof cb, 'function');
       done();
     });

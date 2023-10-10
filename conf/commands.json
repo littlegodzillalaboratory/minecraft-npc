@@ -1,7 +1,7 @@
 {
   "commands": {
     "start": {
-      "desc": "Start running Minecraft Bob",
+      "desc": "Start running Minecraft NPC",
       "options": [
         { "arg": "-c, --conf-file <confFile>", "desc": "Path to configuration file" }
       ]
