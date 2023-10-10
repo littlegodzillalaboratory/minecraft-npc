@@ -4,4 +4,4 @@ port: 25565
 viewer_port: 3000
 username: bob
 # password:
-init_coords: [95, 71, 65]
+init_coords: [140, 66, 380]
