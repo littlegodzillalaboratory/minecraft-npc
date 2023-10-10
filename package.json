@@ -1,27 +1,27 @@
 {
-  "name": "minecraft-bob",
+  "name": "minecraft-npc",
   "type": "module",
   "description": "TODO",
   "keywords": [
     "TODO"
   ],
   "version": "0.9.0",
-  "homepage": "https://github.com/cliffano/minecraft-bob",
+  "homepage": "https://github.com/cliffano/minecraft-npc",
   "author": "Cliffano Subagio cliffano@gmail.com (blog.cliffano.com)",
   "contributors": [
-    "All contributors (https://github.com/cliffano/minecraft-bob/graphs/contributors)"
+    "All contributors (https://github.com/cliffano/minecraft-npc/graphs/contributors)"
   ],
-  "main": "./lib/minecraft-bob.js",
+  "main": "./lib/minecraft-npc.js",
   "bin": {
-    "minecraft-bob": "./bin/minecraft-bob.js"
+    "minecraft-npc": "./bin/minecraft-npc.js"
   },
   "preferGlobal": true,
   "repository": {
     "type": "git",
-    "url": "http://github.com/cliffano/minecraft-bob.git"
+    "url": "http://github.com/cliffano/minecraft-npc.git"
   },
   "bugs": {
-    "url": "http://github.com/cliffano/minecraft-bob/issues"
+    "url": "http://github.com/cliffano/minecraft-npc/issues"
   },
   "directories": {
     "bin": "./bin",
@@ -46,7 +46,7 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "http://github.com/cliffano/minecraft-bob/raw/master/LICENSE"
+      "url": "http://github.com/cliffano/minecraft-npc/raw/master/LICENSE"
     }
   ]
 }
