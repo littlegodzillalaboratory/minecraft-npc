@@ -3,6 +3,8 @@ host: himawari.local
 port: 25565
 version: 1.20.1
 viewer_port: 3000
+web_inventory_port: 3001
 username: bob
 # password:
 init_coords: [140, 66, 380]
+init_message: Bob is here and ready to serve...
