@@ -7,4 +7,5 @@ web_inventory_port: 3011
 username: lolo
 # password:
 init_coords: [125, 69, 396]
-init_message: Lolo, reporting for duty!
+init_message:
+  - Lolo is here, reporting for duty!
