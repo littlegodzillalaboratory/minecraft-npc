@@ -7,7 +7,7 @@ web_inventory_port: 3001
 username: bob
 # password:
 init_coords: [91, 67, 372]
-init_message:
+init_messages:
   - Sir Bob is here and ready to protect...
   - For Waterland!!!
   - I'm here to help, my liege.
