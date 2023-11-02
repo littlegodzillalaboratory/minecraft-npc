@@ -1,0 +1,13 @@
+- params:
+    minecraft_npc: ../../../../../bin/minecraft-npc.js
+    base: ../../../../../
+
+- description: Command help should display help information
+  command: '{minecraft_npc} --help'
+  exitcode: 0
+  output: 'Usage: minecraft-npc'
+
+- description: Command start with example YAML should run
+  command: '{minecraft_npc} start --config-file {base}/examples/bob.yaml'
+  exitcode: 0
+  output: 'TODO ABC 123'
