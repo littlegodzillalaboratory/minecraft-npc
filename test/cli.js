@@ -1,6 +1,6 @@
 "use strict"
 /* eslint no-unused-vars: 0 */
-import MinecraftNpc from '../lib/minecraftnpc.js';
+import MinecraftNpc from '../lib/minecraft-npc.js';
 import bag from 'bagofcli';
 import cli from '../lib/cli.js';
 import referee from '@sinonjs/referee';
