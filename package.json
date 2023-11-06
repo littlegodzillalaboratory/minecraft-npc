@@ -33,7 +33,8 @@
     "mineflayer": "^4.10.1",
     "mineflayer-pathfinder": "^2.4.4",
     "mineflayer-web-inventory": "^1.8.4",
-    "prismarine-viewer": "^1.25.0"
+    "prismarine-viewer": "^1.25.0",
+    "three": "^0.158.0"
   },
   "devDependencies": {
     "@sinonjs/referee": "^10.0.1",
