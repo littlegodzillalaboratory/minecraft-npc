@@ -32,9 +32,18 @@ describe('cli - start', function() {
   });
 
   it('should contain start command and delegate to minecraftnpc start when exec is called', function (done) {
-    // this.mockBag.expects('logStepHeading').withExactArgs('Creating example AE86 project');
     sinon.stub(bag, 'lookupConfig').value(function (keys, opts, cb) {
-      assert.equals(keys, ['host', 'port', 'viewer_port', 'username', 'password', 'init_coords']);
+      assert.equals(keys, [
+        'host', 
+        'port',
+        'version',
+        'viewer_port',
+        'web_inventory_port',
+        'username',
+        'password',
+        'init_coords',
+        'init_messages'
+      ]);
       assert.equals(opts.file, 'someconffile.yaml');
       cb(null, {
         host: 'localhost',
