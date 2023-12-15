@@ -6,7 +6,7 @@ viewer_port: 3000
 web_inventory_port: 3001
 username: bob
 # password:
-init_coords: [-212,63,33]
+init_coords: [-27,63,-1660]
 init_messages:
   - Sir Bob is here and ready to protect...
   - For Waterland!!!
