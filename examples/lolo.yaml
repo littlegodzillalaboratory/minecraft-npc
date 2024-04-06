@@ -6,6 +6,6 @@ viewer_port: 3010
 web_inventory_port: 3011
 username: lolo
 # password:
-init_coords: [-40, 63, -1684]
+init_coords: [3846, 8, -3379]
 init_messages:
   - Lolo is here, reporting for duty!
