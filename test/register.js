@@ -1,5 +1,4 @@
 "use strict"
-/* eslint no-unused-vars: 0 */
 import Register from '../lib/register.js';
 import referee from '@sinonjs/referee';
 const assert = referee.assert;
