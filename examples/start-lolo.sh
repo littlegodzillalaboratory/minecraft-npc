@@ -2,4 +2,4 @@
 set -o nounset
 set -o errexit
 
-minecraft-npc start --conf-file examples/lolo.yaml
+DEBUG="minecraft-protocol" minecraft-npc start --conf-file examples/lolo.yaml
