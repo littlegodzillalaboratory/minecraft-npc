@@ -1,7 +1,7 @@
 ---
 host: himawari.local
 port: 25565
-version: 1.20.1
+version: 1.21.1
 viewer_port: 3010
 web_inventory_port: 3011
 username: lolo
