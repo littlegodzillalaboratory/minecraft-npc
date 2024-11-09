@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 /* eslint no-unused-vars: 0 */
 import MinecraftNpc from '../lib/minecraft-npc.js';
 import bag from 'bagofcli';
@@ -34,7 +34,7 @@ describe('cli - start', function() {
   it('should contain start command and delegate to minecraftnpc start when exec is called', function (done) {
     sinon.stub(bag, 'lookupConfig').value(function (keys, opts, cb) {
       assert.equals(keys, [
-        'host', 
+        'host',
         'port',
         'version',
         'viewer_port',

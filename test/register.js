@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 import Register from '../lib/register.js';
 import referee from '@sinonjs/referee';
 const assert = referee.assert;
