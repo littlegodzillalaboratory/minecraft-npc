@@ -2,4 +2,5 @@
 set -o nounset
 set -o errexit
 
-minecraft-npc start --conf-file examples/lolo.yaml
+CHATGPT_API_KEY="${GODZILLA_OPENAI_API_KEY_MINECRAFT_NPC_LOLO}" \
+  minecraft-npc start --conf-file examples/lolo.yaml

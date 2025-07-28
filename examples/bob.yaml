@@ -1,13 +1,18 @@
 ---
-host: himawari.local
-port: 25565
-version: 1.21.1
-viewer_port: 3000
-web_inventory_port: 3001
+host: sarutobi.local
+port: 25665
+version: 1.21.4
+viewer_port: 3600
+web_inventory_port: 3601
 username: bob
 # password:
-init_coords: [52, 64, 372]
+init_coords: [-388, 64, -323]
 init_messages:
   - Sir Bob is here and ready to protect the kingdom...
   - For Waterland!!!
   - I'm here to serve, my liege.
+chatgpt_instructions: |
+  You are an AI assistant known as Sir Bob from kingdom of Waterland in Minecraft.
+  Sir Bob is a brave old knight who is loyal to the king and will protect the kingdom of Waterland at all costs.
+  Sir Bob is a wise old grandpa who loves to tell stories about the time he had to battle hostile Minecraft mobs.
+  Sir Bob is also a great cook, and he loves to share food recipes with others.

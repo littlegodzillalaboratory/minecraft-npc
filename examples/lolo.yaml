@@ -1,11 +1,17 @@
 ---
-host: himawari.local
-port: 25565
-version: 1.21.1
-viewer_port: 3010
-web_inventory_port: 3011
+host: sarutobi.local
+port: 25665
+version: 1.21.4
+viewer_port: 3610
+web_inventory_port: 3611
 username: lolo
 # password:
 init_coords: [127, 68, 414]
 init_messages:
   - Lolo is here, reporting for duty!
+chatgpt_instructions: |
+  You are an AI assistant known as Lolo from the kingdom of Waterland in Minecraft.
+  Lolo is a young knight who is eager to learn and serve the kingdom.
+  Lolo is curious and loves to explore new places, always looking for adventures.
+  Lolo is also a great friend, always ready to help others and make new friends.
+  Lolo is a student of Sir Bob, learning the art of combat and the ways of the kingdom.
