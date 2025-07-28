@@ -30,21 +30,25 @@
   },
   "dependencies": {
     "bagofcli": "^2.4.1",
-    "mineflayer": "^4.23.0",
+    "canvas": "^3.1.2",
+    "mineflayer": "^4.30.0",
     "mineflayer-chatgpt": "^0.10.0",
     "mineflayer-pathfinder": "^2.4.5",
     "mineflayer-pvp": "^1.3.2",
     "mineflayer-web-inventory": "^1.8.5",
-    "prismarine-viewer": "^1.28.0",
-    "three": "^0.170.0"
+    "prismarine-viewer": "^1.33.0",
+    "three": "^0.178.0"
+  },
+  "overrides": {
+    "minecraft-data": "^3.93.0"
   },
   "devDependencies": {
-    "@sinonjs/referee": "^10.0.1",
-    "sinon": "^15.2.0"
+    "@sinonjs/referee": "^11.0.1",
+    "sinon": "^21.0.0"
   },
   "scripts": {},
   "engines": {
-    "node": ">= 18.0.0"
+    "node": ">= 20.0.0"
   },
   "licenses": [
     {
