@@ -5,9 +5,9 @@
   "keywords": [
     "TODO"
   ],
-  "version": "0.9.0",
+  "version": "0.9.0-pre.0",
   "homepage": "https://github.com/cliffano/minecraft-npc",
-  "author": "Cliffano Subagio cliffano@gmail.com (blog.cliffano.com)",
+  "author": "Cliffano Subagio cliffano@gmail.com (https://cliffano.com)",
   "contributors": [
     "All contributors (https://github.com/cliffano/minecraft-npc/graphs/contributors)"
   ],
@@ -18,10 +18,10 @@
   "preferGlobal": true,
   "repository": {
     "type": "git",
-    "url": "http://github.com/cliffano/minecraft-npc.git"
+    "url": "https://github.com/cliffano/minecraft-npc.git"
   },
   "bugs": {
-    "url": "http://github.com/cliffano/minecraft-npc/issues"
+    "url": "https://github.com/cliffano/minecraft-npc/issues"
   },
   "directories": {
     "bin": "./bin",
@@ -29,31 +29,27 @@
     "test": "./test"
   },
   "dependencies": {
-    "bagofcli": "^2.4.1",
-    "canvas": "^3.1.2",
-    "mineflayer": "^4.30.0",
-    "mineflayer-chatgpt": "^0.10.0",
+    "bagofcli": "^2.5.0",
+    "canvas": "^3.2.1",
+    "mineflayer": "^4.35.0",
     "mineflayer-pathfinder": "^2.4.5",
     "mineflayer-pvp": "^1.3.2",
     "mineflayer-web-inventory": "^1.8.5",
     "prismarine-viewer": "^1.33.0",
-    "three": "^0.178.0"
-  },
-  "overrides": {
-    "minecraft-data": "^3.93.0"
+    "three": "^0.183.2"
   },
   "devDependencies": {
     "@sinonjs/referee": "^11.0.1",
-    "sinon": "^21.0.0"
+    "sinon": "^21.0.3"
   },
   "scripts": {},
   "engines": {
-    "node": ">= 20.0.0"
+    "node": ">= 22.0.0"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "http://github.com/cliffano/minecraft-npc/raw/master/LICENSE"
+      "url": "https://github.com/cliffano/minecraft-npc/raw/master/LICENSE"
     }
   ]
 }
