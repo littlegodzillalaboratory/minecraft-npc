@@ -17,15 +17,13 @@ describe('Register', () => {
 
       register.setActionInfo(id, status);
 
-      assert.deepStrictEqual(register.actions[id], {
-        status: status,
-        counter: 1
-      });
-      assert.deepStrictEqual(register.latestAction, {
-        id: id,
-        status: status,
-        counter: 1
-      });
+      assert.equals(register.actions[id].status, 'success');
+      assert.equals(register.actions[id].counter, 1);
+      assert.isNumber(register.actions[id].timeInMillis);
+      assert.equals(register.latestAction.id, '123');
+      assert.equals(register.latestAction.status, 'success');
+      assert.equals(register.latestAction.counter, 1);
+      assert.isNumber(register.latestAction.timeInMillis);
     });
 
     it('should update action info correctly', () => {
@@ -35,21 +33,19 @@ describe('Register', () => {
       register.setActionInfo(id, status);
       register.setActionInfo(id, 'failure');
 
-      assert.deepStrictEqual(register.actions[id], {
-        status: 'failure',
-        counter: 2
-      });
-      assert.deepStrictEqual(register.latestAction, {
-        id: id,
-        status: 'failure',
-        counter: 2
-      });
+      assert.equals(register.actions[id].status, 'failure');
+      assert.equals(register.actions[id].counter, 2);
+      assert.isNumber(register.actions[id].timeInMillis);
+      assert.equals(register.latestAction.id, '123');
+      assert.equals(register.latestAction.status, 'failure');
+      assert.equals(register.latestAction.counter, 2);
+      assert.isNumber(register.latestAction.timeInMillis);
     });
   });
 
   describe('getActionInfo', () => {
     it('should return undefined for non-existent action', () => {
-      assert.strictEqual(register.getActionInfo('123'), undefined);
+      assert.same(register.getActionInfo('123'), undefined);
     });
 
     it('should return action info correctly', () => {
@@ -58,16 +54,15 @@ describe('Register', () => {
 
       register.setActionInfo(id, status);
 
-      assert.deepStrictEqual(register.getActionInfo(id), {
-        status: status,
-        counter: 1
-      });
+      assert.equals(register.actions[id].status, 'success');
+      assert.equals(register.actions[id].counter, 1);
+      assert.isNumber(register.actions[id].timeInMillis);
     });
   });
 
   describe('getLatestAction', () => {
     it('should return undefined for no actions', () => {
-      assert.strictEqual(register.getLatestAction(), undefined);
+      assert.same(register.getLatestAction(), undefined);
     });
 
     it('should return latest action correctly', () => {
@@ -80,11 +75,10 @@ describe('Register', () => {
       register.setActionInfo(id1, status1);
       register.setActionInfo(id2, status2);
 
-      assert.deepStrictEqual(register.getLatestAction(), {
-        id: id2,
-        status: status2,
-        counter: 1
-      });
+      assert.equals(register.latestAction.id, '456');
+      assert.equals(register.latestAction.status, 'failure');
+      assert.equals(register.latestAction.counter, 2);
+      assert.isNumber(register.latestAction.timeInMillis);
     });
   });
 });

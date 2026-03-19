@@ -41,8 +41,12 @@ describe('cli - start', function() {
         'web_inventory_port',
         'username',
         'password',
+        'instructions',
         'init_coords',
-        'init_messages'
+        'init_messages',
+        'chatgpt_apikey',
+        'chatgpt_model',
+        'chatgpt_instructions'
       ]);
       assert.equals(opts.file, 'someconffile.yaml');
       cb(null, {
