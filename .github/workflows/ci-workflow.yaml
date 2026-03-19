@@ -1,9 +1,9 @@
 ---
 name: CI
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       max-parallel: 1
       matrix:
@@ -11,17 +11,16 @@ jobs:
         node: [ '22', '24' ]
     name: node ${{ matrix.node }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node }}
-      - run: npm install -g bob@4
-      - run: bob build
+      - run: make ci
       - uses: coverallsapp/github-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: .bob/coverage/c8/lcov.info
-      - uses: peaceiris/actions-gh-pages@v3
+      - uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.LITTLEGODZILLALABORATORY_GITHUB_TOKEN }}
           publish_dir: .bob
