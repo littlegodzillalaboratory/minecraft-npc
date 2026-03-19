@@ -6,7 +6,7 @@ viewer_port: 3610
 web_inventory_port: 3611
 username: lolo
 # password:
-init_coords: [127, 68, 414]
+init_coords: [-389, 64, -323]
 init_messages:
   - Lolo is here, reporting for duty!
 chatgpt_instructions: |
