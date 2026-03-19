@@ -1,10 +1,11 @@
-<img align="right" src="https://raw.github.com/cliffano/minecraft-npc/master/avatar.jpg" alt="Avatar"/>
+<img align="right" src="https://raw.github.com/littlegodzillalaboratory/minecraft-npc/main/avatar.jpg" alt="Avatar"/>
 
-[![Build Status](https://github.com/cliffano/minecraft-npc/workflows/CI/badge.svg)](https://github.com/cliffano/minecraft-npc/actions?query=workflow%3ACI)
-[![Security Status](https://snyk.io/test/github/cliffano/minecraft-npc/badge.svg)](https://snyk.io/test/github/cliffano/minecraft-npc)
-[![Dependencies Status](https://img.shields.io/librariesio/release/npm/minecraft-npc)](https://libraries.io/github/cliffano/minecraft-npc)
-[![Coverage Status](https://img.shields.io/coveralls/cliffano/minecraft-npc.svg)](https://coveralls.io/r/cliffano/minecraft-npc?branch=master)
-[![Published Version](https://img.shields.io/npm/v/minecraft-npc.svg)](http://www.npmjs.com/package/minecraft-npc)
+[![Build Status](https://github.com/littlegodzillalaboratory/minecraft-npc/workflows/CI/badge.svg)](https://github.com/littlegodzillalaboratory/minecraft-npc/actions?query=workflow%3ACI)
+[![Dependencies Status](https://img.shields.io/librariesio/release/npm/minecraft-npc)](https://libraries.io/npm/minecraft-npc)
+[![Code Scanning Status](https://github.com/littlegodzillalaboratory/minecraft-npc/workflows/CodeQL/badge.svg)](https://github.com/littlegodzillalaboratory/minecraft-npc/actions?query=workflow%3ACodeQL)
+[![Coverage Status](https://coveralls.io/repos/github/littlegodzillalaboratory/minecraft-npc/badge.svg?branch=main)](https://coveralls.io/r/littlegodzillalaboratory/minecraft-npc?branch=main)
+[![Security Status](https://snyk.io/test/github/littlegodzillalaboratory/minecraft-npc/badge.svg)](https://snyk.io/test/github/littlegodzillalaboratory/minecraft-npc)
+[![Published Version](https://img.shields.io/npm/v/minecraft-npc.svg)](https://www.npmjs.com/package/minecraft-npc)
 <br/>
 
 Minecraft Bob
@@ -48,3 +49,16 @@ To enable debug logs at protocol level, set `DEBUG="minecraft-protocol"` environ
       minecraft-protocol } +1ms
     Bot has been kicked:
     "{\"translate\":\"multiplayer.disconnect.incompatible\",\"with\":[\"1.20.4\"]}"
+
+Colophon
+--------
+
+[Developer's Guide](https://littlegodzillalaboratory.github.io/developers_guide.html#nodejs)
+
+Build reports:
+
+* [Code complexity report](https://littlegodzillalaboratory.github.io/minecraft-npc/complexity/plato/index.html)
+* [Unit tests report](https://littlegodzillalaboratory.github.io/minecraft-npc/test/mocha.txt)
+* [Test coverage report](https://littlegodzillalaboratory.github.io/minecraft-npc/coverage/c8/index.html)
+* [Integration tests report](https://littlegodzillalaboratory.github.io/minecraft-npc/test-integration/cmdt.txt)
+* [API Documentation](https://littlegodzillalaboratory.github.io/minecraft-npc/doc/jsdoc/index.html)
