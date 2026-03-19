@@ -6,10 +6,10 @@
     "TODO"
   ],
   "version": "0.9.0-pre.0",
-  "homepage": "https://github.com/cliffano/minecraft-npc",
+  "homepage": "https://github.com/littlegodzillalaboratory/minecraft-npc",
   "author": "Cliffano Subagio cliffano@gmail.com (https://cliffano.com)",
   "contributors": [
-    "All contributors (https://github.com/cliffano/minecraft-npc/graphs/contributors)"
+    "All contributors (https://github.com/littlegodzillalaboratory/minecraft-npc/graphs/contributors)"
   ],
   "main": "./lib/minecraft-npc.js",
   "bin": {
@@ -18,10 +18,10 @@
   "preferGlobal": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/cliffano/minecraft-npc.git"
+    "url": "https://github.com/littlegodzillalaboratory/minecraft-npc.git"
   },
   "bugs": {
-    "url": "https://github.com/cliffano/minecraft-npc/issues"
+    "url": "https://github.com/littlegodzillalaboratory/minecraft-npc/issues"
   },
   "directories": {
     "bin": "./bin",
@@ -49,7 +49,7 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/cliffano/minecraft-npc/raw/master/LICENSE"
+      "url": "https://github.com/littlegodzillalaboratory/minecraft-npc/raw/master/LICENSE"
     }
   ]
 }
