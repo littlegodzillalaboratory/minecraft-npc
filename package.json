@@ -32,6 +32,7 @@
     "bagofcli": "^2.5.0",
     "canvas": "^3.2.1",
     "mineflayer": "^4.35.0",
+    "mineflayer-chatgpt": "^1.0.0",
     "mineflayer-pathfinder": "^2.4.5",
     "mineflayer-pvp": "^1.3.2",
     "mineflayer-web-inventory": "^1.8.5",
