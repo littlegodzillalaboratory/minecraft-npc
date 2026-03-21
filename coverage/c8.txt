@@ -1,23 +1,19 @@
-(node:2668) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-(Use `node --trace-deprecation ...` to show where the warning was created)
-test | /opt/hostedtoolcache/node/22.22.1/x64/lib/node_modules/bob/node_modules/.bin/mocha --colors --reporter spec --recursive test/
-(node:2687) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-(Use `node --trace-deprecation ...` to show where the warning was created)
+test | /opt/hostedtoolcache/node/24.14.0/x64/lib/node_modules/bob/node_modules/.bin/mocha --colors --reporter spec --recursive test/
 
 [0m[0m
 [0m  cli - exec[0m
   [32m  [32m✔[39m[0m[90m should contain commands with actions[0m
 
 [0m  cli - start[0m
-  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (144ms)[0m
+  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (145ms)[0m
 AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1134:18)
-    at afterConnectMultiple (node:net:1715:7) {
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7) {
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:25565
-        at createConnectionError (node:net:1678:14)
-        at afterConnectMultiple (node:net:1708:16) {
+        at createConnectionError (node:net:1686:14)
+        at afterConnectMultiple (node:net:1716:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -25,8 +21,8 @@ AggregateError [ECONNREFUSED]:
       port: 25565
     },
     Error: connect ECONNREFUSED 127.0.0.1:25565
-        at createConnectionError (node:net:1678:14)
-        at afterConnectMultiple (node:net:1708:16) {
+        at createConnectionError (node:net:1686:14)
+        at afterConnectMultiple (node:net:1716:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -36,13 +32,13 @@ AggregateError [ECONNREFUSED]:
   ]
 }
 AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1134:18)
-    at afterConnectMultiple (node:net:1715:7) {
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7) {
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:25565
-        at createConnectionError (node:net:1678:14)
-        at afterConnectMultiple (node:net:1708:16) {
+        at createConnectionError (node:net:1686:14)
+        at afterConnectMultiple (node:net:1716:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -50,8 +46,8 @@ AggregateError [ECONNREFUSED]:
       port: 25565
     },
     Error: connect ECONNREFUSED 127.0.0.1:25565
-        at createConnectionError (node:net:1678:14)
-        at afterConnectMultiple (node:net:1708:16) {
+        at createConnectionError (node:net:1686:14)
+        at afterConnectMultiple (node:net:1716:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -73,7 +69,7 @@ AggregateError [ECONNREFUSED]:
     [32m  [32m✔[39m[0m[90m should return latest action correctly[0m
 
 
-[92m [0m[32m 8 passing[0m[90m (158ms)[0m
+[92m [0m[32m 8 passing[0m[90m (162ms)[0m
 
 SUCCESS | exit code 0
 -----------------------------|---------|----------|---------|---------|-----------------------------
