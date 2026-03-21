@@ -1,0 +1,106 @@
+(node:2668) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+test | /opt/hostedtoolcache/node/22.22.1/x64/lib/node_modules/bob/node_modules/.bin/mocha --colors --reporter spec --recursive test/
+(node:2687) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+[0m[0m
+[0m  cli - exec[0m
+  [32m  [32m✔[39m[0m[90m should contain commands with actions[0m
+
+[0m  cli - start[0m
+  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (144ms)[0m
+AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7) {
+  code: 'ECONNREFUSED',
+  [errors]: [
+    Error: connect ECONNREFUSED ::1:25565
+        at createConnectionError (node:net:1678:14)
+        at afterConnectMultiple (node:net:1708:16) {
+      errno: -111,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '::1',
+      port: 25565
+    },
+    Error: connect ECONNREFUSED 127.0.0.1:25565
+        at createConnectionError (node:net:1678:14)
+        at afterConnectMultiple (node:net:1708:16) {
+      errno: -111,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 25565
+    }
+  ]
+}
+AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7) {
+  code: 'ECONNREFUSED',
+  [errors]: [
+    Error: connect ECONNREFUSED ::1:25565
+        at createConnectionError (node:net:1678:14)
+        at afterConnectMultiple (node:net:1708:16) {
+      errno: -111,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '::1',
+      port: 25565
+    },
+    Error: connect ECONNREFUSED 127.0.0.1:25565
+        at createConnectionError (node:net:1678:14)
+        at afterConnectMultiple (node:net:1708:16) {
+      errno: -111,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 25565
+    }
+  ]
+}
+
+[0m  Register[0m
+[0m    setActionInfo[0m
+    [32m  [32m✔[39m[0m[90m should set action info correctly[0m
+    [32m  [32m✔[39m[0m[90m should update action info correctly[0m
+[0m    getActionInfo[0m
+    [32m  [32m✔[39m[0m[90m should return undefined for non-existent action[0m
+    [32m  [32m✔[39m[0m[90m should return action info correctly[0m
+[0m    getLatestAction[0m
+    [32m  [32m✔[39m[0m[90m should return undefined for no actions[0m
+    [32m  [32m✔[39m[0m[90m should return latest action correctly[0m
+
+
+[92m [0m[32m 8 passing[0m[90m (158ms)[0m
+
+SUCCESS | exit code 0
+-----------------------------|---------|----------|---------|---------|-----------------------------
+File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s           
+-----------------------------|---------|----------|---------|---------|-----------------------------
+All files                    |   58.38 |    86.48 |   17.24 |   58.38 |                             
+ lib                         |    56.1 |    77.27 |      40 |    56.1 |                             
+  cli.js                     |   98.68 |    66.66 |     100 |   98.68 | 13                          
+  minecraft-npc.js           |   36.15 |       40 |   33.33 |   36.15 | 41-116,119-125              
+  npc.js                     |   35.24 |      100 |    8.33 |   35.24 | ...4-73,76-85,88-97,100-117 
+  register.js                |     100 |      100 |     100 |     100 |                             
+  validator.js               |   66.66 |      100 |       0 |   66.66 | 3-5,7-9                     
+ lib/actions                 |   57.14 |      100 |       0 |   57.14 |                             
+  base.js                    |      68 |      100 |       0 |      68 | 7-8,11-12,15-16,19-20       
+  empty-inventory.js         |   66.66 |      100 |       0 |   66.66 | 8-9,12-16                   
+  forward-to-chatgpt.js      |   58.33 |      100 |       0 |   58.33 | 8-9,12-19                   
+  guard-current-location.js  |   53.84 |      100 |       0 |   53.84 | 8-9,12-21                   
+  move-to-init-location.js   |      56 |      100 |       0 |      56 | 8-9,12-20                   
+  move-to-player-location.js |   51.85 |      100 |       0 |   51.85 | 8-9,12-22                   
+  respond-to-message.js      |   55.17 |      100 |       0 |   55.17 | 42-43,46-82                 
+  say-current-location.js    |   51.85 |      100 |       0 |   51.85 | 8-9,12-22                   
+  say-init-message.js        |      60 |      100 |       0 |      60 | 9-10,13-20                  
+ lib/skills                  |   68.59 |      100 |       0 |   68.59 |                             
+  base.js                    |   72.72 |      100 |       0 |   72.72 | 7-8,11-12,15-16             
+  empty-inventory.js         |      56 |      100 |       0 |      56 | 8-9,12-20                   
+  guard-location.js          |   68.42 |      100 |       0 |   68.42 | 7-8,11-14                   
+  message-chatgpt.js         |   72.22 |      100 |       0 |   72.22 | 7-8,11-13                   
+  move-to-location.js        |      70 |      100 |       0 |      70 | 8-9,12-15                   
+  say-message.js             |   76.47 |      100 |       0 |   76.47 | 7-8,11-12                   
+-----------------------------|---------|----------|---------|---------|-----------------------------

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>minecraft-npc.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="MinecraftNpc.html">MinecraftNpc</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="MinecraftNpc.html#start">start</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#exec">exec</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">minecraft-npc.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+import bag from 'bagofcli';
+import mineflayer from 'mineflayer';
+import mineflayerChatgpt from 'mineflayer-chatgpt';
+import pathfinder from 'mineflayer-pathfinder';
+import mineflayerWebInventory from 'mineflayer-web-inventory';
+import { readFile } from 'fs/promises';
+import mineflayerViewer from 'prismarine-viewer';
+import Npc from './npc.js';
+import pvp from 'mineflayer-pvp';
+import Register from './register.js';
+import MoveToInitLocationAction from './actions/move-to-init-location.js';
+import RespondToMessageAction from './actions/respond-to-message.js';
+import SayInitMessageAction from './actions/say-init-message.js';
+
+/**
+ * class MinecraftNpc
+ *
+ * @param {Object} opts: optional
+ */
+class MinecraftNpc {
+
+  constructor(opts) {
+
+    const bot = mineflayer.createBot({
+      host: opts.host || 'localhost',
+      port: opts.port || 25565,
+      version: opts.version,
+      username: opts.username || 'bob',
+      password: opts.password || undefined
+    });
+
+    const register = new Register();
+
+    this.npc = new Npc(bot, register, opts);
+  }
+
+  /**
+   */
+  async start(cb) {
+
+    const minecraftNpcVersion = await this._getMinecraftNpcVersion();
+    bag.logStepHeading(`Starting Minecraft NPC v${minecraftNpcVersion}...`);
+
+    const _bot = this.npc.getBot();
+    const _opts = this.npc.getOpts();
+
+    bag.logStepHeading('Loading plugins...');
+    bag.logStepItemSuccess('ChatGPT plugin');
+    _bot.loadPlugin(mineflayerChatgpt.chatgpt);
+    _bot.chatgpt.setConfig(_opts.chatGptApiKey, { model: _opts.chatGptModel, instructions: _opts.chatGptInstructions });
+    bag.logStepItemSuccess('Pathfinder plugin');
+    _bot.loadPlugin(pathfinder.pathfinder);
+    bag.logStepItemSuccess('PVP plugin');
+    _bot.loadPlugin(pvp.plugin);
+    bag.logStepItemSuccess('Viewer plugin');
+    bag.logStepItemSuccess('WebInventory plugin');
+
+    const moveToInitLocationAction = new MoveToInitLocationAction(this.npc);
+    const respondToMessageAction = new RespondToMessageAction(this.npc);
+    const sayInitMessageAction = new SayInitMessageAction(this.npc);
+
+    _bot.on('kicked', function (error, result) {
+      bag.logStepHeading('Bot has been kicked:');
+      cb(error, result);
+    });
+    _bot.on('error', function (error, result) {
+      bag.logStepHeading('An unexpected error has occurred:');
+      cb(error, result);
+    });
+
+    bag.logStepHeading('Spawning bot...');
+    _bot.once('spawn', () => {
+      bag.logStepItemSuccess(`${_bot.username} has been spawned`);
+
+      mineflayerViewer.mineflayer(_bot, { port: _opts.viewerPort, firstPerson: false });
+      mineflayerWebInventory(_bot, { port: _opts.webInventoryPort });
+
+      const [posX, posY, posZ] = _opts.initCoords;
+      moveToInitLocationAction.do({
+        posX: posX,
+        posY: posY,
+        posZ: posZ
+      });
+
+      sayInitMessageAction.do({
+        messages: _opts.initMessages
+      });
+
+      _bot.on('chat', (username, message) => {
+
+        // Ignore message from the bot itself
+        if (username === _bot.username) {
+          return;
+        } else {
+
+          if (message.startsWith(_bot.username)) {
+
+            const sanitisedMessage = message.trimStart(_bot.username).trimStart();
+            respondToMessageAction.do({
+              message: sanitisedMessage,
+              sender: username
+            });
+
+          // Ignore message not addressed to the bot
+          // (assumes bot is addressed if message starts with the bot's username)
+          } else {
+            return;
+          }
+
+        }
+
+      });
+
+    });
+  }
+
+  async _getMinecraftNpcVersion() {
+    const packageInfo = JSON.parse(
+      await readFile (
+        new URL('../package.json', import.meta.url)
+      )
+    );
+    return packageInfo['version'];
+  }
+}
+
+export {
+  MinecraftNpc as default
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Sat Mar 21 2026 01:17:13 GMT+0000 (Coordinated Universal Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
