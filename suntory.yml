@@ -1,13 +1,14 @@
 ---
 package_name: minecraft-npc
-author: Cliffano Subagio
+author: Little Godzilla Laboratory
 generator:
   component: node-lib
   inputs:
     project_id: minecraft-npc
     project_name: Minecraft NPC
     project_desc: Configurable Minecraft NPC bot
-    author_name: Cliffano Subagio
-    author_email: cliffano@gmail.com
+    author_name: Little Godzilla Laboratory
+    author_email: blah+lgl@cliffano.com
     github_id: littlegodzillalaboratory
     github_repo: minecraft-npc
+    github_token_prefix: LITTLEGODZILLALABORATORY
