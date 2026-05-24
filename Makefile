@@ -41,6 +41,7 @@ clean:
 deps:
 	npm install -g bob@5.0.1
 	bob dep
+	make -f Makefile-extras x-deps-extras-apt
 
 deps-upgrade:
 	bob updep

@@ -1,4 +1,5 @@
 x-deps-extras-apt:
+	apt-get update
 	# From https://github.com/Automattic/node-canvas?tab=readme-ov-file#compiling
 	apt-get install build-essential -y libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
 
