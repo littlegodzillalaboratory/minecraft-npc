@@ -3,7 +3,7 @@
     minecraft_npc: ../../../../../bin/minecraft-npc.js
     base: ../../../../..
 
-- description: Set up example bot environment
+- description: Set up Minecraft NPC environment
   command: 'make -f {base}/test-integration/fixtures/Makefile install-minecraft-npc'
   exitcode: 0
   output: 'added .* package.*'
@@ -24,7 +24,7 @@
   command: 'sed -i "s/localhost/$(make --no-print-directory -f {base}/test-integration/fixtures/Makefile get-minecraft-server-ip-address | xargs)/g" {base}/stage/minecraft-npc.yaml'
   exitcode: 0
 
-- description: Run example bot, check the bot is spawned
+- description: Run Minecraft NPC, check it's starting
   command: '{minecraft_npc} start --conf-file {base}/stage/minecraft-npc.yaml'
   exitcode: 1
   output: '.*Starting Minecraft NPC.*'
