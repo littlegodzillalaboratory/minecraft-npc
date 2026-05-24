@@ -1,7 +1,7 @@
 {
   "name": "minecraft-npc",
   "type": "module",
-  "description": "A Minecraft NPC bot CLI powered by Mineflayer.",
+  "description": "CLI for running NPC bot on Minecraft powered by Mineflayer",
   "keywords": [
     "minecraft",
     "mineflayer",
