@@ -1,4 +1,4 @@
-<img align="right" src="https://raw.github.com/littlegodzillalaboratory/minecraft-npc/main/avatar.jpg" alt="Avatar"/>
+![Avatar](avatar.jpg)
 
 [![Build Status](https://github.com/littlegodzillalaboratory/minecraft-npc/workflows/CI/badge.svg)](https://github.com/littlegodzillalaboratory/minecraft-npc/actions?query=workflow%3ACI)
 [![Dependencies Status](https://img.shields.io/librariesio/release/npm/minecraft-npc)](https://libraries.io/npm/minecraft-npc)
@@ -6,26 +6,43 @@
 [![Coverage Status](https://coveralls.io/repos/github/littlegodzillalaboratory/minecraft-npc/badge.svg?branch=main)](https://coveralls.io/r/littlegodzillalaboratory/minecraft-npc?branch=main)
 [![Security Status](https://snyk.io/test/github/littlegodzillalaboratory/minecraft-npc/badge.svg)](https://snyk.io/test/github/littlegodzillalaboratory/minecraft-npc)
 [![Published Version](https://img.shields.io/npm/v/minecraft-npc.svg)](https://www.npmjs.com/package/minecraft-npc)
-<br/>
 
-Minecraft Bob
--------------
+# Minecraft NPC
+
+Minecraft NPC is a CLI for running NPC bot on Minecraft, powered by [Mineflayer](https://prismarinejs.github.io/mineflayer/#/).
 
 ![Bob logs screenshot](docs/images/bob-logs.png "Bob logs screenshot")
 
-Configuration
--------------
+## Installation
+
+    npm install mineflayer-chatgpt
+
+## Usage
+
+Create a configuration file, e.g. `minecraft-npc.yaml`
+
+Start Minecraft NPC bot:
+
+    minecraft-npc start --conf-file minecraft-npc.yaml
+
+## Configuration
 
 | Property | Description | Mandatory/Optional | Default Value |
 |----------|-------------|--------------------|---------------|
-| Host | Minecraft server host | Optional | `localhost` |
-| Port | Minecraft server port | Optional | `25565` |
-| Viewer Port | Minecraft viewer port | Optional | `3000` |
-| Username | Minecraft username | Optional, only needed on online mode | |
-| Password | Minecraft password | Optional, only needed on online mode | |
+| host | Minecraft server host | Optional | `localhost` |
+| port | Minecraft server port | Optional | `25565` |
+| version | Minecraft version | Mandatory | |
+| viewer_port | Minecraft viewer port | Optional | `3000` |
+| web_inventory_port | Minecraft web inventory port | Mandatory | |
+| username | Minecraft username | Optional | `bob` |
+| password | Minecraft password | Optional, only needed on online mode | |
+| init_coords | Initial bot coordinates [x, y, z] | Optional | `[0, 0, 0]` |
+| init_messages | Initial bot messages to send on spawn | Optional | |
+| chatgpt_apikey | ChatGPT API key | Optional, only needed for ChatGPT chat feature | |
+| chatgpt_model | [ChatGPT model](https://developers.openai.com/api/docs/models/all) to use | Optional | `gpt-5.2`  |
+| chatgpt_instructions | ChatGPT bot instructions | Optional | |
 
-Debugging
----------
+## Debugging
 
 To enable debug logs at protocol level, set `DEBUG="minecraft-protocol"` environment variable when running `minecraft-npc`. You'll get more detailed information when the program exits due to an error:
 
@@ -50,8 +67,7 @@ To enable debug logs at protocol level, set `DEBUG="minecraft-protocol"` environ
     Bot has been kicked:
     "{\"translate\":\"multiplayer.disconnect.incompatible\",\"with\":[\"1.20.4\"]}"
 
-Colophon
---------
+## Colophon
 
 [Developer's Guide](https://littlegodzillalaboratory.github.io/developers_guide.html#nodejs)
 
