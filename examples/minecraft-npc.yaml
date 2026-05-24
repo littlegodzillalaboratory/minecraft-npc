@@ -6,7 +6,7 @@ viewer_port: 3610
 web_inventory_port: 3611
 username: herobrine
 # password:
-init_coords: [10, 10, 10]
+init_coords: [0, 0, 0]
 init_messages:
   - Herobrine is here, ready to help
 chatgpt_instructions: |
