@@ -157,7 +157,10 @@ describe("skills", () => {
 
   it("should find a matching object block", () => {
     const findBlock = sinon.stub().returns({ position: { x: 4, y: 5, z: 6 } });
-    const moveToLocationDoStub = sinon.stub(MoveToLocationSkill.prototype, "do");
+    const moveToLocationDoStub = sinon.stub(
+      MoveToLocationSkill.prototype,
+      "do",
+    );
     const skill = new MoveToObjectSkill({
       registry: {
         blocksByName: {

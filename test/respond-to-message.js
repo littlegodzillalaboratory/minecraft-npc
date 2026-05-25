@@ -59,9 +59,18 @@ describe("RespondToMessageAction", () => {
       moveBlocksDistanceToDirectionStub.firstCall.args[0].message,
       "move 5 blocks forward",
     );
-    assert.equals(moveBlocksDistanceToDirectionStub.firstCall.args[0].player, "alice");
-    assert.equals(moveBlocksDistanceToDirectionStub.firstCall.args[0].messageElems[1], "5");
-    assert.equals(moveBlocksDistanceToDirectionStub.firstCall.args[0].messageElems[2], "forward");
+    assert.equals(
+      moveBlocksDistanceToDirectionStub.firstCall.args[0].player,
+      "alice",
+    );
+    assert.equals(
+      moveBlocksDistanceToDirectionStub.firstCall.args[0].messageElems[1],
+      "5",
+    );
+    assert.equals(
+      moveBlocksDistanceToDirectionStub.firstCall.args[0].messageElems[2],
+      "forward",
+    );
     assert.equals(forwardStub.callCount, 0);
   });
 
