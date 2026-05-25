@@ -61,4 +61,28 @@ describe("RespondToMessageAction", () => {
     assert.equals(moveBlocksDistanceToDirectionStub.firstCall.args[0].player, "alice");
     assert.equals(forwardStub.callCount, 0);
   });
+
+  it("should forward unknown message to ChatGPT", () => {
+    const register = {
+      setActionInfo: sinon.spy(),
+    };
+    const npc = {
+      getRegister: () => register,
+    };
+    const action = new RespondToMessageAction(npc);
+
+    const moveBlocksDistanceToDirectionStub = sinon.stub(
+      MoveBlocksDistanceToDirectionAction.prototype,
+      "do",
+    );
+    const forwardStub = sinon.stub(ForwardToChatGptAction.prototype, "do");
+
+    action.do({
+      message: "tell me a joke",
+      sender: "alice",
+    });
+
+    assert.equals(moveBlocksDistanceToDirectionStub.callCount, 0);
+    assert.equals(forwardStub.callCount, 1);
+  });
 });
