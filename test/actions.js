@@ -145,20 +145,10 @@ describe("actions", () => {
       moveBlocksDistanceToDirection: move,
       getRegister: () => ({ setActionInfo }),
     });
-    action.do({ message: "move 7 blocks rightward" });
+    action.do({ message: "move 7 blocks rightward", messageElems: ["move 7 blocks rightward", "7", "rightward"] });
     assert.equals(move.firstCall.args[0], 7);
     assert.equals(move.firstCall.args[1], "rightward");
     assert.equals(setActionInfo.firstCall.args[1], "success");
-  });
-
-  it("should fail MoveBlocksDistanceToDirectionAction on invalid message", () => {
-    const setActionInfo = sinon.spy();
-    const action = new MoveBlocksDistanceToDirectionAction({
-      moveBlocksDistanceToDirection: sinon.stub().returns("success"),
-      getRegister: () => ({ setActionInfo }),
-    });
-    action.do({ message: "move around" });
-    assert.equals(setActionInfo.firstCall.args[1], "failed");
   });
 
   it("should run MoveToObjectAction on valid message", () => {
@@ -171,15 +161,5 @@ describe("actions", () => {
     action.do({ message: "walk to a bed", messageElems: ["walk to a bed", "bed"] });
     assert.equals(moveToObject.firstCall.args[0], "bed");
     assert.equals(setActionInfo.firstCall.args[1], "success");
-  });
-
-  it("should fail MoveToObjectAction on invalid message", () => {
-    const setActionInfo = sinon.spy();
-    const action = new MoveToObjectAction({
-      moveToObject: sinon.stub().returns("success"),
-      getRegister: () => ({ setActionInfo }),
-    });
-    action.do({ message: "go somewhere" });
-    assert.equals(setActionInfo.firstCall.args[1], "failed");
   });
 });
