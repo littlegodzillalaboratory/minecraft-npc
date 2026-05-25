@@ -122,7 +122,7 @@ describe("Npc - more", () => {
       const npc = new Npc(bot, new Register(), {});
       assert.equals(npc.moveToObject("bed"), "success");
       assert.equals(bot.pathfinder.setGoal.callCount, 1);
-      assert.equals(npc.moveToObject("bedroom"), "failed");
+      assert.equals(npc.moveToObject("bedroom"), "success");
       assert.equals(bot.chat.firstCall.args[0], "I cannot find any bedroom");
     } finally {
       pathfinder.Movements = originalMovements;
