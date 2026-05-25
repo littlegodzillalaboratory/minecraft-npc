@@ -23,7 +23,9 @@ describe("actions", () => {
 
   it("should log default BaseAction errors", () => {
     const errorStub = sinon.stub(bag, "logStepItemError");
-    const action = new BaseAction({ getRegister: () => ({ setActionInfo: () => {} }) });
+    const action = new BaseAction({
+      getRegister: () => ({ setActionInfo: () => {} }),
+    });
     action.getId();
     action.do({});
     assert.equals(errorStub.callCount, 2);
@@ -36,7 +38,9 @@ describe("actions", () => {
         return "ConcreteAction";
       }
     }
-    const action = new ConcreteAction({ getRegister: () => ({ setActionInfo }) });
+    const action = new ConcreteAction({
+      getRegister: () => ({ setActionInfo }),
+    });
     action.registerInfo("success");
     assert.equals(setActionInfo.callCount, 1);
     assert.equals(setActionInfo.firstCall.args[0], "ConcreteAction");
@@ -145,7 +149,10 @@ describe("actions", () => {
       moveBlocksDistanceToDirection: move,
       getRegister: () => ({ setActionInfo }),
     });
-    action.do({ message: "move 7 blocks rightward", messageElems: ["move 7 blocks rightward", "7", "rightward"] });
+    action.do({
+      message: "move 7 blocks rightward",
+      messageElems: ["move 7 blocks rightward", "7", "rightward"],
+    });
     assert.equals(move.firstCall.args[0], 7);
     assert.equals(move.firstCall.args[1], "rightward");
     assert.equals(setActionInfo.firstCall.args[1], "success");
@@ -158,7 +165,10 @@ describe("actions", () => {
       moveToObject,
       getRegister: () => ({ setActionInfo }),
     });
-    action.do({ message: "walk to a bed", messageElems: ["walk to a bed", "bed"] });
+    action.do({
+      message: "walk to a bed",
+      messageElems: ["walk to a bed", "bed"],
+    });
     assert.equals(moveToObject.firstCall.args[0], "bed");
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });

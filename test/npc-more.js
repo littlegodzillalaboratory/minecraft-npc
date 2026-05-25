@@ -29,7 +29,11 @@ describe("Npc - more", () => {
   });
 
   it("should execute emptyInventory", () => {
-    const bot = { username: "bob", inventory: { items: () => [] }, tossStack: () => {} };
+    const bot = {
+      username: "bob",
+      inventory: { items: () => [] },
+      tossStack: () => {},
+    };
     const npc = new Npc(bot, new Register(), {});
     assert.equals(npc.emptyInventory(), "success");
   });
