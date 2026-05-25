@@ -5,6 +5,7 @@ import ForwardToChatGptAction from "../lib/actions/forward-to-chatgpt.js";
 import GuardCurrentLocationAction from "../lib/actions/guard-current-location.js";
 import MoveBlocksDistanceToDirectionAction from "../lib/actions/move-blocks-distance-to-direction.js";
 import MoveToInitLocationAction from "../lib/actions/move-to-init-location.js";
+import MoveToObjectAction from "../lib/actions/move-to-object.js";
 import MoveToPlayerLocationAction from "../lib/actions/move-to-player-location.js";
 import SayCurrentLocationAction from "../lib/actions/say-current-location.js";
 import SayInitMessageAction from "../lib/actions/say-init-message.js";
@@ -157,6 +158,28 @@ describe("actions", () => {
       getRegister: () => ({ setActionInfo }),
     });
     action.do({ message: "move around" });
+    assert.equals(setActionInfo.firstCall.args[1], "failed");
+  });
+
+  it("should run MoveToObjectAction on valid message", () => {
+    const moveToObject = sinon.stub().returns("success");
+    const setActionInfo = sinon.spy();
+    const action = new MoveToObjectAction({
+      moveToObject,
+      getRegister: () => ({ setActionInfo }),
+    });
+    action.do({ message: "walk to a bed", messageElems: ["walk to a bed", "bed"] });
+    assert.equals(moveToObject.firstCall.args[0], "bed");
+    assert.equals(setActionInfo.firstCall.args[1], "success");
+  });
+
+  it("should fail MoveToObjectAction on invalid message", () => {
+    const setActionInfo = sinon.spy();
+    const action = new MoveToObjectAction({
+      moveToObject: sinon.stub().returns("success"),
+      getRegister: () => ({ setActionInfo }),
+    });
+    action.do({ message: "go somewhere" });
     assert.equals(setActionInfo.firstCall.args[1], "failed");
   });
 });

@@ -5,6 +5,7 @@ import GuardLocationSkill from "../lib/skills/guard-location.js";
 import MessageChatGptSkill from "../lib/skills/message-chatgpt.js";
 import MoveBlocksDistanceToDirectionSkill from "../lib/skills/move-blocks-distance-to-direction.js";
 import MoveToLocationSkill from "../lib/skills/move-to-location.js";
+import MoveToObjectSkill from "../lib/skills/move-to-object.js";
 import SayMessageSkill from "../lib/skills/say-message.js";
 import StopSkill from "../lib/skills/stop.js";
 import bag from "bagofcli";
@@ -152,6 +153,36 @@ describe("skills", () => {
       const result = skill._getTargetPosition(position, 3, direction);
       assert.isObject(result);
     }
+  });
+
+  it("should find a matching object block", () => {
+    const findBlock = sinon.stub().returns({ position: { x: 4, y: 5, z: 6 } });
+    const skill = new MoveToObjectSkill({
+      registry: {
+        blocksByName: {
+          red_bed: { id: 1, name: "red_bed" },
+          stone: { id: 2, name: "stone" },
+        },
+      },
+      findBlock,
+    });
+    const block = skill.do({ objectName: "bed" });
+    assert.equals(findBlock.firstCall.args[0].matching[0], 1);
+    assert.equals(block.position.x, 4);
+  });
+
+  it("should return undefined when object block is not discoverable", () => {
+    const findBlock = sinon.stub();
+    const skill = new MoveToObjectSkill({
+      registry: {
+        blocksByName: {
+          stone: { id: 2, name: "stone" },
+        },
+      },
+      findBlock,
+    });
+    assert.same(skill.do({ objectName: "bed" }), undefined);
+    assert.equals(findBlock.callCount, 0);
   });
 
   it("should run SayMessageSkill", () => {

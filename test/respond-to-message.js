@@ -1,6 +1,7 @@
 "use strict";
 import ForwardToChatGptAction from "../lib/actions/forward-to-chatgpt.js";
 import MoveBlocksDistanceToDirectionAction from "../lib/actions/move-blocks-distance-to-direction.js";
+import MoveToObjectAction from "../lib/actions/move-to-object.js";
 import RespondToMessageAction from "../lib/actions/respond-to-message.js";
 import StopCurrentAction from "../lib/actions/stop-current-action.js";
 import referee from "@sinonjs/referee";
@@ -84,5 +85,28 @@ describe("RespondToMessageAction", () => {
 
     assert.equals(moveBlocksDistanceToDirectionStub.callCount, 0);
     assert.equals(forwardStub.callCount, 1);
+  });
+
+  it("should invoke move to object action when receiving a move to object command", () => {
+    const register = {
+      setActionInfo: sinon.spy(),
+    };
+    const npc = {
+      getRegister: () => register,
+    };
+    const action = new RespondToMessageAction(npc);
+
+    const moveToObjectStub = sinon.stub(MoveToObjectAction.prototype, "do");
+    const forwardStub = sinon.stub(ForwardToChatGptAction.prototype, "do");
+
+    action.do({
+      message: "find a bed",
+      sender: "alice",
+    });
+
+    assert.equals(moveToObjectStub.callCount, 1);
+    assert.equals(moveToObjectStub.firstCall.args[0].message, "find a bed");
+    assert.equals(moveToObjectStub.firstCall.args[0].messageElems[1], "bed");
+    assert.equals(forwardStub.callCount, 0);
   });
 });

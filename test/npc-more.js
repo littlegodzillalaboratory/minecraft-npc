@@ -3,6 +3,7 @@ import pathfinder from "mineflayer-pathfinder";
 import Npc from "../lib/npc.js";
 import Register from "../lib/register.js";
 import referee from "@sinonjs/referee";
+import sinon from "sinon";
 
 const assert = referee.assert;
 
@@ -82,5 +83,50 @@ describe("Npc - more", () => {
     assert.equals(npc.moveToLocation("a", 2, 3), "failed");
     assert.equals(npc.sayMessage(""), "failed");
     assert.equals(npc.moveBlocksDistanceToDirection(0, "forward"), "failed");
+  });
+
+  it("should move to a discoverable object or say when it cannot be found", () => {
+    const bot = {
+      username: "bob",
+      entity: { position: { x: 0, y: 0, z: 0 } },
+      registry: {
+        blocksByName: {
+          red_bed: { id: 1, name: "red_bed" },
+        },
+      },
+      findBlock: sinon.stub(),
+      pathfinder: { setMovements: sinon.spy(), setGoal: sinon.spy() },
+      chat: sinon.spy(),
+    };
+
+    const originalMovements = pathfinder.Movements;
+    const originalGoalNear = pathfinder.goals.GoalNear;
+    try {
+      pathfinder.Movements = class {
+        constructor(botRef) {
+          this.bot = botRef;
+        }
+      };
+      pathfinder.goals.GoalNear = class {
+        constructor(x, y, z, range) {
+          this.x = x;
+          this.y = y;
+          this.z = z;
+          this.range = range;
+        }
+      };
+
+      bot.findBlock.onFirstCall().returns({ position: { x: 8, y: 9, z: 10 } });
+      bot.findBlock.onSecondCall().returns(undefined);
+
+      const npc = new Npc(bot, new Register(), {});
+      assert.equals(npc.moveToObject("bed"), "success");
+      assert.equals(bot.pathfinder.setGoal.callCount, 1);
+      assert.equals(npc.moveToObject("bedroom"), "failed");
+      assert.equals(bot.chat.firstCall.args[0], "I cannot find any bedroom");
+    } finally {
+      pathfinder.Movements = originalMovements;
+      pathfinder.goals.GoalNear = originalGoalNear;
+    }
   });
 });
