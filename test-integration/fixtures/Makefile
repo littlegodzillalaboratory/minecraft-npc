@@ -1,10 +1,13 @@
+REPO_ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST)))/../..)
+
 install-minecraft-npc:
-	cd ../../../../../ && \
+	cd $(REPO_ROOT) && \
 		npm install && \
+		npm link . && \
 		npm link minecraft-npc
 
 start-minecraft-server:
-	docker compose -f ../../../../../test-integration/fixtures/docker-compose.yaml run -d minecraft_server
+	docker compose -f $(REPO_ROOT)/test-integration/fixtures/docker-compose.yaml run -d minecraft_server
 
 stop-minecraft-server:
 	docker rm $$(docker stop $$(docker ps -a | grep itzg/minecraft-server | awk -v i="^$$1.*" '{if($$2~i){print$$1}}'))
