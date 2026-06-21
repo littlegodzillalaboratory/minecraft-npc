@@ -1,11 +1,15 @@
+<!-- BEGIN:AVATAR -->
 ![Avatar](avatar.jpg)
+<!-- END:AVATAR -->
 
+<!-- BEGIN:BADGES -->
 [![Build Status](https://github.com/littlegodzillalaboratory/minecraft-npc/workflows/CI/badge.svg)](https://github.com/littlegodzillalaboratory/minecraft-npc/actions?query=workflow%3ACI)
 [![Dependencies Status](https://img.shields.io/librariesio/release/npm/minecraft-npc)](https://libraries.io/npm/minecraft-npc)
 [![Code Scanning Status](https://github.com/littlegodzillalaboratory/minecraft-npc/workflows/CodeQL/badge.svg)](https://github.com/littlegodzillalaboratory/minecraft-npc/actions?query=workflow%3ACodeQL)
 [![Coverage Status](https://coveralls.io/repos/github/littlegodzillalaboratory/minecraft-npc/badge.svg?branch=main)](https://coveralls.io/r/littlegodzillalaboratory/minecraft-npc?branch=main)
 [![Security Status](https://snyk.io/test/github/littlegodzillalaboratory/minecraft-npc/badge.svg)](https://snyk.io/test/github/littlegodzillalaboratory/minecraft-npc)
 [![Published Version](https://img.shields.io/npm/v/minecraft-npc.svg)](https://www.npmjs.com/package/minecraft-npc)
+<!-- END:BADGES -->
 
 # Minecraft NPC
 
@@ -69,12 +73,17 @@ To enable debug logs at protocol level, set `DEBUG="minecraft-protocol"` environ
 
 ## Colophon
 
-[Developer's Guide](https://littlegodzillalaboratory.github.io/developers_guide.html#nodejs)
+<!-- BEGIN:DEVELOPERS_GUIDE -->
+[Developer's Guide](https:/cliffano.github.io/developers-guide-nodejs.html)
+<!-- END:DEVELOPERS_GUIDE -->
 
+<!-- BEGIN:BUILD_REPORTS -->
 Build reports:
 
 * [Code complexity report](https://littlegodzillalaboratory.github.io/minecraft-npc/complexity/plato/index.html)
 * [Unit tests report](https://littlegodzillalaboratory.github.io/minecraft-npc/test/mocha.txt)
 * [Test coverage report](https://littlegodzillalaboratory.github.io/minecraft-npc/coverage/c8/index.html)
-* [Integration tests report](https://littlegodzillalaboratory.github.io/minecraft-npc/test-integration/cmdt.txt)
+* [Integration tests report](https://littlegodzillalaboratory.github.io/minecraft-npc/test-integration/mocha.txt)
 * [API Documentation](https://littlegodzillalaboratory.github.io/minecraft-npc/doc/jsdoc/index.html)
+
+<!-- END:BUILD_REPORTS -->
