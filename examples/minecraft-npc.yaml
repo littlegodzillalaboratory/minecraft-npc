@@ -1,5 +1,5 @@
 ---
-host: shino.local
+host: localhost
 port: 25565
 version: 1.21.11
 viewer_port: 3610

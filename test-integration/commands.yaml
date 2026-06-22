@@ -1,6 +1,5 @@
 - params:
     minecraft_npc: ../../../../../bin/minecraft-npc.js
-    base: ../../../../../
 
 - description: Command help should display help information
   command: '{minecraft_npc} --help'
