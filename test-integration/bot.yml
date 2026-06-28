@@ -20,7 +20,7 @@
   exitcode: 0
 
 - description: Run test bot, check it's starting
-  command: '{minecraft_npc} start --conf-file {base}/stage/minecraft-npc.yaml'
+  command: '{base}/node_modules/.bin/minecraft-npc start --conf-file {base}/stage/minecraft-npc.yaml'
   exitcode: 1
   output: '.*Starting Minecraft NPC.*'
 
