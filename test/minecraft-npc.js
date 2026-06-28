@@ -53,6 +53,11 @@ describe("MinecraftNpc", () => {
       chatGptApiKey: "k",
       chatGptModel: "m",
       chatGptInstructions: "i",
+      chatGptEnableModeration: true,
+      chatGptEnableMessageLogging: true,
+      chatGptMinimumConfidenceScore: 0.7,
+      chatGptCoolDownInSeconds: 5,
+      chatGptFallbackMessage: "fallback",
     });
     sinon.stub(npc, "_getMinecraftNpcVersion").resolves("1.0.0");
 
@@ -61,6 +66,12 @@ describe("MinecraftNpc", () => {
 
     assert.equals(fakeBot.loadPlugin.callCount, 3);
     assert.equals(fakeBot.chatgpt.setConfig.callCount, 1);
+    assert.equals(fakeBot.chatgpt.setConfig.firstCall.args[0], "k");
+    assert.equals(fakeBot.chatgpt.setConfig.firstCall.args[1].enableModeration, true);
+    assert.equals(fakeBot.chatgpt.setConfig.firstCall.args[1].messageLogging, true);
+    assert.equals(fakeBot.chatgpt.setConfig.firstCall.args[1].minimumConfidenceScore, 0.7);
+    assert.equals(fakeBot.chatgpt.setConfig.firstCall.args[1].coolDownInSeconds, 5);
+    assert.equals(fakeBot.chatgpt.setConfig.firstCall.args[1].fallbackMessage, "fallback");
     assert.isFunction(events.kicked);
     assert.isFunction(events.error);
     assert.isFunction(onceHandlers.spawn);

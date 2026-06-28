@@ -49,6 +49,11 @@ minecraft-npc start --conf-file minecraft-npc.yaml
 | chatgpt_apikey | ChatGPT API key | Optional, only needed for ChatGPT chat feature | |
 | chatgpt_model | [ChatGPT model](https://developers.openai.com/api/docs/models/all) to use | Optional | `gpt-5.2`  |
 | chatgpt_instructions | ChatGPT bot instructions | Optional | |
+| chatgpt_enable_moderation | Enable ChatGPT moderation of messages | Optional | `false` |
+| chatgpt_enable_message_logging | Enable logging of ChatGPT messages | Optional | `false` |
+| chatgpt_minimum_confidence_score | Minimum confidence score threshold for ChatGPT responses | Optional | |
+| chatgpt_cool_down_in_seconds | Cool-down period in seconds between ChatGPT responses | Optional | |
+| chatgpt_fallback_message | Message to send when ChatGPT cannot provide a response | Optional | |
 
 ## Debugging
 
