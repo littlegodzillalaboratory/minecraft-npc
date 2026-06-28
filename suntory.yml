@@ -2,7 +2,7 @@
 package_name: minecraft-npc
 author: Little Godzilla Laboratory
 generator:
-  component: node-lib
+  component: node-cli
   inputs:
     project_id: minecraft-npc
     project_name: Minecraft NPC
