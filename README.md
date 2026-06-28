@@ -96,4 +96,4 @@ Build reports:
 
 Related projects:
 
-* [mineflayer-chatgpt](https://github.com/cliffano/mineflayer-chatgpt) - Mineflayer plugin for sending and receiving messages with OpenAI ChatGPT
+* [mineflayer-chatgpt](https://github.com/littlegodzillalaboratory/mineflayer-chatgpt) - Mineflayer plugin for sending and receiving messages with OpenAI ChatGPT
