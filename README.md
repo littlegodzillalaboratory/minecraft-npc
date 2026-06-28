@@ -20,7 +20,7 @@ Minecraft NPC is a CLI for running NPC bot on Minecraft, powered by [Mineflayer]
 ## Installation
 
 ```shell
-npm install mineflayer-chatgpt
+npm install -g minecraft-npc
 ```
 
 ## Usage
