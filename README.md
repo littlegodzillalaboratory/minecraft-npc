@@ -93,3 +93,7 @@ Build reports:
 * [API Documentation](https://littlegodzillalaboratory.github.io/minecraft-npc/doc/jsdoc/index.html)
 
 <!-- END:BUILD_REPORTS -->
+
+Related projects:
+
+* [mineflayer-chatgpt](https://github.com/cliffano/mineflayer-chatgpt) - Mineflayer plugin for sending and receiving messages to OpenAI ChatGPT
