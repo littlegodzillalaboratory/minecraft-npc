@@ -80,7 +80,7 @@ Bot has been kicked:
 ## Colophon
 
 <!-- BEGIN:DEVELOPERS_GUIDE -->
-[Developer's Guide](https:/cliffano.github.io/developers-guide-nodejs.html)
+[Developer's Guide](https://cliffano.github.io/developers-guide-nodejs.html)
 <!-- END:DEVELOPERS_GUIDE -->
 
 <!-- BEGIN:BUILD_REPORTS -->
@@ -89,7 +89,7 @@ Build reports:
 * [Code complexity report](https://littlegodzillalaboratory.github.io/minecraft-npc/complexity/plato/index.html)
 * [Unit tests report](https://littlegodzillalaboratory.github.io/minecraft-npc/test/mocha.txt)
 * [Test coverage report](https://littlegodzillalaboratory.github.io/minecraft-npc/coverage/c8/index.html)
-* [Integration tests report](https://littlegodzillalaboratory.github.io/minecraft-npc/test-integration/mocha.txt)
+* [Integration tests report](https://littlegodzillalaboratory.github.io/minecraft-npc/test-integration/cmdt.txt)
 * [API Documentation](https://littlegodzillalaboratory.github.io/minecraft-npc/doc/jsdoc/index.html)
 
 <!-- END:BUILD_REPORTS -->
