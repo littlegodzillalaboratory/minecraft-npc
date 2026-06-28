@@ -19,7 +19,9 @@ Minecraft NPC is a CLI for running NPC bot on Minecraft, powered by [Mineflayer]
 
 ## Installation
 
-    npm install mineflayer-chatgpt
+```shell
+npm install mineflayer-chatgpt
+```
 
 ## Usage
 
@@ -27,7 +29,9 @@ Create a configuration file, e.g. `minecraft-npc.yaml`
 
 Start Minecraft NPC bot:
 
-    minecraft-npc start --conf-file minecraft-npc.yaml
+```shell
+minecraft-npc start --conf-file minecraft-npc.yaml
+```
 
 ## Configuration
 
@@ -50,26 +54,28 @@ Start Minecraft NPC bot:
 
 To enable debug logs at protocol level, set `DEBUG="minecraft-protocol"` environment variable when running `minecraft-npc`. You'll get more detailed information when the program exits due to an error:
 
-    Spawning bot...
-      minecraft-protocol writing packet handshaking.set_protocol +0ms
-      minecraft-protocol {
-      minecraft-protocol   protocolVersion: 763,
-      minecraft-protocol   serverHost: 'somehost',
-      minecraft-protocol   serverPort: 25565,
-      minecraft-protocol   nextState: 2
-      minecraft-protocol } +1ms
-      minecraft-protocol writing packet login.login_start +48ms
-      minecraft-protocol {
-      minecraft-protocol   username: 'someusername',
-      minecraft-protocol   signature: null,
-      minecraft-protocol   playerUUID: 'd3afe860-c1dd-3d13-8ec6-8680489964b0'
-      minecraft-protocol } +0ms
-      minecraft-protocol read packet login.disconnect +370ms
-      minecraft-protocol {
-      minecraft-protocol   "reason": "{\"translate\":\"multiplayer.disconnect.incompatible\",\"with\":[\"1.20.4\"]}"
-      minecraft-protocol } +1ms
-    Bot has been kicked:
-    "{\"translate\":\"multiplayer.disconnect.incompatible\",\"with\":[\"1.20.4\"]}"
+```text
+Spawning bot...
+    minecraft-protocol writing packet handshaking.set_protocol +0ms
+    minecraft-protocol {
+    minecraft-protocol   protocolVersion: 763,
+    minecraft-protocol   serverHost: 'somehost',
+    minecraft-protocol   serverPort: 25565,
+    minecraft-protocol   nextState: 2
+    minecraft-protocol } +1ms
+    minecraft-protocol writing packet login.login_start +48ms
+    minecraft-protocol {
+    minecraft-protocol   username: 'someusername',
+    minecraft-protocol   signature: null,
+    minecraft-protocol   playerUUID: 'd3afe860-c1dd-3d13-8ec6-8680489964b0'
+    minecraft-protocol } +0ms
+    minecraft-protocol read packet login.disconnect +370ms
+    minecraft-protocol {
+    minecraft-protocol   "reason": "{\"translate\":\"multiplayer.disconnect.incompatible\",\"with\":[\"1.20.4\"]}"
+    minecraft-protocol } +1ms
+Bot has been kicked:
+"{\"translate\":\"multiplayer.disconnect.incompatible\",\"with\":[\"1.20.4\"]}"
+```
 
 ## Colophon
 
