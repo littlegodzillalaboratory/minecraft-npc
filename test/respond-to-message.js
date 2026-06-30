@@ -34,7 +34,7 @@ describe("RespondToMessageAction", () => {
     assert.equals(forwardStub.callCount, 0);
   });
 
-  it("should invoke move blocks distance to direction action when receiving a move blocks distance to direction command", () => {
+  it("should invoke move blocks distance to direction action when receiving a move blocks (plural) distance to direction command", () => {
     const register = {
       setActionInfo: sinon.spy(),
     };
@@ -66,6 +66,46 @@ describe("RespondToMessageAction", () => {
     assert.equals(
       moveBlocksDistanceToDirectionStub.firstCall.args[0].messageElems[1],
       "5",
+    );
+    assert.equals(
+      moveBlocksDistanceToDirectionStub.firstCall.args[0].messageElems[2],
+      "forward",
+    );
+    assert.equals(forwardStub.callCount, 0);
+  });
+
+  it("should invoke move blocks distance to direction action when receiving a move block (singular) distance to direction command", () => {
+    const register = {
+      setActionInfo: sinon.spy(),
+    };
+    const npc = {
+      getRegister: () => register,
+    };
+    const action = new RespondToMessageAction(npc);
+
+    const moveBlocksDistanceToDirectionStub = sinon.stub(
+      MoveBlocksDistanceToDirectionAction.prototype,
+      "do",
+    );
+    const forwardStub = sinon.stub(ForwardToChatGptAction.prototype, "do");
+
+    action.do({
+      message: "move 1 block forward",
+      sender: "alice",
+    });
+
+    assert.equals(moveBlocksDistanceToDirectionStub.callCount, 1);
+    assert.equals(
+      moveBlocksDistanceToDirectionStub.firstCall.args[0].message,
+      "move 1 block forward",
+    );
+    assert.equals(
+      moveBlocksDistanceToDirectionStub.firstCall.args[0].player,
+      "alice",
+    );
+    assert.equals(
+      moveBlocksDistanceToDirectionStub.firstCall.args[0].messageElems[1],
+      "1",
     );
     assert.equals(
       moveBlocksDistanceToDirectionStub.firstCall.args[0].messageElems[2],

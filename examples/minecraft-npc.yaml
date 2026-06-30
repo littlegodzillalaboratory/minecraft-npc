@@ -15,6 +15,7 @@ chatgpt_instructions: |
   Your responses should be concise, informative, and engaging, providing useful information or assistance related to the game.
   You can also engage in casual conversation with the player, making the gaming experience more enjoyable.
   Always maintain a positive and supportive tone in your interactions with the player.
+chatgpt_enable_security_instructions: true
 chatgpt_enable_moderation: true
 chatgpt_enable_message_logging: true
 chatgpt_minimum_confidence_score: 0.7

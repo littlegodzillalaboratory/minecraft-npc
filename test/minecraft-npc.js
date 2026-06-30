@@ -58,6 +58,7 @@ describe("MinecraftNpc", () => {
       chatGptMinimumConfidenceScore: 0.7,
       chatGptCoolDownInSeconds: 5,
       chatGptFallbackMessage: "fallback",
+      chatGptEnableSecurityInstructions: true,
     });
     sinon.stub(npc, "_getMinecraftNpcVersion").resolves("1.0.0");
 
@@ -86,6 +87,10 @@ describe("MinecraftNpc", () => {
     assert.equals(
       fakeBot.chatgpt.setConfig.firstCall.args[1].fallbackMessage,
       "fallback",
+    );
+    assert.equals(
+      fakeBot.chatgpt.setConfig.firstCall.args[1].enableSecurityInstructions,
+      true,
     );
     assert.isFunction(events.kicked);
     assert.isFunction(events.error);

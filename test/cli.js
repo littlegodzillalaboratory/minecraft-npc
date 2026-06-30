@@ -50,6 +50,7 @@ describe("cli - start", function () {
         "chatgpt_minimum_confidence_score",
         "chatgpt_cool_down_in_seconds",
         "chatgpt_fallback_message",
+        "chatgpt_enable_security_instructions",
       ]);
       assert.equals(opts.file, "someconffile.yaml");
       cb(null, {
