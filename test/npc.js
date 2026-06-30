@@ -83,4 +83,146 @@ describe("Npc", () => {
       }
     });
   });
+
+  describe("getBot / getRegister / getOpts", () => {
+    it("should return bot/register/opts references", () => {
+      const bot = { entity: { position: { x: 1, y: 2, z: 3 } }, players: {} };
+      const register = new Register();
+      const opts = { a: 1 };
+      const npc = new Npc(bot, register, opts);
+      assert.same(npc.getBot(), bot);
+      assert.same(npc.getRegister(), register);
+      assert.same(npc.getOpts(), opts);
+    });
+  });
+
+  describe("getPosition / getPlayerPosition", () => {
+    it("should return own and player position", () => {
+      const bot = {
+        entity: { position: { x: 1, y: 2, z: 3 } },
+        players: { alice: { entity: { position: { x: 4, y: 5, z: 6 } } } },
+      };
+      const npc = new Npc(bot, new Register(), {});
+      assert.equals(npc.getPosition().x, 1);
+      assert.equals(npc.getPlayerPosition("alice").x, 4);
+    });
+  });
+
+  describe("emptyInventory", () => {
+    it("should execute emptyInventory", () => {
+      const bot = {
+        username: "bob",
+        inventory: { items: () => [] },
+        tossStack: () => {},
+      };
+      const npc = new Npc(bot, new Register(), {});
+      assert.equals(npc.emptyInventory(), "success");
+    });
+  });
+
+  describe("moveToLocation / guardLocation / messageChatGpt / sayMessage", () => {
+    it("should execute moveToLocation, guardLocation, messageChatGpt, and sayMessage", async () => {
+      const originalMovements = pathfinder.Movements;
+      const originalGoalNear = pathfinder.goals.GoalNear;
+      pathfinder.Movements = class {
+        constructor(bot) {
+          this.bot = bot;
+        }
+      };
+      pathfinder.goals.GoalNear = class {
+        constructor(x, y, z, range) {
+          this.x = x;
+          this.y = y;
+          this.z = z;
+          this.range = range;
+        }
+      };
+
+      const bot = {
+        username: "bob",
+        inventory: { items: () => [] },
+        tossStack: () => {},
+        pathfinder: { setMovements: () => {}, setGoal: () => {} },
+        registry: { entitiesByName: { zombie: { category: "Hostile mobs" } } },
+        entities: {
+          1: { type: "mob", name: "zombie", position: { x: 5, y: 64, z: 5 } },
+        },
+        pvp: { attack: sinon.spy() },
+        chatgpt: { sendMessage: async () => "ok" },
+        chat: () => {},
+      };
+      try {
+        const npc = new Npc(bot, new Register(), {});
+        assert.equals(npc.moveToLocation(1, 2, 3), "success");
+        assert.equals(npc.guardLocation(1, 2, 3), "success");
+        assert.equals(npc.sayMessage("hello"), "success");
+        assert.equals(npc.messageChatGpt("alice", "hello"), "success");
+      } finally {
+        pathfinder.Movements = originalMovements;
+        pathfinder.goals.GoalNear = originalGoalNear;
+      }
+    });
+  });
+
+  describe("validation", () => {
+    it("should fail validation branch", () => {
+      const bot = {
+        username: "bob",
+        pathfinder: { setMovements: () => {}, setGoal: () => {} },
+        chat: () => {},
+        chatgpt: { sendMessage: async () => "ok" },
+      };
+      const npc = new Npc(bot, new Register(), {});
+      assert.equals(npc.moveToLocation("a", 2, 3), "failed");
+      assert.equals(npc.sayMessage(""), "failed");
+      assert.equals(npc.moveBlocksDistanceToDirection(0, "forward"), "failed");
+    });
+  });
+
+  describe("moveToObject", () => {
+    it("should move to a discoverable object or say when it cannot be found", () => {
+      const bot = {
+        username: "bob",
+        entity: { position: { x: 0, y: 0, z: 0 } },
+        registry: {
+          blocksByName: {
+            red_bed: { id: 1, name: "red_bed" },
+          },
+        },
+        findBlock: sinon.stub(),
+        pathfinder: { setMovements: sinon.spy(), setGoal: sinon.spy() },
+        chat: sinon.spy(),
+      };
+
+      const originalMovements = pathfinder.Movements;
+      const originalGoalNear = pathfinder.goals.GoalNear;
+      try {
+        pathfinder.Movements = class {
+          constructor(botRef) {
+            this.bot = botRef;
+          }
+        };
+        pathfinder.goals.GoalNear = class {
+          constructor(x, y, z, range) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+            this.range = range;
+          }
+        };
+
+        bot.findBlock.onFirstCall().returns({ position: { x: 8, y: 9, z: 10 } });
+        bot.findBlock.onSecondCall().returns(undefined);
+
+        const npc = new Npc(bot, new Register(), {});
+        assert.equals(npc.moveToObject("bed"), "success");
+        assert.equals(bot.pathfinder.setGoal.callCount, 1);
+        assert.equals(npc.moveToObject("bedroom"), "success");
+        assert.equals(bot.chat.firstCall.args[0], "I cannot find any bedroom");
+      } finally {
+        pathfinder.Movements = originalMovements;
+        pathfinder.goals.GoalNear = originalGoalNear;
+      }
+    });
+  });
 });

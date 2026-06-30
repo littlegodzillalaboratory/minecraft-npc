@@ -1,9 +1,9 @@
 "use strict";
-import ForwardToChatGptAction from "../lib/actions/forward-to-chatgpt.js";
-import MoveBlocksDistanceToDirectionAction from "../lib/actions/move-blocks-distance-to-direction.js";
-import MoveToObjectAction from "../lib/actions/move-to-object.js";
-import RespondToMessageAction from "../lib/actions/respond-to-message.js";
-import StopCurrentAction from "../lib/actions/stop-current-action.js";
+import ForwardToChatGptAction from "../../lib/actions/forward-to-chatgpt.js";
+import MoveBlocksDistanceToDirectionAction from "../../lib/actions/move-blocks-distance-to-direction.js";
+import MoveToObjectAction from "../../lib/actions/move-to-object.js";
+import RespondToMessageAction from "../../lib/actions/respond-to-message.js";
+import StopCurrentAction from "../../lib/actions/stop-current-action.js";
 import referee from "@sinonjs/referee";
 import sinon from "sinon";
 const assert = referee.assert;
