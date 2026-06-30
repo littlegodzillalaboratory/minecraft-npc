@@ -7,6 +7,24 @@ import sinon from "sinon";
 const assert = referee.assert;
 
 describe("Npc", () => {
+  describe("sleep", () => {
+    it("should execute sleep", () => {
+      const bot = {
+        username: "bob",
+        registry: {
+          blocksByName: {
+            red_bed: { id: 1, name: "red_bed" },
+          },
+        },
+        findBlock: sinon.stub().returns(null),
+        sleep: sinon.stub().resolves(),
+        chat: sinon.spy(),
+      };
+      const npc = new Npc(bot, new Register(), {});
+      assert.equals(npc.sleep(), "success");
+    });
+  });
+
   describe("stop", () => {
     it("should stop bot movement, combat, and controls", () => {
       const mockBot = {
