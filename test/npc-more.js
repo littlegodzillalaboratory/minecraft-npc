@@ -38,7 +38,7 @@ describe("Npc - more", () => {
     assert.equals(npc.emptyInventory(), "success");
   });
 
-  it("should execute moveToLocation, messageChatGpt, sayMessage, and throw on guardLocation", async () => {
+  it("should execute moveToLocation, guardLocation, messageChatGpt, and sayMessage", async () => {
     const originalMovements = pathfinder.Movements;
     const originalGoalNear = pathfinder.goals.GoalNear;
     pathfinder.Movements = class {
@@ -60,14 +60,18 @@ describe("Npc - more", () => {
       inventory: { items: () => [] },
       tossStack: () => {},
       pathfinder: { setMovements: () => {}, setGoal: () => {} },
-      guardLocation: () => "ok",
+      registry: { entitiesByName: { zombie: { category: "Hostile mobs" } } },
+      entities: {
+        1: { type: "mob", name: "zombie", position: { x: 5, y: 64, z: 5 } },
+      },
+      pvp: { attack: sinon.spy() },
       chatgpt: { sendMessage: async () => "ok" },
       chat: () => {},
     };
     try {
       const npc = new Npc(bot, new Register(), {});
       assert.equals(npc.moveToLocation(1, 2, 3), "success");
-      assert.exception(() => npc.guardLocation(1, 2, 3));
+      assert.equals(npc.guardLocation(1, 2, 3), "success");
       assert.equals(npc.sayMessage("hello"), "success");
       assert.equals(npc.messageChatGpt("alice", "hello"), "success");
     } finally {

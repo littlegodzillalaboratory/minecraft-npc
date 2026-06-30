@@ -41,10 +41,64 @@ describe("skills", () => {
     assert.equals(tossStack.callCount, 1);
   });
 
-  it("should run GuardLocationSkill and throw on missing registerInfo", () => {
-    const bot = { guardLocation: sinon.stub().returns("success") };
+  it("should run GuardLocationSkill and attack hostile mob entity within radius", () => {
+    const zombie = {
+      type: "mob",
+      name: "zombie",
+      position: { x: 5, y: 64, z: 5 },
+    };
+    const pvpAttack = sinon.spy();
+    const bot = {
+      registry: { entitiesByName: { zombie: { category: "Hostile mobs" } } },
+      entities: { 1: zombie },
+      pvp: { attack: pvpAttack },
+    };
     const skill = new GuardLocationSkill(bot);
-    assert.exception(() => skill.do({ posX: 1, posY: 2, posZ: 3 }));
+    skill.do({ posX: 0, posY: 64, posZ: 0 });
+    assert.equals(pvpAttack.callCount, 1);
+    assert.same(pvpAttack.firstCall.args[0], zombie);
+  });
+
+  it("should run GuardLocationSkill and not attack passive mob entity within radius", () => {
+    const cow = { type: "mob", name: "cow", position: { x: 5, y: 64, z: 5 } };
+    const pvpAttack = sinon.spy();
+    const bot = {
+      registry: { entitiesByName: { cow: { category: "Passive mobs" } } },
+      entities: { 1: cow },
+      pvp: { attack: pvpAttack },
+    };
+    const skill = new GuardLocationSkill(bot);
+    skill.do({ posX: 0, posY: 64, posZ: 0 });
+    assert.equals(pvpAttack.callCount, 0);
+  });
+
+  it("should run GuardLocationSkill and not attack hostile mob entity outside radius", () => {
+    const farZombie = {
+      type: "mob",
+      name: "zombie",
+      position: { x: 200, y: 64, z: 200 },
+    };
+    const pvpAttack = sinon.spy();
+    const bot = {
+      registry: { entitiesByName: { zombie: { category: "Hostile mobs" } } },
+      entities: { 1: farZombie },
+      pvp: { attack: pvpAttack },
+    };
+    const skill = new GuardLocationSkill(bot);
+    skill.do({ posX: 0, posY: 64, posZ: 0 });
+    assert.equals(pvpAttack.callCount, 0);
+  });
+
+  it("should run GuardLocationSkill and do nothing when no entities are present", () => {
+    const pvpAttack = sinon.spy();
+    const bot = {
+      registry: { entitiesByName: {} },
+      entities: {},
+      pvp: { attack: pvpAttack },
+    };
+    const skill = new GuardLocationSkill(bot);
+    skill.do({ posX: 0, posY: 64, posZ: 0 });
+    assert.equals(pvpAttack.callCount, 0);
   });
 
   it("should run MessageChatGptSkill", async () => {
