@@ -7,6 +7,21 @@ import sinon from "sinon";
 const assert = referee.assert;
 
 describe("Npc", () => {
+  describe("eat", () => {
+    it("should execute eat", () => {
+      const bot = {
+        username: "bob",
+        inventory: { items: () => [] },
+        registry: { itemsByName: {} },
+        equip: sinon.stub().resolves(),
+        consume: sinon.stub().resolves(),
+        chat: sinon.spy(),
+      };
+      const npc = new Npc(bot, new Register(), {});
+      assert.equals(npc.eat(), "success");
+    });
+  });
+
   describe("sleep", () => {
     it("should execute sleep", () => {
       const bot = {

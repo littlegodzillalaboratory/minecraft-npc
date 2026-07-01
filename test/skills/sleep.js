@@ -10,10 +10,12 @@ describe("SleepSkill", () => {
     sinon.restore();
   });
 
-  it("should sleep in a nearby bed when one is found", async () => {
+  it("should sleep in a nearby bed when one is found at night", async () => {
     const bed = { position: { x: 1, y: 64, z: 1 } };
     const sleepStub = sinon.stub().resolves();
     const bot = {
+      time: { timeOfDay: 13000 },
+      thunderState: 0,
       registry: {
         blocksByName: {
           red_bed: { id: 1, name: "red_bed" },
@@ -35,8 +37,47 @@ describe("SleepSkill", () => {
     assert.equals(bot.chat.callCount, 0);
   });
 
-  it("should say there is no bed nearby when no bed is found", async () => {
+  it("should sleep in a nearby bed when one is found during a thunderstorm", async () => {
+    const bed = { position: { x: 1, y: 64, z: 1 } };
+    const sleepStub = sinon.stub().resolves();
     const bot = {
+      time: { timeOfDay: 6000 },
+      thunderState: 1,
+      registry: {
+        blocksByName: {
+          red_bed: { id: 1, name: "red_bed" },
+        },
+      },
+      findBlock: sinon.stub().returns(bed),
+      sleep: sleepStub,
+      chat: sinon.spy(),
+    };
+    const skill = new SleepSkill(bot);
+    await skill.do({});
+    assert.equals(sleepStub.callCount, 1);
+    assert.equals(bot.chat.callCount, 0);
+  });
+
+  it("should say I cannot sleep during daytime with no thunderstorm", async () => {
+    const bot = {
+      time: { timeOfDay: 6000 },
+      thunderState: 0,
+      registry: { blocksByName: {} },
+      findBlock: sinon.stub(),
+      sleep: sinon.stub(),
+      chat: sinon.spy(),
+    };
+    const skill = new SleepSkill(bot);
+    await skill.do({});
+    assert.equals(bot.findBlock.callCount, 0);
+    assert.equals(bot.sleep.callCount, 0);
+    assert.equals(bot.chat.firstCall.args[0], "I cannot sleep.");
+  });
+
+  it("should say there is no bed nearby when no bed is found at night", async () => {
+    const bot = {
+      time: { timeOfDay: 13000 },
+      thunderState: 0,
       registry: {
         blocksByName: {
           stone: { id: 3, name: "stone" },
