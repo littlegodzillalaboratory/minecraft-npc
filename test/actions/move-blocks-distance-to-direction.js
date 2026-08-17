@@ -10,14 +10,14 @@ describe("MoveBlocksDistanceToDirectionAction", () => {
     sinon.restore();
   });
 
-  it("should run MoveBlocksDistanceToDirectionAction on valid message", () => {
-    const move = sinon.stub().returns("success");
+  it("should run MoveBlocksDistanceToDirectionAction on valid message", async () => {
+    const move = sinon.stub().resolves("success");
     const setActionInfo = sinon.spy();
     const action = new MoveBlocksDistanceToDirectionAction({
       moveBlocksDistanceToDirection: move,
       getRegister: () => ({ setActionInfo }),
     });
-    action.do({
+    await action.do({
       message: "move 7 blocks rightward",
       messageElems: ["move 7 blocks rightward", "7", "rightward"],
     });

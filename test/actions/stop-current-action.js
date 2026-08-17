@@ -10,13 +10,13 @@ describe("StopCurrentAction", () => {
     sinon.restore();
   });
 
-  it("should run StopCurrentAction", () => {
-    const stop = sinon.stub().returns("success");
+  it("should run StopCurrentAction", async () => {
+    const stop = sinon.stub().resolves("success");
     const action = new StopCurrentAction({
       stop,
       getRegister: () => ({ setActionInfo: () => {} }),
     });
-    action.do({});
+    await action.do({});
     assert.equals(stop.callCount, 1);
   });
 });

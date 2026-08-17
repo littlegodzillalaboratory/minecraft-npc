@@ -10,14 +10,14 @@ describe("SleepAction", () => {
     sinon.restore();
   });
 
-  it("should run SleepAction", () => {
-    const sleep = sinon.stub().returns("success");
+  it("should run SleepAction", async () => {
+    const sleep = sinon.stub().resolves("success");
     const setActionInfo = sinon.spy();
     const action = new SleepAction({
       sleep,
       getRegister: () => ({ setActionInfo }),
     });
-    action.do({});
+    await action.do({});
     assert.equals(sleep.callCount, 1);
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });

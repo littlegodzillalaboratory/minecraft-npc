@@ -58,23 +58,43 @@ describe("SleepSkill", () => {
     assert.equals(bot.chat.callCount, 0);
   });
 
-  it("should say I cannot sleep during daytime with no thunderstorm", async () => {
+  it("should propagate mineflayer's own error when it is not the right time to sleep", async () => {
+    const bed = { position: { x: 1, y: 64, z: 1 } };
+    // mirrors what the real bot.sleep() throws when it's daytime and
+    // there's no thunderstorm, per mineflayer/lib/plugins/bed.js
+    const sleepStub = sinon
+      .stub()
+      .rejects(new Error("it's not night and it's not a thunderstorm"));
     const bot = {
       time: { timeOfDay: 6000 },
       thunderState: 0,
-      registry: { blocksByName: {} },
-      findBlock: sinon.stub(),
-      sleep: sinon.stub(),
+      registry: { blocksByName: { red_bed: { id: 1, name: "red_bed" } } },
+      findBlock: sinon.stub().returns(bed),
+      sleep: sleepStub,
       chat: sinon.spy(),
     };
     const skill = new SleepSkill(bot);
-    await skill.do({});
-    assert.equals(bot.findBlock.callCount, 0);
-    assert.equals(bot.sleep.callCount, 0);
-    assert.equals(bot.chat.firstCall.args[0], "This is not the time to sleep.");
+    let thrownError;
+    try {
+      await skill.do({});
+    } catch (err) {
+      thrownError = err;
+    }
+    assert.equals(
+      thrownError.message,
+      "it's not night and it's not a thunderstorm",
+    );
   });
 
-  it("should say there is no bed nearby when no bed is found at night", async () => {
+  it("should propagate mineflayer's own error when no bed is found nearby", async () => {
+    // mirrors what the real bot.sleep() throws when handed a null bed
+    // block: isABed(bedBlock) reads bedBlock.name, per
+    // mineflayer/lib/plugins/bed.js
+    const sleepStub = sinon
+      .stub()
+      .rejects(
+        new TypeError("Cannot read properties of null (reading 'name')"),
+      );
     const bot = {
       time: { timeOfDay: 13000 },
       thunderState: 0,
@@ -84,12 +104,20 @@ describe("SleepSkill", () => {
         },
       },
       findBlock: sinon.stub().returns(null),
-      sleep: sinon.stub(),
+      sleep: sleepStub,
       chat: sinon.spy(),
     };
     const skill = new SleepSkill(bot);
-    await skill.do({});
-    assert.equals(bot.sleep.callCount, 0);
-    assert.equals(bot.chat.firstCall.args[0], "There is no bed nearby.");
+    let thrownError;
+    try {
+      await skill.do({});
+    } catch (err) {
+      thrownError = err;
+    }
+    assert.equals(sleepStub.firstCall.args[0], null);
+    assert.equals(
+      thrownError.message,
+      "Cannot read properties of null (reading 'name')",
+    );
   });
 });

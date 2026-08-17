@@ -35,8 +35,8 @@ describe("MoveToObjectSkill", () => {
     assert.equals(moveToLocationDoStub.firstCall.args[0].posZ, 6);
   });
 
-  it("should return undefined when object block is not discoverable", () => {
-    const findBlock = sinon.stub();
+  it("should throw when object block is not discoverable", () => {
+    const findBlock = sinon.stub().returns(null);
     const chat = sinon.spy();
     const skill = new MoveToObjectSkill({
       registry: {
@@ -47,8 +47,7 @@ describe("MoveToObjectSkill", () => {
       chat,
       findBlock,
     });
-    assert.same(skill.do({ objectName: "bed" }), undefined);
-    assert.equals(findBlock.callCount, 0);
-    assert.equals(chat.firstCall.args[0], "I cannot find any bed");
+    assert.exception(() => skill.do({ objectName: "bed" }));
+    assert.equals(findBlock.callCount, 1);
   });
 });

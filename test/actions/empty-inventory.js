@@ -11,15 +11,15 @@ describe("EmptyInventoryAction", () => {
     sinon.restore();
   });
 
-  it("should run EmptyInventoryAction", () => {
+  it("should run EmptyInventoryAction", async () => {
     const logStub = sinon.stub(bag, "logStepHeading");
-    const emptyInventory = sinon.stub().returns("success");
+    const emptyInventory = sinon.stub().resolves("success");
     const setActionInfo = sinon.spy();
     const action = new EmptyInventoryAction({
       emptyInventory,
       getRegister: () => ({ setActionInfo }),
     });
-    action.do({});
+    await action.do({});
     assert.equals(logStub.callCount, 1);
     assert.equals(emptyInventory.callCount, 1);
     assert.equals(setActionInfo.firstCall.args[1], "success");

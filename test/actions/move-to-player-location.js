@@ -10,14 +10,14 @@ describe("MoveToPlayerLocationAction", () => {
     sinon.restore();
   });
 
-  it("should run MoveToPlayerLocationAction", () => {
-    const moveToLocation = sinon.stub().returns("success");
+  it("should run MoveToPlayerLocationAction", async () => {
+    const moveToLocation = sinon.stub().resolves("success");
     const action = new MoveToPlayerLocationAction({
       getPlayerPosition: () => ({ x: 11, y: 12, z: 13 }),
       moveToLocation,
       getRegister: () => ({ setActionInfo: () => {} }),
     });
-    action.do({ player: "alice" });
+    await action.do({ player: "alice" });
     assert.equals(moveToLocation.firstCall.args[0], 11);
     assert.equals(moveToLocation.firstCall.args[1], 12);
     assert.equals(moveToLocation.firstCall.args[2], 13);

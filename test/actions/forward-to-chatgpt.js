@@ -10,14 +10,14 @@ describe("ForwardToChatGptAction", () => {
     sinon.restore();
   });
 
-  it("should run ForwardToChatGptAction", () => {
-    const messageChatGpt = sinon.stub().returns("success");
+  it("should run ForwardToChatGptAction", async () => {
+    const messageChatGpt = sinon.stub().resolves("success");
     const setActionInfo = sinon.spy();
     const action = new ForwardToChatGptAction({
       messageChatGpt,
       getRegister: () => ({ setActionInfo }),
     });
-    action.do({ player: "alice", message: "hello" });
+    await action.do({ player: "alice", message: "hello" });
     assert.equals(messageChatGpt.firstCall.args[0], "alice");
     assert.equals(messageChatGpt.firstCall.args[1], "hello");
   });

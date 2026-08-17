@@ -10,14 +10,14 @@ describe("MoveToObjectAction", () => {
     sinon.restore();
   });
 
-  it("should run MoveToObjectAction on valid message", () => {
-    const moveToObject = sinon.stub().returns("success");
+  it("should run MoveToObjectAction on valid message", async () => {
+    const moveToObject = sinon.stub().resolves("success");
     const setActionInfo = sinon.spy();
     const action = new MoveToObjectAction({
       moveToObject,
       getRegister: () => ({ setActionInfo }),
     });
-    action.do({
+    await action.do({
       message: "walk to a bed",
       messageElems: ["walk to a bed", "bed"],
     });

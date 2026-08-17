@@ -37,7 +37,17 @@ describe("EatSkill", () => {
     assert.equals(bot.chat.callCount, 0);
   });
 
-  it("should say I have no food when inventory has no food items", async () => {
+  it("should propagate mineflayer's own error when inventory has no food items", async () => {
+    // mirrors what the real bot.equip() throws when handed a null/undefined
+    // item, per mineflayer/lib/plugins/simple_inventory.js
+    const equipStub = sinon
+      .stub()
+      .rejects(
+        new Error(
+          "Invalid item object in equip (item is null or typeof item is not object)",
+        ),
+      );
+    const consumeStub = sinon.stub().resolves();
     const bot = {
       inventory: {
         items: () => [{ name: "stone" }],
@@ -45,18 +55,33 @@ describe("EatSkill", () => {
       registry: {
         foodsByName: {},
       },
-      equip: sinon.stub(),
-      consume: sinon.stub(),
+      equip: equipStub,
+      consume: consumeStub,
       chat: sinon.spy(),
     };
     const skill = new EatSkill(bot);
-    await skill.do({});
-    assert.equals(bot.equip.callCount, 0);
-    assert.equals(bot.consume.callCount, 0);
-    assert.equals(bot.chat.firstCall.args[0], "I have no food.");
+    let thrownError;
+    try {
+      await skill.do({});
+    } catch (err) {
+      thrownError = err;
+    }
+    assert.equals(
+      thrownError.message,
+      "Invalid item object in equip (item is null or typeof item is not object)",
+    );
+    assert.isUndefined(equipStub.firstCall.args[0]);
+    assert.equals(consumeStub.callCount, 0);
   });
 
   it("should ignore items not present in foodsByName when filtering food", async () => {
+    const equipStub = sinon
+      .stub()
+      .rejects(
+        new Error(
+          "Invalid item object in equip (item is null or typeof item is not object)",
+        ),
+      );
     const bot = {
       inventory: {
         items: () => [{ name: "unknown_item" }],
@@ -64,13 +89,21 @@ describe("EatSkill", () => {
       registry: {
         foodsByName: {},
       },
-      equip: sinon.stub(),
+      equip: equipStub,
       consume: sinon.stub(),
       chat: sinon.spy(),
     };
     const skill = new EatSkill(bot);
-    await skill.do({});
-    assert.equals(bot.equip.callCount, 0);
-    assert.equals(bot.chat.firstCall.args[0], "I have no food.");
+    let thrownError;
+    try {
+      await skill.do({});
+    } catch (err) {
+      thrownError = err;
+    }
+    assert.equals(
+      thrownError.message,
+      "Invalid item object in equip (item is null or typeof item is not object)",
+    );
+    assert.isUndefined(equipStub.firstCall.args[0]);
   });
 });

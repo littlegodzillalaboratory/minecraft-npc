@@ -10,14 +10,14 @@ describe("GuardCurrentLocationAction", () => {
     sinon.restore();
   });
 
-  it("should run GuardCurrentLocationAction", () => {
-    const guardLocation = sinon.stub().returns("success");
+  it("should run GuardCurrentLocationAction", async () => {
+    const guardLocation = sinon.stub().resolves("success");
     const action = new GuardCurrentLocationAction({
       getPosition: () => ({ x: 1, y: 2, z: 3 }),
       guardLocation,
       getRegister: () => ({ setActionInfo: () => {} }),
     });
-    action.do({});
+    await action.do({});
     assert.equals(guardLocation.firstCall.args[0], 1);
     assert.equals(guardLocation.firstCall.args[1], 2);
     assert.equals(guardLocation.firstCall.args[2], 3);

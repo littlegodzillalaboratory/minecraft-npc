@@ -10,14 +10,14 @@ describe("EatAction", () => {
     sinon.restore();
   });
 
-  it("should run EatAction", () => {
-    const eat = sinon.stub().returns("success");
+  it("should run EatAction", async () => {
+    const eat = sinon.stub().resolves("success");
     const setActionInfo = sinon.spy();
     const action = new EatAction({
       eat,
       getRegister: () => ({ setActionInfo }),
     });
-    action.do({});
+    await action.do({});
     assert.equals(eat.callCount, 1);
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });

@@ -10,14 +10,14 @@ describe("SayCurrentLocationAction", () => {
     sinon.restore();
   });
 
-  it("should run SayCurrentLocationAction", () => {
-    const sayMessage = sinon.stub().returns("success");
+  it("should run SayCurrentLocationAction", async () => {
+    const sayMessage = sinon.stub().resolves("success");
     const action = new SayCurrentLocationAction({
       getPosition: () => ({ x: 2, y: 3, z: 4 }),
       sayMessage,
       getRegister: () => ({ setActionInfo: () => {} }),
     });
-    action.do({});
+    await action.do({});
     assert.equals(sayMessage.firstCall.args[0], "I am at 2 3 4");
   });
 });
