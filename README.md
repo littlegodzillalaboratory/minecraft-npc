@@ -46,7 +46,9 @@ minecraft-npc start --conf-file minecraft-npc.yaml
 | password | Minecraft password | Optional, only needed on online mode | |
 | init_coords | Initial bot coordinates [x, y, z] | Optional | `[0, 0, 0]` |
 | init_messages | Initial bot messages to send on spawn | Optional | |
-| chatgpt_apikey | ChatGPT API key | Optional, only needed for ChatGPT chat feature | |
+| chatgpt_message_apikey | ChatGPT message API key, used for chat completions. Can also be set via `CHATGPT_MESSAGE_API_KEY` environment variable. Can be any placeholder value when `chatgpt_message_base_url` points at a local LLM server that doesn't require authentication | Optional, only needed for ChatGPT chat feature | |
+| chatgpt_moderation_apikey | ChatGPT moderation API key, used for OpenAI's moderation endpoint. Can also be set via `CHATGPT_MODERATION_API_KEY` environment variable | Optional, only needed when `chatgpt_enable_moderation` is `true` | |
+| chatgpt_message_base_url | Base URL of the chat completion endpoint. Set this to use a local OpenAI-compatible LLM server (e.g. vMLX) instead of OpenAI | Optional | OpenAI's default base URL |
 | chatgpt_model | [ChatGPT model](https://developers.openai.com/api/docs/models/all) to use | Optional | `gpt-5.2`  |
 | chatgpt_instructions | ChatGPT bot instructions | Optional | |
 | chatgpt_enable_security_instructions | Append security instructions to the base instructions for hardening the model against prompt injection and other LLM threats | Optional | `true` |

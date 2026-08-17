@@ -71,7 +71,7 @@ describe("SleepSkill", () => {
     await skill.do({});
     assert.equals(bot.findBlock.callCount, 0);
     assert.equals(bot.sleep.callCount, 0);
-    assert.equals(bot.chat.firstCall.args[0], "I cannot sleep.");
+    assert.equals(bot.chat.firstCall.args[0], "This is not the time to sleep.");
   });
 
   it("should say there is no bed nearby when no bed is found at night", async () => {

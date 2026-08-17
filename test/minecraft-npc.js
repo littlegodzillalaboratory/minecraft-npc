@@ -50,7 +50,9 @@ describe("MinecraftNpc", () => {
       webInventoryPort: 3001,
       initCoords: [1, 2, 3],
       initMessages: ["hello"],
-      chatGptApiKey: "k",
+      chatGptMessageApiKey: "message-k",
+      chatGptModerationApiKey: "moderation-k",
+      chatGptMessageBaseUrl: "http://localhost:8080/v1",
       chatGptModel: "m",
       chatGptInstructions: "i",
       chatGptEnableModeration: true,
@@ -67,29 +69,40 @@ describe("MinecraftNpc", () => {
 
     assert.equals(fakeBot.loadPlugin.callCount, 3);
     assert.equals(fakeBot.chatgpt.setConfig.callCount, 1);
-    assert.equals(fakeBot.chatgpt.setConfig.firstCall.args[0], "k");
     assert.equals(
-      fakeBot.chatgpt.setConfig.firstCall.args[1].enableModeration,
+      fakeBot.chatgpt.setConfig.firstCall.args[0].messageApiKey,
+      "message-k",
+    );
+    assert.equals(
+      fakeBot.chatgpt.setConfig.firstCall.args[0].moderationApiKey,
+      "moderation-k",
+    );
+    assert.equals(
+      fakeBot.chatgpt.setConfig.firstCall.args[0].messageBaseURL,
+      "http://localhost:8080/v1",
+    );
+    assert.equals(
+      fakeBot.chatgpt.setConfig.firstCall.args[0].enableModeration,
       true,
     );
     assert.equals(
-      fakeBot.chatgpt.setConfig.firstCall.args[1].messageLogging,
+      fakeBot.chatgpt.setConfig.firstCall.args[0].enableMessageLogging,
       true,
     );
     assert.equals(
-      fakeBot.chatgpt.setConfig.firstCall.args[1].minimumConfidenceScore,
+      fakeBot.chatgpt.setConfig.firstCall.args[0].minimumConfidenceScore,
       0.7,
     );
     assert.equals(
-      fakeBot.chatgpt.setConfig.firstCall.args[1].coolDownInSeconds,
+      fakeBot.chatgpt.setConfig.firstCall.args[0].coolDownInSeconds,
       5,
     );
     assert.equals(
-      fakeBot.chatgpt.setConfig.firstCall.args[1].fallbackMessage,
+      fakeBot.chatgpt.setConfig.firstCall.args[0].fallbackMessage,
       "fallback",
     );
     assert.equals(
-      fakeBot.chatgpt.setConfig.firstCall.args[1].enableSecurityInstructions,
+      fakeBot.chatgpt.setConfig.firstCall.args[0].enableSecurityInstructions,
       true,
     );
     assert.isFunction(events.kicked);
