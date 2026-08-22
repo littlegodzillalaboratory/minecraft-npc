@@ -15,11 +15,15 @@
   command: 'sleep 120'
   exitcode: 0
 
+- description: Stage Minecraft NPC config file from example
+  command: 'make -f {base}/test-integration/fixtures/Makefile stage-minecraft-npc-config'
+  exitcode: 0
+
 - description: Set Minecraft server IP address in staged config file
   command: 'sed -i "s/localhost/$(make --no-print-directory -f {base}/test-integration/fixtures/Makefile get-minecraft-server-ip-address | xargs)/g" {base}/stage/minecraft-npc.yaml'
   exitcode: 0
 
-- description: Run test bot, check it's starting
+- description: Run test bot, check the bot is spawned
   command: '{base}/node_modules/.bin/minecraft-npc start --conf-file {base}/stage/minecraft-npc.yaml'
   exitcode: 1
   output: '.*Starting Minecraft NPC.*'
