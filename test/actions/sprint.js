@@ -17,7 +17,11 @@ describe("SprintAction", () => {
       sprint,
       getRegister: () => ({ setActionInfo }),
     });
-    await action.do({ message: "sprint", messageElems: ["sprint"], player: "alice" });
+    await action.do({
+      message: "sprint",
+      messageElems: ["sprint"],
+      player: "alice",
+    });
     assert.equals(sprint.callCount, 1);
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });

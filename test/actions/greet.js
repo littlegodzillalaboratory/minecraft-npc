@@ -17,7 +17,11 @@ describe("GreetAction", () => {
       sayMessage,
       getRegister: () => ({ setActionInfo }),
     });
-    await action.do({ message: "hello", messageElems: ["hello"], player: "alice" });
+    await action.do({
+      message: "hello",
+      messageElems: ["hello"],
+      player: "alice",
+    });
     assert.equals(
       sayMessage.firstCall.args[0],
       "Hello alice! Nice to see you.",

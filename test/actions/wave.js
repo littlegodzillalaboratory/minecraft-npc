@@ -17,7 +17,11 @@ describe("WaveAction", () => {
       swingArm,
       getRegister: () => ({ setActionInfo }),
     });
-    await action.do({ message: "wave", messageElems: ["wave"], player: "alice" });
+    await action.do({
+      message: "wave",
+      messageElems: ["wave"],
+      player: "alice",
+    });
     assert.equals(swingArm.callCount, 1);
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });

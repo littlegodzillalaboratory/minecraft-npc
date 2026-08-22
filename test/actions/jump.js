@@ -17,7 +17,11 @@ describe("JumpAction", () => {
       jump,
       getRegister: () => ({ setActionInfo }),
     });
-    await action.do({ message: "jump", messageElems: ["jump"], player: "alice" });
+    await action.do({
+      message: "jump",
+      messageElems: ["jump"],
+      player: "alice",
+    });
     assert.equals(jump.callCount, 1);
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });

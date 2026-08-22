@@ -17,7 +17,11 @@ describe("DanceAction", () => {
       dance,
       getRegister: () => ({ setActionInfo }),
     });
-    await action.do({ message: "dance", messageElems: ["dance"], player: "alice" });
+    await action.do({
+      message: "dance",
+      messageElems: ["dance"],
+      player: "alice",
+    });
     assert.equals(dance.callCount, 1);
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });

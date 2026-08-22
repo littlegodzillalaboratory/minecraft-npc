@@ -17,7 +17,11 @@ describe("ThankYouResponseAction", () => {
       sayMessage,
       getRegister: () => ({ setActionInfo }),
     });
-    await action.do({ message: "thanks", messageElems: ["thanks"], player: "alice" });
+    await action.do({
+      message: "thanks",
+      messageElems: ["thanks"],
+      player: "alice",
+    });
     assert.equals(sayMessage.firstCall.args[0], "You are welcome, alice!");
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });

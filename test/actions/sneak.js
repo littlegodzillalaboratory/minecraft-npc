@@ -17,7 +17,11 @@ describe("SneakAction", () => {
       sneak,
       getRegister: () => ({ setActionInfo }),
     });
-    await action.do({ message: "sneak", messageElems: ["sneak"], player: "alice" });
+    await action.do({
+      message: "sneak",
+      messageElems: ["sneak"],
+      player: "alice",
+    });
     assert.equals(sneak.firstCall.args[0], true);
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });
