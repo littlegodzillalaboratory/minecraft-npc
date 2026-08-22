@@ -34,7 +34,7 @@
     "test": "./test"
   },
   "dependencies": {
-    "bagofcli": "^3.0.0",
+    "bagofcli": "^3.1.0",
     "canvas": "^3.2.3",
     "mineflayer": "^4.37.1",
     "mineflayer-chatgpt": "^1.4.0",
