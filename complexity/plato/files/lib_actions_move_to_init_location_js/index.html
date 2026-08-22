@@ -48,7 +48,7 @@
     </div>
     <div class="col-md-6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
-      <p class="stat">25</p>
+      <p class="stat">21</p>
     </div>
   </div>
   <div class="row historical">
@@ -62,7 +62,7 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
-      <p class="stat">10.09</p>
+      <p class="stat">10.93</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
@@ -90,30 +90,26 @@
 <div class="container">
   <div class="row">
     <textarea id="file-source" class="col-md-12">&quot;use strict&quot;;
-import BaseAction from &#039;./base.js&#039;;
-import bag from &#039;bagofcli&#039;;
+import BaseAction from &quot;./base.js&quot;;
+import bag from &quot;bagofcli&quot;;
 
 class MoveToInitLocationAction extends BaseAction {
-
   getId() {
     return this.constructor.name;
   }
 
-  do(opts) {
-
+  async do(opts) {
     const posX = opts.posX;
     const posY = opts.posY;
     const posZ = opts.posZ;
 
-    bag.logStepHeading(&#039;Moving to initial location...&#039;);
-    const status = this.npc.moveToLocation(posX, posY, posZ);
+    bag.logStepHeading(&quot;Moving to initial location...&quot;);
+    const status = await this.npc.moveToLocation(posX, posY, posZ);
     this.registerInfo(status);
   }
 }
 
-export {
-  MoveToInitLocationAction as default
-};</textarea>
+export { MoveToInitLocationAction as default };</textarea>
   </div>
 </div>
 

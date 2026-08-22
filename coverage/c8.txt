@@ -1,19 +1,496 @@
-test | /opt/hostedtoolcache/node/24.14.0/x64/lib/node_modules/bob/node_modules/.bin/mocha --colors --reporter spec --recursive test/
+test | /opt/hostedtoolcache/node/22.23.2/x64/lib/node_modules/bob/node_modules/.bin/mocha --colors --reporter spec --recursive test/
 
 [0m[0m
+[0m  AttackNearestMobAction[0m
+[1m[36mAttacking nearest: zombie...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run AttackNearestMobAction[0m
+
+[0m  AttackPlayerAction[0m
+[1m[36mAttacking player: carol...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run AttackPlayerAction[0m
+
+[0m  BackAwayAction[0m
+[1m[36mBacking away...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run BackAwayAction[0m
+
+[0m  BaseAction[0m
+  [32m  [32m✔[39m[0m[90m should log default BaseAction errors[0m
+  [32m  [32m✔[39m[0m[90m should register BaseAction status[0m
+
+[0m  BreedAnimalsAction[0m
+[1m[36mBreeding animals: cow...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run BreedAnimalsAction[0m
+
+[0m  BuildPillarAction[0m
+[1m[36mBuilding pillar of height: 5...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run BuildPillarAction[0m
+
+[0m  ChopTreeAction[0m
+[1m[36mChopping tree...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run ChopTreeAction[0m
+
+[0m  CloseDoorAction[0m
+[1m[36mClosing door...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run CloseDoorAction[0m
+
+[0m  CoinFlipAction[0m
+[1m[36mFlipping coin...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run CoinFlipAction[0m
+
+[0m  CollectDropsAction[0m
+[1m[36mCollecting dropped items...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run CollectDropsAction[0m
+
+[0m  ComplimentPlayerAction[0m
+[1m[36mComplimenting player: alice...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run ComplimentPlayerAction[0m
+
+[0m  CountEntitiesAction[0m
+[1m[36mCounting entities: cows...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run CountEntitiesAction[0m
+
+[0m  CountItemAction[0m
+[1m[36mCounting item: torches...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run CountItemAction[0m
+
+[0m  CountdownAction[0m
+[1m[36mCounting down from 3...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run CountdownAction[0m
+
+[0m  CraftItemAction[0m
+[1m[36mCrafting item: sticks...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run CraftItemAction[0m
+
+[0m  DanceAction[0m
+[1m[36mDancing...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run DanceAction[0m
+
+[0m  DefendMeAction[0m
+[1m[36mDefending player: alice...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run DefendMeAction[0m
+
+[0m  DepositToChestAction[0m
+[1m[36mDepositing items to chest...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run DepositToChestAction[0m
+
+[0m  DigDownAction[0m
+[1m[36mDigging down...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run DigDownAction[0m
+
+[0m  DismountAction[0m
+[1m[36mDismounting...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run DismountAction[0m
+
+[0m  DropItemAction[0m
+[1m[36mDropping item: sword...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run DropItemAction[0m
+
+[0m  EatSpecificFoodAction[0m
+[1m[36mEating food: apple...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run EatSpecificFoodAction[0m
+
+[0m  EatAction[0m
+[1m[36mEating...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run EatAction[0m
+
+[0m  EmptyChestAction[0m
+[1m[36mEmptying chest...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run EmptyChestAction[0m
+
+[0m  EmptyInventoryAction[0m
+  [32m  [32m✔[39m[0m[90m should run EmptyInventoryAction[0m
+
+[0m  EquipArmorAction[0m
+[1m[36mEquipping armor...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run EquipArmorAction[0m
+
+[0m  EquipItemAction[0m
+[1m[36mEquipping item: torch...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run EquipItemAction[0m
+
+[0m  EquipShieldAction[0m
+[1m[36mEquipping shield...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run EquipShieldAction[0m
+
+[0m  EquipWeaponAction[0m
+[1m[36mEquipping weapon...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run EquipWeaponAction[0m
+
+[0m  FaceDirectionAction[0m
+[1m[36mFacing direction: north...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run FaceDirectionAction[0m
+
+[0m  FarewellAction[0m
+[1m[36mSaying farewell to player: alice...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run FarewellAction[0m
+
+[0m  FeedAnimalAction[0m
+[1m[36mFeeding animal: cow...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run FeedAnimalAction[0m
+
+[0m  FindItemAction[0m
+[1m[36mFinding item: boat...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run FindItemAction[0m
+
+[0m  FindNearestEntityAction[0m
+[1m[36mFinding nearest entity: sheep...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run FindNearestEntityAction[0m
+
+[0m  FishAction[0m
+[1m[36mFishing...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run FishAction[0m
+
+[0m  FleeAction[0m
+[1m[36mFleeing...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run FleeAction[0m
+
+[0m  FlipLeverAction[0m
+[1m[36mFlipping lever...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run FlipLeverAction[0m
+
+[0m  FollowPlayerAction[0m
+[1m[36mFollowing player: alice...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run FollowPlayerAction[0m
+
+[0m  ForwardToChatGptAction[0m
+[1m[36mForwarding message to ChatGPT...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run ForwardToChatGptAction[0m
+
+[0m  GiveItemToPlayerAction[0m
+[1m[36mGiving item: apple to player: alice...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run GiveItemToPlayerAction[0m
+
+[0m  GoHomeAction[0m
+[1m[36mMoving to home location: 1 2 3...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run GoHomeAction[0m
+
+[0m  GoToPlayerAction[0m
+[1m[36mMoving to player: carol...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run GoToPlayerAction[0m
+
+[0m  GreetAction[0m
+[1m[36mGreeting player: alice...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run GreetAction[0m
+
+[0m  GuardCurrentLocationAction[0m
+[1m[36mGuarding current location...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run GuardCurrentLocationAction[0m
+
+[0m  HarvestCropsAction[0m
+[1m[36mHarvesting crops...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run HarvestCropsAction[0m
+
+[0m  HuntFoodAction[0m
+[1m[36mHunting for food...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run HuntFoodAction[0m
+
+[0m  JumpAction[0m
+[1m[36mJumping...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run JumpAction[0m
+
+[0m  ListInventoryAction[0m
+[1m[36mListing inventory...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run ListInventoryAction[0m
+
+[0m  ListPlayersAction[0m
+[1m[36mListing players...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run ListPlayersAction[0m
+
+[0m  LookAtPlayerAction[0m
+[1m[36mLooking at player: alice...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run LookAtPlayerAction[0m
+
+[0m  MilkCowAction[0m
+[1m[36mMilking cow...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run MilkCowAction[0m
+
+[0m  MineBlockAction[0m
+[1m[36mMining block: coal...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run MineBlockAction[0m
+
+[0m  MineTargetBlockAction[0m
+[1m[36mMining target block...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run MineTargetBlockAction[0m
+
+[0m  MountEntityAction[0m
+[1m[36mMounting entity: horse...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run MountEntityAction[0m
+
+[0m  MoveBlocksDistanceToDirectionAction[0m
+[1m[36mMoving 7 blocks to rightward direction...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run MoveBlocksDistanceToDirectionAction on valid message[0m
+
+[0m  MoveToCoordinatesAction[0m
+[1m[36mMoving to coordinates: 10 64 -20...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run MoveToCoordinatesAction[0m
+
+[0m  MoveToInitLocationAction[0m
+[1m[36mMoving to initial location...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run MoveToInitLocationAction[0m
+
+[0m  MoveToObjectAction[0m
+[1m[36mMoving to object bed...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run MoveToObjectAction on valid message[0m
+
+[0m  MoveToPlayerLocationAction[0m
+[1m[36mMoving to player location...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run MoveToPlayerLocationAction[0m
+
+[0m  NodAction[0m
+[1m[36mNodding...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run NodAction[0m
+
+[0m  OpenDoorAction[0m
+[1m[36mOpening door...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run OpenDoorAction[0m
+
+[0m  PlaceBlockAction[0m
+[1m[36mPlacing block: cobblestone...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run PlaceBlockAction[0m
+
+[0m  PlaceCraftingTableAction[0m
+[1m[36mPlacing crafting table...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run PlaceCraftingTableAction[0m
+
+[0m  PlaceTorchAction[0m
+[1m[36mPlacing torch...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run PlaceTorchAction[0m
+
+[0m  PlantSeedsAction[0m
+[1m[36mPlanting seeds...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run PlantSeedsAction[0m
+
+[0m  PressButtonAction[0m
+[1m[36mPressing button...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run PressButtonAction[0m
+
+[0m  ReportThreatsAction[0m
+[1m[36mReporting threats...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run ReportThreatsAction[0m
+
+[0m  RespondToMessageAction[0m
+[1m[36mResponding to message...[39m[22m
+  * [32mFound matching action: StopCurrentAction, for message: stop, from sender: alice[39m
+  [32m  [32m✔[39m[0m[90m should invoke stop action when receiving stop message[0m
+[1m[36mResponding to message...[39m[22m
+  * [32mFound matching action: MoveBlocksDistanceToDirectionAction, for message: move 5 blocks forward, from sender: alice[39m
+  [32m  [32m✔[39m[0m[90m should invoke move blocks distance to direction action when receiving a move blocks (plural) distance to direction command[0m
+[1m[36mResponding to message...[39m[22m
+  * [32mFound matching action: MoveBlocksDistanceToDirectionAction, for message: move 1 block forward, from sender: alice[39m
+  [32m  [32m✔[39m[0m[90m should invoke move blocks distance to direction action when receiving a move block (singular) distance to direction command[0m
+[1m[36mResponding to message...[39m[22m
+  * [32mForwarding to ChatGPT message: what is the meaning of life, from sender: alice[39m
+  [32m  [32m✔[39m[0m[90m should forward unknown message to ChatGPT[0m
+[1m[36mResponding to message...[39m[22m
+  * [32mFound matching action: MoveToObjectAction, for message: find a bed, from sender: alice[39m
+  [32m  [32m✔[39m[0m[90m should invoke move to object action when receiving a move to object command[0m
+[1m[36mResponding to message...[39m[22m
+  * [32mFound matching action: TellJokeAction, for message: tell me a joke, from sender: alice[39m
+  [32m  [32m✔[39m[0m[90m should invoke tell joke action when receiving a tell joke command[0m
+[1m[36mResponding to message...[39m[22m
+  * [32mFound matching action: EatAction, for message: I am hungry, from sender: alice[39m
+  [32m  [32m✔[39m[0m[90m should invoke eat action when receiving an 'i am hungry' message[0m
+[1m[36mResponding to message...[39m[22m
+  * [32mForwarding to ChatGPT message: Need a heating, from sender: alice[39m
+  [32m  [32m✔[39m[0m[90m should not match partial phrases now that regexes are anchored[0m
+
+[0m  RingBellAction[0m
+[1m[36mRinging bell...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run RingBellAction[0m
+
+[0m  RollDiceAction[0m
+[1m[36mRolling dice with 20 sides...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run RollDiceAction[0m
+
+[0m  SayActionCountAction[0m
+[1m[36mSaying action count...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SayActionCountAction[0m
+
+[0m  SayArmorAction[0m
+[1m[36mSaying armor...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SayArmorAction[0m
+
+[0m  SayBiomeAction[0m
+[1m[36mSaying biome...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SayBiomeAction[0m
+
+[0m  SayChestContentsAction[0m
+[1m[36mSaying chest contents...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SayChestContentsAction[0m
+
+[0m  SayCurrentLocationAction[0m
+[1m[36mSaying current location...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SayCurrentLocationAction[0m
+
+[0m  SayDimensionAction[0m
+[1m[36mSaying dimension...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SayDimensionAction[0m
+
+[0m  SayDistanceToPlayerAction[0m
+[1m[36mSaying distance to player: alice...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SayDistanceToPlayerAction[0m
+
+[0m  SayElevationAction[0m
+[1m[36mSaying elevation...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SayElevationAction[0m
+
+[0m  SayExperienceAction[0m
+[1m[36mSaying experience...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SayExperienceAction[0m
+
+[0m  SayFoodLevelAction[0m
+[1m[36mSaying food level...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SayFoodLevelAction[0m
+
+[0m  SayHealthAction[0m
+[1m[36mSaying health...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SayHealthAction[0m
+
+[0m  SayHeldItemAction[0m
+[1m[36mSaying held item...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SayHeldItemAction[0m
+
+[0m  SayInitMessageAction[0m
+[1m[36mSaying initial  message...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SayInitMessageAction[0m
+
+[0m  SayLatestActionAction[0m
+[1m[36mSaying latest action...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SayLatestActionAction[0m
+
+[0m  SayLightLevelAction[0m
+[1m[36mSaying light level...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SayLightLevelAction[0m
+
+[0m  SayNearestPlayerAction[0m
+[1m[36mSaying nearest player...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SayNearestPlayerAction[0m
+
+[0m  SayTimeAction[0m
+[1m[36mSaying time...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SayTimeAction[0m
+
+[0m  SayUptimeAction[0m
+[1m[36mSaying uptime...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SayUptimeAction[0m
+
+[0m  SayVersionAction[0m
+[1m[36mSaying version...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SayVersionAction[0m
+
+[0m  SayWeatherAction[0m
+[1m[36mSaying weather...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SayWeatherAction[0m
+
+[0m  ShakeHeadAction[0m
+[1m[36mShaking head...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run ShakeHeadAction[0m
+
+[0m  ShearSheepAction[0m
+[1m[36mShearing sheep...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run ShearSheepAction[0m
+
+[0m  SingSongAction[0m
+[1m[36mSinging song...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SingSongAction[0m
+
+[0m  SleepAction[0m
+[1m[36mSleeping...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SleepAction[0m
+
+[0m  SmeltItemAction[0m
+[1m[36mSmelting item: iron ore...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SmeltItemAction[0m
+
+[0m  SneakAction[0m
+[1m[36mSneaking...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SneakAction[0m
+
+[0m  SprintAction[0m
+[1m[36mSprinting...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run SprintAction[0m
+
+[0m  StandDownAction[0m
+[1m[36mStanding down...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run StandDownAction[0m
+
+[0m  StandUpAction[0m
+[1m[36mStanding up...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run StandUpAction[0m
+
+[0m  StayHereAction[0m
+[1m[36mStaying here...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run StayHereAction[0m
+
+[0m  StopCurrentAction[0m
+[1m[36mStopping current activity...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run StopCurrentAction[0m
+
+[0m  StopFollowingAction[0m
+[1m[36mStopping following...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run StopFollowingAction[0m
+
+[0m  TellFactAction[0m
+[1m[36mTelling fact...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run TellFactAction[0m
+
+[0m  TellJokeAction[0m
+[1m[36mTelling joke...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run TellJokeAction[0m
+
+[0m  ThankYouResponseAction[0m
+[1m[36mResponding to thanks from player: alice...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run ThankYouResponseAction[0m
+
+[0m  ThrowEggAction[0m
+[1m[36mThrowing egg...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run ThrowEggAction[0m
+
+[0m  TillSoilAction[0m
+[1m[36mTilling soil...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run TillSoilAction[0m
+
+[0m  TossHeldItemAction[0m
+[1m[36mTossing held item...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run TossHeldItemAction[0m
+
+[0m  TurnAroundAction[0m
+[1m[36mTurning around...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run TurnAroundAction[0m
+
+[0m  UnequipItemAction[0m
+[1m[36mUnequipping item...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run UnequipItemAction[0m
+
+[0m  WanderAroundAction[0m
+[1m[36mWandering around...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run WanderAroundAction[0m
+
+[0m  WaveAction[0m
+[1m[36mWaving...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run WaveAction[0m
+
+[0m  WhisperSecretAction[0m
+[1m[36mWhispering secret to player: alice...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run WhisperSecretAction[0m
+
+[0m  WithdrawItemFromChestAction[0m
+[1m[36mWithdrawing item from chest: bread...[39m[22m
+  [32m  [32m✔[39m[0m[90m should run WithdrawItemFromChestAction[0m
+
 [0m  cli - exec[0m
   [32m  [32m✔[39m[0m[90m should contain commands with actions[0m
 
 [0m  cli - start[0m
-  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (145ms)[0m
+  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (140ms)[0m
 AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1142:49)
-    at afterConnectMultiple (node:net:1723:7) {
+    at internalConnectMultiple (node:net:1135:18)
+    at afterConnectMultiple (node:net:1716:7) {
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:25565
-        at createConnectionError (node:net:1686:14)
-        at afterConnectMultiple (node:net:1716:16) {
+        at createConnectionError (node:net:1679:14)
+        at afterConnectMultiple (node:net:1709:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -21,8 +498,8 @@ AggregateError [ECONNREFUSED]:
       port: 25565
     },
     Error: connect ECONNREFUSED 127.0.0.1:25565
-        at createConnectionError (node:net:1686:14)
-        at afterConnectMultiple (node:net:1716:16) {
+        at createConnectionError (node:net:1679:14)
+        at afterConnectMultiple (node:net:1709:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -32,13 +509,13 @@ AggregateError [ECONNREFUSED]:
   ]
 }
 AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1142:49)
-    at afterConnectMultiple (node:net:1723:7) {
+    at internalConnectMultiple (node:net:1135:18)
+    at afterConnectMultiple (node:net:1716:7) {
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:25565
-        at createConnectionError (node:net:1686:14)
-        at afterConnectMultiple (node:net:1716:16) {
+        at createConnectionError (node:net:1679:14)
+        at afterConnectMultiple (node:net:1709:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -46,8 +523,8 @@ AggregateError [ECONNREFUSED]:
       port: 25565
     },
     Error: connect ECONNREFUSED 127.0.0.1:25565
-        at createConnectionError (node:net:1686:14)
-        at afterConnectMultiple (node:net:1716:16) {
+        at createConnectionError (node:net:1679:14)
+        at afterConnectMultiple (node:net:1709:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -56,6 +533,199 @@ AggregateError [ECONNREFUSED]:
     }
   ]
 }
+
+[0m  MinecraftNpc[0m
+  [32m  [32m✔[39m[0m[90m should build bot with constructor defaults[0m
+[1m[36mStarting Minecraft NPC v1.0.0...[39m[22m
+[1m[36mLoading plugins...[39m[22m
+  * [32mChatGPT plugin[39m
+  * [32mPathfinder plugin[39m
+  * [32mPVP plugin[39m
+  * [32mViewer plugin[39m
+  * [32mWebInventory plugin[39m
+[1m[36mSpawning bot...[39m[22m
+[1m[36mBot has been kicked:[39m[22m
+[1m[36mAn unexpected error has occurred:[39m[22m
+  [32m  [32m✔[39m[0m[90m should run start flow and spawn/chat handlers[0m
+  [32m  [32m✔[39m[0m[90m should read version from package json[0m
+
+[0m  Npc[0m
+[0m    eat[0m
+  * [32mbob is eating[39m
+    [32m  [32m✔[39m[0m[90m should execute eat[0m
+[0m    sleep[0m
+  * [32mbob is going to sleep[39m
+    [32m  [32m✔[39m[0m[90m should execute sleep[0m
+[0m    stop[0m
+  * [32mbob is stopping current activity[39m
+    [32m  [32m✔[39m[0m[90m should stop bot movement, combat, and controls[0m
+[0m    moveBlocksDistanceToDirection[0m
+  * [32mbob is moving 5 blocks forward[39m
+    [32m  [32m✔[39m[0m[90m should move the bot the requested number of blocks in a direction[0m
+[0m    getBot / getRegister / getOpts[0m
+    [32m  [32m✔[39m[0m[90m should return bot/register/opts references[0m
+[0m    getPosition / getPlayerPosition[0m
+    [32m  [32m✔[39m[0m[90m should return own and player position[0m
+[0m    emptyInventory[0m
+[]
+  * [32mbob is emptying inventory[39m
+    [32m  [32m✔[39m[0m[90m should execute emptyInventory[0m
+[0m    moveToLocation / guardLocation / messageChatGpt / sayMessage[0m
+  * [32mbob is moving to location: 1 2 3[39m
+  * [32mbob is moving to location: 1 2 3[39m
+  * [32mbob is guarding location: 1 2 3[39m
+  * [32mbob is saying message: hello[39m
+The reply the skill got from ChatGPT is: ok
+'ok'
+string
+  * [32mbob is sending ChatGPT message: hello[39m
+    [32m  [32m✔[39m[0m[90m should execute moveToLocation, guardLocation, messageChatGpt, and sayMessage[0m
+[0m    validation[0m
+    [32m  [32m✔[39m[0m[90m should fail validation branch[0m
+[0m    moveToObject[0m
+  * [32mbob is moving to object: bed[39m
+    [32m  [32m✔[39m[0m[90m should move to a discoverable object or say when it cannot be found[0m
+
+[0m  Npc catalog methods[0m
+[0m    followPlayer[0m
+  * [31mUnable to move bob to invalid location: a 2 3[39m
+  * [31mUnable to say invalid message: [39m
+  * [31mUnable to move bob 0 blocks forward[39m
+  * [31mUnable to move bob to invalid object: bedroom: Cannot read properties of undefined (reading 'position')[39m
+  * [32mbob is following alice[39m
+    [32m  [32m✔[39m[0m[90m should execute followPlayer[0m
+[0m    jump[0m
+  * [32mbob is jumping[39m
+    [32m  [32m✔[39m[0m[90m should execute jump[0m
+[0m    lookAtLocation[0m
+  * [32mbob is looking at location: 1 2 3[39m
+    [32m  [32m✔[39m[0m[90m should execute lookAtLocation[0m
+[0m    faceDirection[0m
+  * [32mbob is facing north[39m
+    [32m  [32m✔[39m[0m[90m should execute faceDirection[0m
+[0m    wander[0m
+  * [32mbob is wandering around[39m
+    [32m  [32m✔[39m[0m[90m should execute wander[0m
+[0m    attackPlayer[0m
+  * [32mbob is attacking player: carol[39m
+    [32m  [32m✔[39m[0m[90m should execute attackPlayer[0m
+[0m    attackNearestEntity[0m
+  * [32mbob is attacking nearest: zombie[39m
+    [32m  [32m✔[39m[0m[90m should execute attackNearestEntity[0m
+[0m    huntFood[0m
+  * [32mbob is hunting for food[39m
+    [32m  [32m✔[39m[0m[90m should execute huntFood[0m
+[0m    defendPlayer[0m
+  * [32mbob is defending player: alice[39m
+    [32m  [32m✔[39m[0m[90m should execute defendPlayer[0m
+[0m    flee[0m
+  * [32mbob is fleeing[39m
+    [32m  [32m✔[39m[0m[90m should execute flee[0m
+[0m    equipItem[0m
+  * [32mbob is equipping sword to hand[39m
+    [32m  [32m✔[39m[0m[90m should execute equipItem[0m
+[0m    equipArmor[0m
+  * [32mbob is equipping armor[39m
+    [32m  [32m✔[39m[0m[90m should execute equipArmor[0m
+[0m    unequipItem[0m
+  * [32mbob is unequipping held item[39m
+    [32m  [32m✔[39m[0m[90m should execute unequipItem[0m
+[0m    dropItem[0m
+  * [32mbob is dropping item: stone[39m
+    [32m  [32m✔[39m[0m[90m should execute dropItem[0m
+[0m    tossHeldItem[0m
+  * [32mbob is tossing held item[39m
+    [32m  [32m✔[39m[0m[90m should execute tossHeldItem[0m
+[0m    giveItem[0m
+  * [32mbob is giving apple to alice[39m
+    [32m  [32m✔[39m[0m[90m should execute giveItem[0m
+[0m    eatFood[0m
+  * [32mbob is eating apple[39m
+    [32m  [32m✔[39m[0m[90m should execute eatFood[0m
+[0m    collectItems[0m
+  * [32mbob is collecting dropped items[39m
+    [32m  [32m✔[39m[0m[90m should execute collectItems[0m
+[0m    digBlock[0m
+  * [32mbob is digging block: below[39m
+    [32m  [32m✔[39m[0m[90m should execute digBlock[0m
+[0m    placeBlock[0m
+  * [32mbob is placing block: torch[39m
+    [32m  [32m✔[39m[0m[90m should execute placeBlock[0m
+[0m    collectBlock[0m
+  * [32mbob is collecting block: coal[39m
+    [32m  [32m✔[39m[0m[90m should execute collectBlock[0m
+[0m    harvestCrops[0m
+  * [32mbob is harvesting crops[39m
+    [32m  [32m✔[39m[0m[90m should execute harvestCrops[0m
+[0m    plantSeeds[0m
+  * [32mbob is planting seeds[39m
+    [32m  [32m✔[39m[0m[90m should execute plantSeeds[0m
+[0m    tillSoil[0m
+  * [32mbob is tilling soil[39m
+    [32m  [32m✔[39m[0m[90m should execute tillSoil[0m
+[0m    activateBlock[0m
+  * [32mbob is activating block: lever[39m
+    [32m  [32m✔[39m[0m[90m should execute activateBlock[0m
+[0m    buildPillar[0m
+  * [32mbob is building a pillar of height: 3[39m
+    [32m  [32m✔[39m[0m[90m should execute buildPillar[0m
+[0m    craftItem[0m
+  * [32mbob is crafting: sticks[39m
+    [32m  [32m✔[39m[0m[90m should execute craftItem[0m
+[0m    smeltItem[0m
+  * [32mbob is smelting: iron ore[39m
+    [32m  [32m✔[39m[0m[90m should execute smeltItem[0m
+[0m    listChest[0m
+  * [32mbob is listing chest contents[39m
+    [32m  [32m✔[39m[0m[90m should execute listChest[0m
+[0m    depositToChest[0m
+  * [32mbob is depositing items into chest[39m
+    [32m  [32m✔[39m[0m[90m should execute depositToChest[0m
+[0m    withdrawFromChest[0m
+  * [32mbob is withdrawing bread from chest[39m
+    [32m  [32m✔[39m[0m[90m should execute withdrawFromChest[0m
+[0m    withdrawAllFromChest[0m
+  * [32mbob is withdrawing all items from chest[39m
+    [32m  [32m✔[39m[0m[90m should execute withdrawAllFromChest[0m
+[0m    mountEntity[0m
+  * [32mbob is mounting: horse[39m
+    [32m  [32m✔[39m[0m[90m should execute mountEntity[0m
+[0m    dismount[0m
+  * [32mbob is dismounting[39m
+    [32m  [32m✔[39m[0m[90m should execute dismount[0m
+[0m    fish[0m
+  * [32mbob is fishing[39m
+    [32m  [32m✔[39m[0m[90m should execute fish[0m
+[0m    useItemOnEntity[0m
+  * [32mbob is using bucket on cow[39m
+    [32m  [32m✔[39m[0m[90m should execute useItemOnEntity[0m
+[0m    feedAnimal[0m
+  * [32mbob is feeding: cow[39m
+    [32m  [32m✔[39m[0m[90m should execute feedAnimal[0m
+[0m    breedAnimals[0m
+  * [32mbob is breeding: cow[39m
+    [32m  [32m✔[39m[0m[90m should execute breedAnimals[0m
+[0m    activateItem[0m
+  * [32mbob is activating item: egg[39m
+    [32m  [32m✔[39m[0m[90m should execute activateItem[0m
+[0m    sneak[0m
+  * [32mbob is setting sneak to true[39m
+    [32m  [32m✔[39m[0m[90m should execute sneak[0m
+[0m    sprint[0m
+  * [32mbob is sprinting[39m
+    [32m  [32m✔[39m[0m[90m should execute sprint[0m
+[0m    swingArm[0m
+  * [32mbob is swinging arm[39m
+    [32m  [32m✔[39m[0m[90m should execute swingArm[0m
+[0m    dance[0m
+  * [32mbob is dancing[39m
+    [32m  [32m✔[39m[0m[90m should execute dance[0m
+[0m    gesture[0m
+  * [32mbob is gesturing: nod[39m
+    [32m  [32m✔[39m[0m[90m should execute gesture[0m
+[0m    whisper[0m
+  * [32mbob is whispering to alice[39m
+    [32m  [32m✔[39m[0m[90m should execute whisper[0m
 
 [0m  Register[0m
 [0m    setActionInfo[0m
@@ -68,35 +738,436 @@ AggregateError [ECONNREFUSED]:
     [32m  [32m✔[39m[0m[90m should return undefined for no actions[0m
     [32m  [32m✔[39m[0m[90m should return latest action correctly[0m
 
+[0m  ActivateBlockSkill[0m
+  [32m  [32m✔[39m[0m[90m should walk to and activate the matching block[0m
+  [32m  [32m✔[39m[0m[90m should say cannot find block when none is nearby[0m
+  [32m  [32m✔[39m[0m[90m should say does not know block when name matches nothing[0m
 
-[92m [0m[32m 8 passing[0m[90m (162ms)[0m
+[0m  ActivateItemSkill[0m
+  [32m  [32m✔[39m[0m[90m should equip and activate the matching item[0m
+  [32m  [32m✔[39m[0m[90m should say does not have item when no item matches[0m
+
+[0m  AttackNearestEntitySkill[0m
+  [32m  [32m✔[39m[0m[90m should attack the nearest matching entity[0m
+  [32m  [32m✔[39m[0m[90m should say cannot find entity when no entity matches[0m
+
+[0m  AttackPlayerSkill[0m
+  [32m  [32m✔[39m[0m[90m should attack the player entity when visible[0m
+  [32m  [32m✔[39m[0m[90m should say cannot see player when player entity is missing[0m
+
+[0m  BaseSkill[0m
+  [32m  [32m✔[39m[0m[90m should log default BaseSkill errors[0m
+
+[0m  BreedAnimalsSkill[0m
+  [32m  [32m✔[39m[0m[90m should feed two nearby animals of the given kind[0m
+  [32m  [32m✔[39m[0m[90m should say cannot find two animals when fewer than two are nearby[0m
+  [32m  [32m✔[39m[0m[90m should say no food to breed with when inventory lacks it[0m
+
+[0m  BuildPillarSkill[0m
+  [32m  [32m✔[39m[0m[90m should equip a block and place one block per pillar level[0m
+  [32m  [32m✔[39m[0m[90m should say no blocks when inventory has no placeable block[0m
+  [32m  [32m✔[39m[0m[90m should report how many blocks could not be placed[0m
+
+[0m  CollectBlockSkill[0m
+  [32m  [32m✔[39m[0m[90m should walk to and dig the matching block[0m
+  [32m  [32m✔[39m[0m[90m should say cannot find block when none is nearby[0m
+  [32m  [32m✔[39m[0m[90m should say does not know block when name matches nothing[0m
+
+[0m  CollectItemsSkill[0m
+  [32m  [32m✔[39m[0m[90m should move to the nearest dropped item[0m
+  [32m  [32m✔[39m[0m[90m should say no items nearby when none exist[0m
+
+[0m  CraftItemSkill[0m
+  [32m  [32m✔[39m[0m[90m should craft the item using a nearby crafting table[0m
+  [32m  [32m✔[39m[0m[90m should say does not know how to craft unknown item[0m
+  [32m  [32m✔[39m[0m[90m should say cannot craft when there is no recipe available[0m
+
+[0m  DanceSkill[0m
+  [32m  [32m✔[39m[0m[90m should toggle dance moves on and off[0m
+
+[0m  DefendPlayerSkill[0m
+  [32m  [32m✔[39m[0m[90m should attack hostile mob near the player[0m
+  [32m  [32m✔[39m[0m[90m should say player is safe when no hostile mob is near[0m
+  [32m  [32m✔[39m[0m[90m should say cannot see player when player entity is missing[0m
+
+[0m  DepositToChestSkill[0m
+  [32m  [32m✔[39m[0m[90m should deposit every inventory item into the chest[0m
+  [32m  [32m✔[39m[0m[90m should say no chest when none is nearby[0m
+
+[0m  DigBlockSkill[0m
+  [32m  [32m✔[39m[0m[90m should dig the block below when target is below[0m
+  [32m  [32m✔[39m[0m[90m should dig the block at cursor when target is cursor[0m
+  [32m  [32m✔[39m[0m[90m should say no block to dig when block is missing[0m
+  [32m  [32m✔[39m[0m[90m should say cannot dig when block is not diggable[0m
+
+[0m  DismountSkill[0m
+  [32m  [32m✔[39m[0m[90m should dismount when riding a vehicle[0m
+  [32m  [32m✔[39m[0m[90m should say not riding anything when there is no vehicle[0m
+
+[0m  DropItemSkill[0m
+  [32m  [32m✔[39m[0m[90m should toss the matching item[0m
+  [32m  [32m✔[39m[0m[90m should match a plural item name against singular item[0m
+  [32m  [32m✔[39m[0m[90m should say does not have item when no item matches[0m
+
+[0m  EatFoodSkill[0m
+  [32m  [32m✔[39m[0m[90m should equip and consume the matching food item[0m
+  [32m  [32m✔[39m[0m[90m should say does not have item when no food matches[0m
+
+[0m  EatSkill[0m
+  [32m  [32m✔[39m[0m[90m should equip and consume the highest food-point item when food is available[0m
+  [32m  [32m✔[39m[0m[90m should propagate mineflayer's own error when inventory has no food items[0m
+  [32m  [32m✔[39m[0m[90m should ignore items not present in foodsByName when filtering food[0m
+
+[0m  EmptyInventorySkill[0m
+[ { name: 'stone', count: 2 } ]
+Tossing item: stone x 2
+  [32m  [32m✔[39m[0m[90m should run EmptyInventorySkill[0m[31m (501ms)[0m
+
+[0m  EquipArmorSkill[0m
+  [32m  [32m✔[39m[0m[90m should equip every armor piece found in inventory[0m
+  [32m  [32m✔[39m[0m[90m should say no armor when inventory has none[0m
+
+[0m  EquipItemSkill[0m
+  [32m  [32m✔[39m[0m[90m should equip a matching item to the destination[0m
+  [32m  [32m✔[39m[0m[90m should say does not have item when no item matches[0m
+  [32m  [32m✔[39m[0m[90m should propagate the error when equip rejects[0m
+
+[0m  FaceDirectionSkill[0m
+  [32m  [32m✔[39m[0m[90m should look toward the given cardinal direction[0m
+  [32m  [32m✔[39m[0m[90m should turn around by adding PI to current yaw[0m
+
+[0m  FeedAnimalSkill[0m
+  [32m  [32m✔[39m[0m[90m should feed the animal its preferred food[0m
+  [32m  [32m✔[39m[0m[90m should say cannot find animal when none matches[0m
+  [32m  [32m✔[39m[0m[90m should say no food for the animal when inventory lacks it[0m
+
+[0m  FishSkill[0m
+  [32m  [32m✔[39m[0m[90m should equip the fishing rod and fish[0m
+  [32m  [32m✔[39m[0m[90m should say no fishing rod when inventory has none[0m
+
+[0m  FleeSkill[0m
+  [32m  [32m✔[39m[0m[90m should move away from the nearest hostile mob[0m
+  [32m  [32m✔[39m[0m[90m should say nothing to flee from when no hostile mob is nearby[0m
+
+[0m  FollowPlayerSkill[0m
+  [32m  [32m✔[39m[0m[90m should follow player entity when player is visible[0m
+  [32m  [32m✔[39m[0m[90m should say cannot see player when player entity is missing[0m
+
+[0m  GestureSkill[0m
+  [32m  [32m✔[39m[0m[90m should nod by pitching the head up and down[0m
+  [32m  [32m✔[39m[0m[90m should shake head by yawing left and right[0m
+
+[0m  GiveItemSkill[0m
+  [32m  [32m✔[39m[0m[90m should look at the player and toss the item[0m
+  [32m  [32m✔[39m[0m[90m should say cannot see player when player entity is missing[0m
+  [32m  [32m✔[39m[0m[90m should say does not have item when no item matches[0m
+
+[0m  GuardLocationSkill[0m
+  [32m  [32m✔[39m[0m[90m should run GuardLocationSkill and attack hostile mob entity within radius[0m
+  [32m  [32m✔[39m[0m[90m should run GuardLocationSkill and not attack passive mob entity within radius[0m
+  [32m  [32m✔[39m[0m[90m should run GuardLocationSkill and not attack hostile mob entity outside radius[0m
+  [32m  [32m✔[39m[0m[90m should run GuardLocationSkill and do nothing when no entities are present[0m
+
+[0m  HarvestCropsSkill[0m
+  [32m  [32m✔[39m[0m[90m should walk to and dig a mature crop[0m
+  [32m  [32m✔[39m[0m[90m should say no crops ready when none are found[0m
+
+[0m  HuntFoodSkill[0m
+  [32m  [32m✔[39m[0m[90m should attack the nearest food animal[0m
+  [32m  [32m✔[39m[0m[90m should say nothing to hunt when no food animal is nearby[0m
+
+[0m  JumpSkill[0m
+  [32m  [32m✔[39m[0m[90m should press and release jump control[0m
+
+[0m  ListChestSkill[0m
+  [32m  [32m✔[39m[0m[90m should say the chest contents[0m
+  [32m  [32m✔[39m[0m[90m should say the chest is empty when it has no items[0m
+  [32m  [32m✔[39m[0m[90m should say no chest when none is nearby[0m
+
+[0m  LookAtLocationSkill[0m
+  [32m  [32m✔[39m[0m[90m should look at the given location[0m
+
+[0m  MessageChatGptSkill[0m
+The reply the skill got from ChatGPT is: reply
+'reply'
+string
+  [32m  [32m✔[39m[0m[90m should run MessageChatGptSkill[0m
+
+[0m  MountEntitySkill[0m
+  [32m  [32m✔[39m[0m[90m should mount the nearest matching entity[0m
+  [32m  [32m✔[39m[0m[90m should say cannot find entity when none matches[0m
+
+[0m  MoveBlocksDistanceToDirectionSkill[0m
+  [32m  [32m✔[39m[0m[90m should run MoveBlocksDistanceToDirectionSkill do[0m
+  [32m  [32m✔[39m[0m[90m should cover MoveBlocksDistanceToDirectionSkill all direction branches[0m
+
+[0m  MoveToLocationSkill[0m
+  [32m  [32m✔[39m[0m[90m should run MoveToLocationSkill[0m
+
+[0m  MoveToObjectSkill[0m
+  [32m  [32m✔[39m[0m[90m should find a matching object block[0m
+  [32m  [32m✔[39m[0m[90m should throw when object block is not discoverable[0m
+
+[0m  PlaceBlockSkill[0m
+  [32m  [32m✔[39m[0m[90m should equip the item and place it on a reference block[0m
+  [32m  [32m✔[39m[0m[90m should say does not have item when no item matches[0m
+  [32m  [32m✔[39m[0m[90m should say no space when no reference block is found[0m
+
+[0m  PlantSeedsSkill[0m
+  [32m  [32m✔[39m[0m[90m should walk to farmland, equip seeds, and place them[0m
+  [32m  [32m✔[39m[0m[90m should say no seeds when inventory has none[0m
+  [32m  [32m✔[39m[0m[90m should say no farmland when none is found[0m
+
+[0m  SayMessageSkill[0m
+  [32m  [32m✔[39m[0m[90m should run SayMessageSkill[0m
+
+[0m  SleepSkill[0m
+  [32m  [32m✔[39m[0m[90m should sleep in a nearby bed when one is found at night[0m
+  [32m  [32m✔[39m[0m[90m should sleep in a nearby bed when one is found during a thunderstorm[0m
+  [32m  [32m✔[39m[0m[90m should propagate mineflayer's own error when it is not the right time to sleep[0m
+  [32m  [32m✔[39m[0m[90m should propagate mineflayer's own error when no bed is found nearby[0m
+
+[0m  SmeltItemSkill[0m
+  [32m  [32m✔[39m[0m[90m should open the furnace and load fuel and input[0m
+  [32m  [32m✔[39m[0m[90m should say no furnace when none is nearby[0m
+  [32m  [32m✔[39m[0m[90m should say no fuel when inventory has no fuel[0m
+
+[0m  SneakSkill[0m
+  [32m  [32m✔[39m[0m[90m should set sneak control state to the given value[0m
+
+[0m  SprintSkill[0m
+  [32m  [32m✔[39m[0m[90m should sprint forward then stop[0m
+
+[0m  StopSkill[0m
+  [32m  [32m✔[39m[0m[90m should run StopSkill with available bot controls[0m
+  [32m  [32m✔[39m[0m[90m should run StopSkill when controls are unavailable[0m
+
+[0m  SwingArmSkill[0m
+  [32m  [32m✔[39m[0m[90m should swing the right arm[0m
+
+[0m  TillSoilSkill[0m
+  [32m  [32m✔[39m[0m[90m should walk to tillable ground, equip hoe, and activate the block[0m
+  [32m  [32m✔[39m[0m[90m should say no hoe when inventory has none[0m
+  [32m  [32m✔[39m[0m[90m should say no ground to till when none is found[0m
+
+[0m  TossHeldItemSkill[0m
+  [32m  [32m✔[39m[0m[90m should toss the held item stack[0m
+  [32m  [32m✔[39m[0m[90m should say not holding anything when hand is empty[0m
+
+[0m  UnequipItemSkill[0m
+  [32m  [32m✔[39m[0m[90m should unequip the hand[0m
+  [32m  [32m✔[39m[0m[90m should propagate the error when unequip rejects[0m
+
+[0m  UseItemOnEntitySkill[0m
+  [32m  [32m✔[39m[0m[90m should equip the item and use it on the entity[0m
+  [32m  [32m✔[39m[0m[90m should say cannot find entity when none matches[0m
+  [32m  [32m✔[39m[0m[90m should say does not have item when no item matches[0m
+
+[0m  WanderSkill[0m
+  [32m  [32m✔[39m[0m[90m should move to a random nearby location[0m
+
+[0m  WhisperSkill[0m
+  [32m  [32m✔[39m[0m[90m should whisper the message to the player[0m
+
+[0m  WithdrawFromChestSkill[0m
+  [32m  [32m✔[39m[0m[90m should withdraw only matching items when an item name is given[0m
+  [32m  [32m✔[39m[0m[90m should withdraw everything when no item name is given[0m
+  [32m  [32m✔[39m[0m[90m should say the chest has no matching items[0m
+
+[0m  validator[0m
+  [32m  [32m✔[39m[0m[90m should validate coordinates[0m
+  [32m  [32m✔[39m[0m[90m should validate messages[0m
+  [32m  [32m✔[39m[0m[90m should validate move direction[0m
+  [32m  [32m✔[39m[0m[90m should validate face direction[0m
+  [32m  [32m✔[39m[0m[90m should validate equip destination[0m
+  [32m  [32m✔[39m[0m[90m should validate dig target[0m
+  [32m  [32m✔[39m[0m[90m should validate positive integer[0m
+  [32m  [32m✔[39m[0m[90m should validate boolean[0m
+  [32m  [32m✔[39m[0m[90m should validate gesture[0m
+
+
+[92m [0m[32m 318 passing[0m[90m (1s)[0m
 
 SUCCESS | exit code 0
------------------------------|---------|----------|---------|---------|-----------------------------
-File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s           
------------------------------|---------|----------|---------|---------|-----------------------------
-All files                    |   58.38 |    86.48 |   17.24 |   58.38 |                             
- lib                         |    56.1 |    77.27 |      40 |    56.1 |                             
-  cli.js                     |   98.68 |    66.66 |     100 |   98.68 | 13                          
-  minecraft-npc.js           |   36.15 |       40 |   33.33 |   36.15 | 41-116,119-125              
-  npc.js                     |   35.24 |      100 |    8.33 |   35.24 | ...4-73,76-85,88-97,100-117 
-  register.js                |     100 |      100 |     100 |     100 |                             
-  validator.js               |   66.66 |      100 |       0 |   66.66 | 3-5,7-9                     
- lib/actions                 |   57.14 |      100 |       0 |   57.14 |                             
-  base.js                    |      68 |      100 |       0 |      68 | 7-8,11-12,15-16,19-20       
-  empty-inventory.js         |   66.66 |      100 |       0 |   66.66 | 8-9,12-16                   
-  forward-to-chatgpt.js      |   58.33 |      100 |       0 |   58.33 | 8-9,12-19                   
-  guard-current-location.js  |   53.84 |      100 |       0 |   53.84 | 8-9,12-21                   
-  move-to-init-location.js   |      56 |      100 |       0 |      56 | 8-9,12-20                   
-  move-to-player-location.js |   51.85 |      100 |       0 |   51.85 | 8-9,12-22                   
-  respond-to-message.js      |   55.17 |      100 |       0 |   55.17 | 42-43,46-82                 
-  say-current-location.js    |   51.85 |      100 |       0 |   51.85 | 8-9,12-22                   
-  say-init-message.js        |      60 |      100 |       0 |      60 | 9-10,13-20                  
- lib/skills                  |   68.59 |      100 |       0 |   68.59 |                             
-  base.js                    |   72.72 |      100 |       0 |   72.72 | 7-8,11-12,15-16             
-  empty-inventory.js         |      56 |      100 |       0 |      56 | 8-9,12-20                   
-  guard-location.js          |   68.42 |      100 |       0 |   68.42 | 7-8,11-14                   
-  message-chatgpt.js         |   72.22 |      100 |       0 |   72.22 | 7-8,11-13                   
-  move-to-location.js        |      70 |      100 |       0 |      70 | 8-9,12-15                   
-  say-message.js             |   76.47 |      100 |       0 |   76.47 | 7-8,11-12                   
------------------------------|---------|----------|---------|---------|-----------------------------
+---------------------------------------|---------|----------|---------|---------|-------------------
+File                                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+---------------------------------------|---------|----------|---------|---------|-------------------
+All files                              |   97.12 |    94.58 |   88.38 |   97.12 |                   
+ lib                                   |   96.74 |    98.75 |     100 |   96.74 |                   
+  cli.js                               |   98.93 |    66.66 |     100 |   98.93 | 11                
+  minecraft-npc.js                     |   69.11 |      100 |     100 |   69.11 | 83-124            
+  npc.js                               |     100 |      100 |     100 |     100 |                   
+  register.js                          |     100 |      100 |     100 |     100 |                   
+  validator.js                         |     100 |      100 |     100 |     100 |                   
+ lib/actions                           |   99.82 |    93.52 |     100 |   99.82 |                   
+  attack-nearest-mob.js                |     100 |      100 |     100 |     100 |                   
+  attack-player.js                     |     100 |      100 |     100 |     100 |                   
+  back-away.js                         |     100 |      100 |     100 |     100 |                   
+  base.js                              |     100 |      100 |     100 |     100 |                   
+  breed-animals.js                     |     100 |      100 |     100 |     100 |                   
+  build-pillar.js                      |     100 |       75 |     100 |     100 | 11                
+  chop-tree.js                         |     100 |      100 |     100 |     100 |                   
+  close-door.js                        |     100 |      100 |     100 |     100 |                   
+  coin-flip.js                         |     100 |       75 |     100 |     100 | 11                
+  collect-drops.js                     |     100 |      100 |     100 |     100 |                   
+  compliment-player.js                 |     100 |      100 |     100 |     100 |                   
+  count-entities.js                    |     100 |       80 |     100 |     100 | 18                
+  count-item.js                        |     100 |      100 |     100 |     100 |                   
+  countdown.js                         |     100 |       80 |     100 |     100 | 11                
+  craft-item.js                        |     100 |      100 |     100 |     100 |                   
+  dance.js                             |     100 |      100 |     100 |     100 |                   
+  defend-me.js                         |     100 |      100 |     100 |     100 |                   
+  deposit-to-chest.js                  |     100 |      100 |     100 |     100 |                   
+  dig-down.js                          |     100 |      100 |     100 |     100 |                   
+  dismount.js                          |     100 |      100 |     100 |     100 |                   
+  drop-item.js                         |     100 |      100 |     100 |     100 |                   
+  eat-specific-food.js                 |     100 |      100 |     100 |     100 |                   
+  eat.js                               |     100 |      100 |     100 |     100 |                   
+  empty-chest.js                       |     100 |      100 |     100 |     100 |                   
+  empty-inventory.js                   |     100 |      100 |     100 |     100 |                   
+  equip-armor.js                       |     100 |      100 |     100 |     100 |                   
+  equip-item.js                        |     100 |      100 |     100 |     100 |                   
+  equip-shield.js                      |     100 |      100 |     100 |     100 |                   
+  equip-weapon.js                      |     100 |      100 |     100 |     100 |                   
+  face-direction.js                    |     100 |      100 |     100 |     100 |                   
+  farewell.js                          |     100 |      100 |     100 |     100 |                   
+  feed-animal.js                       |     100 |      100 |     100 |     100 |                   
+  find-item.js                         |     100 |       75 |     100 |     100 | 24                
+  find-nearest-entity.js               |     100 |       75 |     100 |     100 | 21                
+  fish.js                              |     100 |      100 |     100 |     100 |                   
+  flee.js                              |     100 |      100 |     100 |     100 |                   
+  flip-lever.js                        |     100 |      100 |     100 |     100 |                   
+  follow-player.js                     |     100 |      100 |     100 |     100 |                   
+  forward-to-chatgpt.js                |     100 |      100 |     100 |     100 |                   
+  give-item-to-player.js               |     100 |      100 |     100 |     100 |                   
+  go-home.js                           |     100 |       75 |     100 |     100 | 11                
+  go-to-player.js                      |   93.33 |       75 |     100 |   93.33 | 24-25             
+  greet.js                             |     100 |      100 |     100 |     100 |                   
+  guard-current-location.js            |     100 |      100 |     100 |     100 |                   
+  harvest-crops.js                     |     100 |      100 |     100 |     100 |                   
+  hunt-food.js                         |     100 |      100 |     100 |     100 |                   
+  jump.js                              |     100 |      100 |     100 |     100 |                   
+  list-inventory.js                    |     100 |       80 |     100 |     100 | 17                
+  list-players.js                      |     100 |       80 |     100 |     100 | 19                
+  look-at-player.js                    |   93.33 |       75 |     100 |   93.33 | 24-25             
+  milk-cow.js                          |     100 |      100 |     100 |     100 |                   
+  mine-block.js                        |     100 |      100 |     100 |     100 |                   
+  mine-target-block.js                 |     100 |      100 |     100 |     100 |                   
+  mount-entity.js                      |     100 |      100 |     100 |     100 |                   
+  move-blocks-distance-to-direction.js |     100 |      100 |     100 |     100 |                   
+  move-to-coordinates.js               |     100 |      100 |     100 |     100 |                   
+  move-to-init-location.js             |     100 |      100 |     100 |     100 |                   
+  move-to-object.js                    |     100 |      100 |     100 |     100 |                   
+  move-to-player-location.js           |     100 |      100 |     100 |     100 |                   
+  nod.js                               |     100 |      100 |     100 |     100 |                   
+  open-door.js                         |     100 |      100 |     100 |     100 |                   
+  place-block.js                       |     100 |      100 |     100 |     100 |                   
+  place-crafting-table.js              |     100 |      100 |     100 |     100 |                   
+  place-torch.js                       |     100 |      100 |     100 |     100 |                   
+  plant-seeds.js                       |     100 |      100 |     100 |     100 |                   
+  press-button.js                      |     100 |      100 |     100 |     100 |                   
+  report-threats.js                    |     100 |     62.5 |     100 |     100 | 14-16,24          
+  respond-to-message.js                |     100 |      100 |     100 |     100 |                   
+  ring-bell.js                         |     100 |      100 |     100 |     100 |                   
+  roll-dice.js                         |     100 |       75 |     100 |     100 | 11                
+  say-action-count.js                  |     100 |       75 |     100 |     100 | 12                
+  say-armor.js                         |     100 |    85.71 |     100 |     100 | 20                
+  say-biome.js                         |     100 |       75 |     100 |     100 | 14                
+  say-chest-contents.js                |     100 |      100 |     100 |     100 |                   
+  say-current-location.js              |     100 |      100 |     100 |     100 |                   
+  say-dimension.js                     |     100 |      100 |     100 |     100 |                   
+  say-distance-to-player.js            |     100 |       75 |     100 |     100 | 18                
+  say-elevation.js                     |     100 |      100 |     100 |     100 |                   
+  say-experience.js                    |     100 |      100 |     100 |     100 |                   
+  say-food-level.js                    |     100 |      100 |     100 |     100 |                   
+  say-health.js                        |     100 |      100 |     100 |     100 |                   
+  say-held-item.js                     |     100 |       75 |     100 |     100 | 16                
+  say-init-message.js                  |     100 |      100 |     100 |     100 |                   
+  say-latest-action.js                 |     100 |       75 |     100 |     100 | 16                
+  say-light-level.js                   |     100 |       75 |     100 |     100 | 13                
+  say-nearest-player.js                |     100 |       75 |     100 |     100 | 20                
+  say-time.js                          |     100 |       75 |     100 |     100 | 13                
+  say-uptime.js                        |     100 |      100 |     100 |     100 |                   
+  say-version.js                       |     100 |      100 |     100 |     100 |                   
+  say-weather.js                       |      96 |       75 |     100 |      96 | 14                
+  shake-head.js                        |     100 |      100 |     100 |     100 |                   
+  shear-sheep.js                       |     100 |      100 |     100 |     100 |                   
+  sing-song.js                         |     100 |      100 |     100 |     100 |                   
+  sleep.js                             |     100 |      100 |     100 |     100 |                   
+  smelt-item.js                        |     100 |      100 |     100 |     100 |                   
+  sneak.js                             |     100 |      100 |     100 |     100 |                   
+  sprint.js                            |     100 |      100 |     100 |     100 |                   
+  stand-down.js                        |     100 |      100 |     100 |     100 |                   
+  stand-up.js                          |     100 |      100 |     100 |     100 |                   
+  stay-here.js                         |     100 |      100 |     100 |     100 |                   
+  stop-current-action.js               |     100 |      100 |     100 |     100 |                   
+  stop-following.js                    |     100 |      100 |     100 |     100 |                   
+  tell-fact.js                         |     100 |      100 |     100 |     100 |                   
+  tell-joke.js                         |     100 |      100 |     100 |     100 |                   
+  thank-you-response.js                |     100 |      100 |     100 |     100 |                   
+  throw-egg.js                         |     100 |      100 |     100 |     100 |                   
+  till-soil.js                         |     100 |      100 |     100 |     100 |                   
+  toss-held-item.js                    |     100 |      100 |     100 |     100 |                   
+  turn-around.js                       |     100 |      100 |     100 |     100 |                   
+  unequip-item.js                      |     100 |      100 |     100 |     100 |                   
+  wander-around.js                     |     100 |      100 |     100 |     100 |                   
+  wave.js                              |     100 |      100 |     100 |     100 |                   
+  whisper-secret.js                    |     100 |      100 |     100 |     100 |                   
+  withdraw-item-from-chest.js          |     100 |      100 |     100 |     100 |                   
+ lib/skills                            |   92.75 |    93.75 |    51.3 |   92.75 |                   
+  activate-block.js                    |   95.55 |      100 |      50 |   95.55 | 7-8               
+  activate-item.js                     |      92 |      100 |      50 |      92 | 6-7               
+  attack-nearest-entity.js             |   91.66 |      100 |      50 |   91.66 | 6-7               
+  attack-player.js                     |    90.9 |      100 |      50 |    90.9 | 6-7               
+  base.js                              |     100 |      100 |     100 |     100 |                   
+  breed-animals.js                     |   96.29 |    77.77 |      50 |   96.29 | 18-19             
+  build-pillar.js                      |   96.29 |       90 |      50 |   96.29 | 8-9               
+  collect-block.js                     |      92 |     87.5 |      50 |      92 | 7-8,45-46         
+  collect-items.js                     |   92.85 |      100 |      50 |   92.85 | 7-8               
+  craft-item.js                        |   95.12 |      100 |      50 |   95.12 | 6-7               
+  dance.js                             |   91.66 |       75 |      50 |   91.66 | 7-8               
+  defend-player.js                     |   94.11 |    77.77 |      50 |   94.11 | 6-7               
+  deposit-to-chest.js                  |   94.59 |      100 |      50 |   94.59 | 8-9               
+  dig-block.js                         |    93.1 |      100 |      50 |    93.1 | 6-7               
+  dismount.js                          |   89.47 |      100 |      50 |   89.47 | 6-7               
+  drop-item.js                         |    93.1 |      100 |      50 |    93.1 | 6-7               
+  eat-food.js                          |      92 |      100 |      50 |      92 | 6-7               
+  eat.js                               |      92 |      100 |      50 |      92 | 6-7               
+  empty-inventory.js                   |   90.47 |      100 |      50 |   90.47 | 7-8               
+  equip-armor.js                       |   94.44 |      100 |      50 |   94.44 | 13-14             
+  equip-item.js                        |   91.66 |      100 |      50 |   91.66 | 6-7               
+  face-direction.js                    |    92.3 |      100 |      50 |    92.3 | 13-14             
+  feed-animal.js                       |   95.91 |     87.5 |      50 |   95.91 | 20-21             
+  fish.js                              |      92 |      100 |      50 |      92 | 6-7               
+  flee.js                              |   94.59 |    66.66 |      50 |   94.59 | 7-8               
+  follow-player.js                     |   92.85 |      100 |      50 |   92.85 | 7-8               
+  gesture.js                           |   91.66 |      100 |      50 |   91.66 | 6-7               
+  give-item.js                         |   94.73 |     87.5 |      50 |   94.73 | 6-7               
+  guard-location.js                    |    92.3 |    85.71 |      50 |    92.3 | 6-7               
+  harvest-crops.js                     |   95.83 |      100 |   66.66 |   95.83 | 14-15             
+  hunt-food.js                         |      92 |      100 |      50 |      92 | 8-9               
+  jump.js                              |   89.47 |    66.66 |      50 |   89.47 | 7-8               
+  list-chest.js                        |   94.44 |      100 |      50 |   94.44 | 8-9               
+  look-at-location.js                  |   86.66 |      100 |      50 |   86.66 | 7-8               
+  message-chatgpt.js                   |   91.66 |      100 |      50 |   91.66 | 6-7               
+  mount-entity.js                      |   91.66 |      100 |      50 |   91.66 | 6-7               
+  move-blocks-distance-to-direction.js |   96.61 |      100 |   66.66 |   96.61 | 7-8               
+  move-to-location.js                  |   89.47 |      100 |      50 |   89.47 | 7-8               
+  move-to-object.js                    |    93.1 |      100 |      50 |    93.1 | 7-8               
+  place-block.js                       |   96.42 |      100 |      50 |   96.42 | 14-15             
+  plant-seeds.js                       |   87.71 |     87.5 |   33.33 |   87.71 | 8-9,24-26,32-33   
+  say-message.js                       |   85.71 |      100 |      50 |   85.71 | 6-7               
+  sleep.js                             |      92 |      100 |      50 |      92 | 6-7               
+  smelt-item.js                        |   89.58 |       80 |      50 |   89.58 | 8-9,28-30         
+  sneak.js                             |   85.71 |      100 |      50 |   85.71 | 6-7               
+  sprint.js                            |   90.47 |    66.66 |      50 |   90.47 | 7-8               
+  stop.js                              |      92 |      100 |      50 |      92 | 6-7               
+  swing-arm.js                         |   85.71 |      100 |      50 |   85.71 | 6-7               
+  till-soil.js                         |   92.45 |      100 |   33.33 |   92.45 | 7-8,28-29         
+  toss-held-item.js                    |   90.47 |      100 |      50 |   90.47 | 6-7               
+  unequip-item.js                      |   85.71 |      100 |      50 |   85.71 | 6-7               
+  use-item-on-entity.js                |   94.28 |      100 |      50 |   94.28 | 6-7               
+  wander.js                            |    91.3 |      100 |      50 |    91.3 | 7-8               
+  whisper.js                           |   85.71 |      100 |      50 |   85.71 | 6-7               
+  withdraw-from-chest.js               |   89.79 |    81.81 |      50 |   89.79 | 8-9,22-24         
+---------------------------------------|---------|----------|---------|---------|-------------------

@@ -44,11 +44,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
-      <p class="stat">59.64</p>
+      <p class="stat">57.90</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
-      <p class="stat">87</p>
+      <p class="stat">667</p>
     </div>
   </div>
   <div class="row historical">
@@ -62,11 +62,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
-      <p class="stat">17.29</p>
+      <p class="stat">14.69</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
-      <p class="stat">0.42</p>
+      <p class="stat">4.76</p>
     </div>
   </div>
 </div>
@@ -90,92 +90,672 @@
 <div class="container">
   <div class="row">
     <textarea id="file-source" class="col-md-12">&quot;use strict&quot;;
-import BaseAction from &#039;./base.js&#039;;
-import bag from &#039;bagofcli&#039;;
-import EmptyInventoryAction from &#039;./empty-inventory.js&#039;;
-import GuardCurrentLocationAction from &#039;./guard-current-location.js&#039;;
-import MoveToPlayerLocationAction from &#039;./move-to-player-location.js&#039;;
-import SayCurrentLocationAction from &#039;./say-current-location.js&#039;;
-import ForwardToChatGptAction from &#039;./forward-to-chatgpt.js&#039;;
+import BaseAction from &quot;./base.js&quot;;
+import bag from &quot;bagofcli&quot;;
+import EatAction from &quot;./eat.js&quot;;
+import EmptyInventoryAction from &quot;./empty-inventory.js&quot;;
+import GuardCurrentLocationAction from &quot;./guard-current-location.js&quot;;
+import MoveBlocksDistanceToDirectionAction from &quot;./move-blocks-distance-to-direction.js&quot;;
+import MoveToObjectAction from &quot;./move-to-object.js&quot;;
+import MoveToPlayerLocationAction from &quot;./move-to-player-location.js&quot;;
+import SayCurrentLocationAction from &quot;./say-current-location.js&quot;;
+import SleepAction from &quot;./sleep.js&quot;;
+import ForwardToChatGptAction from &quot;./forward-to-chatgpt.js&quot;;
+import StopCurrentAction from &quot;./stop-current-action.js&quot;;
+import FollowPlayerAction from &quot;./follow-player.js&quot;;
+import StopFollowingAction from &quot;./stop-following.js&quot;;
+import MoveToCoordinatesAction from &quot;./move-to-coordinates.js&quot;;
+import GoHomeAction from &quot;./go-home.js&quot;;
+import JumpAction from &quot;./jump.js&quot;;
+import LookAtPlayerAction from &quot;./look-at-player.js&quot;;
+import FaceDirectionAction from &quot;./face-direction.js&quot;;
+import TurnAroundAction from &quot;./turn-around.js&quot;;
+import WanderAroundAction from &quot;./wander-around.js&quot;;
+import BackAwayAction from &quot;./back-away.js&quot;;
+import GoToPlayerAction from &quot;./go-to-player.js&quot;;
+import StayHereAction from &quot;./stay-here.js&quot;;
+import AttackPlayerAction from &quot;./attack-player.js&quot;;
+import AttackNearestMobAction from &quot;./attack-nearest-mob.js&quot;;
+import DefendMeAction from &quot;./defend-me.js&quot;;
+import FleeAction from &quot;./flee.js&quot;;
+import EquipItemAction from &quot;./equip-item.js&quot;;
+import EquipWeaponAction from &quot;./equip-weapon.js&quot;;
+import EquipShieldAction from &quot;./equip-shield.js&quot;;
+import EquipArmorAction from &quot;./equip-armor.js&quot;;
+import StandDownAction from &quot;./stand-down.js&quot;;
+import HuntFoodAction from &quot;./hunt-food.js&quot;;
+import ReportThreatsAction from &quot;./report-threats.js&quot;;
+import ListInventoryAction from &quot;./list-inventory.js&quot;;
+import DropItemAction from &quot;./drop-item.js&quot;;
+import GiveItemToPlayerAction from &quot;./give-item-to-player.js&quot;;
+import UnequipItemAction from &quot;./unequip-item.js&quot;;
+import TossHeldItemAction from &quot;./toss-held-item.js&quot;;
+import CountItemAction from &quot;./count-item.js&quot;;
+import SayHeldItemAction from &quot;./say-held-item.js&quot;;
+import SayArmorAction from &quot;./say-armor.js&quot;;
+import FindItemAction from &quot;./find-item.js&quot;;
+import EatSpecificFoodAction from &quot;./eat-specific-food.js&quot;;
+import MineBlockAction from &quot;./mine-block.js&quot;;
+import MineTargetBlockAction from &quot;./mine-target-block.js&quot;;
+import DigDownAction from &quot;./dig-down.js&quot;;
+import CollectDropsAction from &quot;./collect-drops.js&quot;;
+import ChopTreeAction from &quot;./chop-tree.js&quot;;
+import HarvestCropsAction from &quot;./harvest-crops.js&quot;;
+import PlantSeedsAction from &quot;./plant-seeds.js&quot;;
+import TillSoilAction from &quot;./till-soil.js&quot;;
+import OpenDoorAction from &quot;./open-door.js&quot;;
+import CloseDoorAction from &quot;./close-door.js&quot;;
+import FlipLeverAction from &quot;./flip-lever.js&quot;;
+import PressButtonAction from &quot;./press-button.js&quot;;
+import RingBellAction from &quot;./ring-bell.js&quot;;
+import BuildPillarAction from &quot;./build-pillar.js&quot;;
+import PlaceBlockAction from &quot;./place-block.js&quot;;
+import PlaceCraftingTableAction from &quot;./place-crafting-table.js&quot;;
+import PlaceTorchAction from &quot;./place-torch.js&quot;;
+import CraftItemAction from &quot;./craft-item.js&quot;;
+import SmeltItemAction from &quot;./smelt-item.js&quot;;
+import SayChestContentsAction from &quot;./say-chest-contents.js&quot;;
+import DepositToChestAction from &quot;./deposit-to-chest.js&quot;;
+import WithdrawItemFromChestAction from &quot;./withdraw-item-from-chest.js&quot;;
+import EmptyChestAction from &quot;./empty-chest.js&quot;;
+import MountEntityAction from &quot;./mount-entity.js&quot;;
+import DismountAction from &quot;./dismount.js&quot;;
+import FishAction from &quot;./fish.js&quot;;
+import FeedAnimalAction from &quot;./feed-animal.js&quot;;
+import BreedAnimalsAction from &quot;./breed-animals.js&quot;;
+import MilkCowAction from &quot;./milk-cow.js&quot;;
+import ShearSheepAction from &quot;./shear-sheep.js&quot;;
+import CountEntitiesAction from &quot;./count-entities.js&quot;;
+import FindNearestEntityAction from &quot;./find-nearest-entity.js&quot;;
+import ThrowEggAction from &quot;./throw-egg.js&quot;;
+import SayHealthAction from &quot;./say-health.js&quot;;
+import SayFoodLevelAction from &quot;./say-food-level.js&quot;;
+import SayTimeAction from &quot;./say-time.js&quot;;
+import SayWeatherAction from &quot;./say-weather.js&quot;;
+import SayBiomeAction from &quot;./say-biome.js&quot;;
+import ListPlayersAction from &quot;./list-players.js&quot;;
+import SayDimensionAction from &quot;./say-dimension.js&quot;;
+import SayVersionAction from &quot;./say-version.js&quot;;
+import SayLatestActionAction from &quot;./say-latest-action.js&quot;;
+import SayActionCountAction from &quot;./say-action-count.js&quot;;
+import SayExperienceAction from &quot;./say-experience.js&quot;;
+import SayLightLevelAction from &quot;./say-light-level.js&quot;;
+import SayElevationAction from &quot;./say-elevation.js&quot;;
+import SayDistanceToPlayerAction from &quot;./say-distance-to-player.js&quot;;
+import SayNearestPlayerAction from &quot;./say-nearest-player.js&quot;;
+import SayUptimeAction from &quot;./say-uptime.js&quot;;
+import GreetAction from &quot;./greet.js&quot;;
+import FarewellAction from &quot;./farewell.js&quot;;
+import ThankYouResponseAction from &quot;./thank-you-response.js&quot;;
+import TellJokeAction from &quot;./tell-joke.js&quot;;
+import TellFactAction from &quot;./tell-fact.js&quot;;
+import SingSongAction from &quot;./sing-song.js&quot;;
+import DanceAction from &quot;./dance.js&quot;;
+import WaveAction from &quot;./wave.js&quot;;
+import NodAction from &quot;./nod.js&quot;;
+import ShakeHeadAction from &quot;./shake-head.js&quot;;
+import SneakAction from &quot;./sneak.js&quot;;
+import StandUpAction from &quot;./stand-up.js&quot;;
+import SprintAction from &quot;./sprint.js&quot;;
+import CoinFlipAction from &quot;./coin-flip.js&quot;;
+import RollDiceAction from &quot;./roll-dice.js&quot;;
+import CountdownAction from &quot;./countdown.js&quot;;
+import ComplimentPlayerAction from &quot;./compliment-player.js&quot;;
+import WhisperSecretAction from &quot;./whisper-secret.js&quot;;
 
 const MESSAGE_MAPPING = [
-  { action: &#039;EmptyInventoryAction&#039;,
+  {
+    action: &quot;EatAction&quot;,
     regexes: [
-      &#039;empty inventory&#039;,
-      &#039;drop all items&#039;,
-      &#039;clear inventory&#039;
-    ]
+      &quot;^eat$&quot;,
+      &quot;^eat something$&quot;,
+      &quot;^eat food$&quot;,
+      &quot;^i am hungry$&quot;,
+      &quot;^i&#039;m hungry$&quot;,
+    ],
   },
-  { action: &#039;SayCurrentLocationAction&#039;,
-    regexes: [
-      &#039;what is your location\\?&#039;,
-      &#039;send location&#039;
-    ]
+  {
+    action: &quot;EmptyInventoryAction&quot;,
+    regexes: [&quot;^empty inventory$&quot;, &quot;^drop all items$&quot;, &quot;^clear inventory$&quot;],
   },
-  { action: &#039;GuardCurrentLocationAction&#039;,
-    regexes: [
-      &#039;guard the area&#039;,
-      &#039;defend the area&#039;,
-      &#039;stand your ground&#039;
-    ]
+  {
+    action: &quot;SayCurrentLocationAction&quot;,
+    regexes: [&quot;^what is your location\\?$&quot;, &quot;^send location$&quot;],
   },
-  { action: &#039;MoveToPlayerLocationAction&#039;,
+  {
+    action: &quot;GuardCurrentLocationAction&quot;,
+    regexes: [&quot;^guard the area$&quot;, &quot;^defend the area$&quot;, &quot;^stand your ground$&quot;],
+  },
+  {
+    action: &quot;MoveToPlayerLocationAction&quot;,
+    regexes: [&quot;^come here$&quot;, &quot;^get over here$&quot;],
+  },
+  {
+    action: &quot;SleepAction&quot;,
+    regexes: [&quot;^go to sleep$&quot;, &quot;^time to sleep$&quot;, &quot;^sleep$&quot;],
+  },
+  {
+    action: &quot;StopCurrentAction&quot;,
+    regexes: [&quot;^stop$&quot;, &quot;^halt$&quot;, &quot;^hold up$&quot;],
+  },
+  {
+    action: &quot;MoveBlocksDistanceToDirectionAction&quot;,
     regexes: [
-      &#039;come here&#039;,
-      &#039;get over here&#039;
-    ]
-  }
+      &quot;^move\\s+(\\d+)\\s+blocks?\\s+(forward|backward|leftward|rightward|downward|upward)$&quot;,
+    ],
+  },
+  {
+    action: &quot;MoveToObjectAction&quot;,
+    regexes: [&quot;^(?:move to|find|walk to)\\s+(?:a|an|the)\\s+(.+)$&quot;],
+  },
+  {
+    action: &quot;FollowPlayerAction&quot;,
+    regexes: [&quot;^follow me$&quot;, &quot;^come with me$&quot;],
+  },
+  {
+    action: &quot;StopFollowingAction&quot;,
+    regexes: [&quot;^stop following$&quot;, &quot;^stay there$&quot;],
+  },
+  {
+    action: &quot;MoveToCoordinatesAction&quot;,
+    regexes: [&quot;^go to (-?\\d+)[, ]+(-?\\d+)[, ]+(-?\\d+)$&quot;],
+  },
+  {
+    action: &quot;GoHomeAction&quot;,
+    regexes: [&quot;^go home$&quot;, &quot;^return home$&quot;, &quot;^go back home$&quot;],
+  },
+  {
+    action: &quot;JumpAction&quot;,
+    regexes: [&quot;^jump$&quot;, &quot;^jump up and down$&quot;],
+  },
+  {
+    action: &quot;LookAtPlayerAction&quot;,
+    regexes: [&quot;^look at me$&quot;],
+  },
+  {
+    action: &quot;FaceDirectionAction&quot;,
+    regexes: [
+      &quot;^face (north|south|east|west)$&quot;,
+      &quot;^look to the (north|south|east|west)$&quot;,
+    ],
+  },
+  {
+    action: &quot;TurnAroundAction&quot;,
+    regexes: [&quot;^turn around$&quot;],
+  },
+  {
+    action: &quot;WanderAroundAction&quot;,
+    regexes: [&quot;^wander around$&quot;, &quot;^go for a walk$&quot;, &quot;^explore a bit$&quot;],
+  },
+  {
+    action: &quot;BackAwayAction&quot;,
+    regexes: [&quot;^back away$&quot;, &quot;^back off$&quot;, &quot;^give me some space$&quot;],
+  },
+  {
+    action: &quot;GoToPlayerAction&quot;,
+    regexes: [&quot;^go to player (\\w+)$&quot;],
+  },
+  {
+    action: &quot;StayHereAction&quot;,
+    regexes: [&quot;^stay here$&quot;, &quot;^wait here$&quot;, &quot;^don&#039;t move$&quot;],
+  },
+  {
+    action: &quot;AttackPlayerAction&quot;,
+    regexes: [&quot;^attack player (\\w+)$&quot;],
+  },
+  {
+    action: &quot;AttackNearestMobAction&quot;,
+    regexes: [&quot;^(?:attack|kill) (?:the )?nearest ([\\w ]+)$&quot;],
+  },
+  {
+    action: &quot;DefendMeAction&quot;,
+    regexes: [&quot;^defend me$&quot;, &quot;^protect me$&quot;, &quot;^keep me safe$&quot;],
+  },
+  {
+    action: &quot;FleeAction&quot;,
+    regexes: [&quot;^run away$&quot;, &quot;^flee$&quot;, &quot;^retreat$&quot;],
+  },
+  {
+    action: &quot;EquipItemAction&quot;,
+    regexes: [&quot;^(?:equip|hold|wield) (?:your |the |a |an )?([\\w ]+)$&quot;],
+  },
+  {
+    action: &quot;EquipWeaponAction&quot;,
+    regexes: [
+      &quot;^draw your (?:sword|weapon)$&quot;,
+      &quot;^equip (?:your )?weapon$&quot;,
+      &quot;^arm yourself$&quot;,
+    ],
+  },
+  {
+    action: &quot;EquipShieldAction&quot;,
+    regexes: [&quot;^raise your shield$&quot;, &quot;^equip (?:your )?shield$&quot;],
+  },
+  {
+    action: &quot;EquipArmorAction&quot;,
+    regexes: [&quot;^put on (?:your )?armor$&quot;, &quot;^armor up$&quot;, &quot;^gear up$&quot;],
+  },
+  {
+    action: &quot;StandDownAction&quot;,
+    regexes: [&quot;^stand down$&quot;, &quot;^cease fire$&quot;, &quot;^stop attacking$&quot;],
+  },
+  {
+    action: &quot;HuntFoodAction&quot;,
+    regexes: [&quot;^hunt for food$&quot;, &quot;^go hunting$&quot;],
+  },
+  {
+    action: &quot;ReportThreatsAction&quot;,
+    regexes: [
+      &quot;^keep watch$&quot;,
+      &quot;^any (?:mobs|threats) nearby$&quot;,
+      &quot;^report threats$&quot;,
+    ],
+  },
+  {
+    action: &quot;ListInventoryAction&quot;,
+    regexes: [
+      &quot;^list (?:your )?inventory$&quot;,
+      &quot;^what(?:&#039;s| is) in your inventory$&quot;,
+      &quot;^show me your inventory$&quot;,
+    ],
+  },
+  {
+    action: &quot;DropItemAction&quot;,
+    regexes: [&quot;^drop (?:your |the |a |an )?(?!all\\b)([\\w ]+)$&quot;],
+  },
+  {
+    action: &quot;GiveItemToPlayerAction&quot;,
+    regexes: [
+      &quot;^give me (?:a |an |the |some )?(?!space\\b)([\\w ]+)$&quot;,
+      &quot;^hand me (?:a |an |the |some )?([\\w ]+)$&quot;,
+    ],
+  },
+  {
+    action: &quot;UnequipItemAction&quot;,
+    regexes: [&quot;^put (?:that|it) away$&quot;, &quot;^unequip$&quot;, &quot;^empty your hands?$&quot;],
+  },
+  {
+    action: &quot;TossHeldItemAction&quot;,
+    regexes: [&quot;^toss (?:that|it)$&quot;, &quot;^throw (?:that|it) away$&quot;],
+  },
+  {
+    action: &quot;CountItemAction&quot;,
+    regexes: [&quot;^how many ([\\w ]+) do you have$&quot;],
+  },
+  {
+    action: &quot;SayHeldItemAction&quot;,
+    regexes: [&quot;^what are you holding$&quot;, &quot;^show me your hand$&quot;],
+  },
+  {
+    action: &quot;SayArmorAction&quot;,
+    regexes: [&quot;^what are you wearing$&quot;, &quot;^show me your armor$&quot;],
+  },
+  {
+    action: &quot;FindItemAction&quot;,
+    regexes: [&quot;^do you have (?:a |an |any )?([\\w ]+)$&quot;],
+  },
+  {
+    action: &quot;EatSpecificFoodAction&quot;,
+    regexes: [&quot;^eat (?:a|an|the|some) ([\\w ]+)$&quot;],
+  },
+  {
+    action: &quot;MineBlockAction&quot;,
+    regexes: [
+      &quot;^mine (?:some |a |an |the )?([\\w ]+)$&quot;,
+      &quot;^collect (?:some |a |an |the )?([\\w ]+)$&quot;,
+    ],
+  },
+  {
+    action: &quot;MineTargetBlockAction&quot;,
+    regexes: [&quot;^(?:dig|mine|break) (?:that|this)(?: block)?$&quot;],
+  },
+  {
+    action: &quot;DigDownAction&quot;,
+    regexes: [&quot;^dig down$&quot;, &quot;^dig a hole$&quot;],
+  },
+  {
+    action: &quot;CollectDropsAction&quot;,
+    regexes: [
+      &quot;^pick up (?:the )?(?:items|drops)$&quot;,
+      &quot;^collect (?:the )?(?:items|drops)$&quot;,
+    ],
+  },
+  {
+    action: &quot;ChopTreeAction&quot;,
+    regexes: [
+      &quot;^chop (?:a |the |down a )?tree$&quot;,
+      &quot;^chop (?:some )?wood$&quot;,
+      &quot;^get (?:some )?wood$&quot;,
+    ],
+  },
+  {
+    action: &quot;HarvestCropsAction&quot;,
+    regexes: [&quot;^harvest (?:the )?(?:crops|wheat|farm)$&quot;],
+  },
+  {
+    action: &quot;PlantSeedsAction&quot;,
+    regexes: [&quot;^plant (?:the |some )?seeds$&quot;],
+  },
+  {
+    action: &quot;TillSoilAction&quot;,
+    regexes: [&quot;^till the (?:soil|ground)$&quot;, &quot;^hoe the ground$&quot;],
+  },
+  {
+    action: &quot;OpenDoorAction&quot;,
+    regexes: [&quot;^open the door$&quot;],
+  },
+  {
+    action: &quot;CloseDoorAction&quot;,
+    regexes: [&quot;^close the door$&quot;, &quot;^shut the door$&quot;],
+  },
+  {
+    action: &quot;FlipLeverAction&quot;,
+    regexes: [&quot;^(?:flip|pull|toggle) the lever$&quot;],
+  },
+  {
+    action: &quot;PressButtonAction&quot;,
+    regexes: [&quot;^(?:press|push) the button$&quot;],
+  },
+  {
+    action: &quot;RingBellAction&quot;,
+    regexes: [&quot;^ring the bell$&quot;],
+  },
+  {
+    action: &quot;BuildPillarAction&quot;,
+    regexes: [&quot;^pillar up(?: (\\d+))?$&quot;, &quot;^tower up(?: (\\d+))?$&quot;],
+  },
+  {
+    action: &quot;PlaceBlockAction&quot;,
+    regexes: [&quot;^place (?:a |an |the )?([\\w ]+)$&quot;],
+  },
+  {
+    action: &quot;PlaceCraftingTableAction&quot;,
+    regexes: [&quot;^set up a crafting table$&quot;, &quot;^place a crafting table$&quot;],
+  },
+  {
+    action: &quot;PlaceTorchAction&quot;,
+    regexes: [
+      &quot;^(?:place|put) (?:a |down a )?torch$&quot;,
+      &quot;^light it up$&quot;,
+      &quot;^it(?:&#039;s| is) too dark$&quot;,
+    ],
+  },
+  {
+    action: &quot;CraftItemAction&quot;,
+    regexes: [
+      &quot;^draft (?:a |an |some )?([\\w ]+)$&quot;,
+      &quot;^lake (?:a |an |some )?([\\w ]+)$&quot;,
+    ],
+  },
+  {
+    action: &quot;SmeltItemAction&quot;,
+    regexes: [
+      &quot;^smelt (?:the |some )?([\\w ]+)$&quot;,
+      &quot;^cook (?:the |some )?([\\w ]+)$&quot;,
+    ],
+  },
+  {
+    action: &quot;SayChestContentsAction&quot;,
+    regexes: [&quot;^what(?:&#039;s| is) in the chest$&quot;, &quot;^check the chest$&quot;],
+  },
+  {
+    action: &quot;DepositToChestAction&quot;,
+    regexes: [
+      &quot;^(?:put|deposit|stash) your (?:items|loot|stuff) in(?:to)? the chest$&quot;,
+    ],
+  },
+  {
+    action: &quot;WithdrawItemFromChestAction&quot;,
+    regexes: [
+      &quot;^(?:take|grab|get) (?:the |some |a |an )?([\\w ]+) from the chest$&quot;,
+    ],
+  },
+  {
+    action: &quot;EmptyChestAction&quot;,
+    regexes: [&quot;^empty the chest$&quot;, &quot;^take everything from the chest$&quot;],
+  },
+  {
+    action: &quot;MountEntityAction&quot;,
+    regexes: [&quot;^(?:ride|mount) (?:the |a |an )?([\\w ]+)$&quot;],
+  },
+  {
+    action: &quot;DismountAction&quot;,
+    regexes: [&quot;^dismount$&quot;, &quot;^get off$&quot;, &quot;^hop off$&quot;],
+  },
+  {
+    action: &quot;FishAction&quot;,
+    regexes: [&quot;^go fishing$&quot;, &quot;^catch (?:a |some )?fish$&quot;],
+  },
+  {
+    action: &quot;FeedAnimalAction&quot;,
+    regexes: [&quot;^feed the ([\\w ]+)$&quot;],
+  },
+  {
+    action: &quot;BreedAnimalsAction&quot;,
+    regexes: [&quot;^breed the ([\\w ]+)$&quot;],
+  },
+  {
+    action: &quot;MilkCowAction&quot;,
+    regexes: [&quot;^milk the cow$&quot;],
+  },
+  {
+    action: &quot;ShearSheepAction&quot;,
+    regexes: [&quot;^shear the sheep$&quot;],
+  },
+  {
+    action: &quot;CountEntitiesAction&quot;,
+    regexes: [&quot;^how many ([\\w ]+) are (?:there|around|nearby|near you)$&quot;],
+  },
+  {
+    action: &quot;FindNearestEntityAction&quot;,
+    regexes: [&quot;^where is the nearest ([\\w ]+)$&quot;],
+  },
+  {
+    action: &quot;ThrowEggAction&quot;,
+    regexes: [&quot;^throw an egg$&quot;],
+  },
+  {
+    action: &quot;SayHealthAction&quot;,
+    regexes: [
+      &quot;^how(?:&#039;s| is) your health$&quot;,
+      &quot;^health check$&quot;,
+      &quot;^are you (?:ok|okay|hurt)$&quot;,
+    ],
+  },
+  {
+    action: &quot;SayFoodLevelAction&quot;,
+    regexes: [&quot;^are you hungry$&quot;, &quot;^how(?:&#039;s| is) your (?:food|hunger)$&quot;],
+  },
+  {
+    action: &quot;SayTimeAction&quot;,
+    regexes: [&quot;^what time is it$&quot;, &quot;^is it (?:day|night)$&quot;],
+  },
+  {
+    action: &quot;SayWeatherAction&quot;,
+    regexes: [&quot;^what(?:&#039;s| is) the weather$&quot;, &quot;^is it raining$&quot;],
+  },
+  {
+    action: &quot;SayBiomeAction&quot;,
+    regexes: [&quot;^what biome (?:is this|are you in)$&quot;],
+  },
+  {
+    action: &quot;ListPlayersAction&quot;,
+    regexes: [&quot;^who(?:&#039;s| is) online$&quot;, &quot;^list (?:the )?players$&quot;],
+  },
+  {
+    action: &quot;SayDimensionAction&quot;,
+    regexes: [&quot;^what dimension$&quot;],
+  },
+  {
+    action: &quot;SayVersionAction&quot;,
+    regexes: [&quot;^what version$&quot;],
+  },
+  {
+    action: &quot;SayLatestActionAction&quot;,
+    regexes: [&quot;^what are you doing$&quot;, &quot;^status report$&quot;],
+  },
+  {
+    action: &quot;SayActionCountAction&quot;,
+    regexes: [&quot;^what have you been up to$&quot;, &quot;^how busy have you been$&quot;],
+  },
+  {
+    action: &quot;SayExperienceAction&quot;,
+    regexes: [&quot;^what level are you$&quot;, &quot;^how much (?:xp|experience)$&quot;],
+  },
+  {
+    action: &quot;SayLightLevelAction&quot;,
+    regexes: [&quot;^how dark is it$&quot;, &quot;^what(?:&#039;s| is) the light level$&quot;],
+  },
+  {
+    action: &quot;SayElevationAction&quot;,
+    regexes: [
+      &quot;^how high (?:up )?are you$&quot;,
+      &quot;^what(?:&#039;s| is) your (?:altitude|elevation)$&quot;,
+    ],
+  },
+  {
+    action: &quot;SayDistanceToPlayerAction&quot;,
+    regexes: [&quot;^how far (?:away )?am i$&quot;],
+  },
+  {
+    action: &quot;SayNearestPlayerAction&quot;,
+    regexes: [&quot;^who(?:&#039;s| is) (?:closest|nearest) to you$&quot;],
+  },
+  {
+    action: &quot;SayUptimeAction&quot;,
+    regexes: [
+      &quot;^how long have you been (?:online|running)$&quot;,
+      &quot;^what(?:&#039;s| is) your uptime$&quot;,
+    ],
+  },
+  {
+    action: &quot;GreetAction&quot;,
+    regexes: [&quot;^(?:hello|hi|hey|howdy)$&quot;],
+  },
+  {
+    action: &quot;FarewellAction&quot;,
+    regexes: [&quot;^(?:bye|goodbye|farewell|see (?:ya|you))$&quot;],
+  },
+  {
+    action: &quot;ThankYouResponseAction&quot;,
+    regexes: [&quot;^thank(?:s| you)$&quot;],
+  },
+  {
+    action: &quot;TellJokeAction&quot;,
+    regexes: [&quot;^tell (?:me |us )?a joke$&quot;],
+  },
+  {
+    action: &quot;TellFactAction&quot;,
+    regexes: [&quot;^tell (?:me |us )?a (?:fun )?fact$&quot;],
+  },
+  {
+    action: &quot;SingSongAction&quot;,
+    regexes: [&quot;^sing (?:me |us )?a song$&quot;, &quot;^sing something$&quot;],
+  },
+  {
+    action: &quot;DanceAction&quot;,
+    regexes: [&quot;^dance$&quot;, &quot;^show me your moves$&quot;],
+  },
+  {
+    action: &quot;WaveAction&quot;,
+    regexes: [&quot;^wave$&quot;, &quot;^say hi with your hand$&quot;],
+  },
+  {
+    action: &quot;NodAction&quot;,
+    regexes: [&quot;^nod$&quot;],
+  },
+  {
+    action: &quot;ShakeHeadAction&quot;,
+    regexes: [&quot;^shake your head$&quot;],
+  },
+  {
+    action: &quot;SneakAction&quot;,
+    regexes: [&quot;^sneak$&quot;, &quot;^crouch$&quot;],
+  },
+  {
+    action: &quot;StandUpAction&quot;,
+    regexes: [&quot;^stand up$&quot;, &quot;^stop (?:sneaking|crouching)$&quot;],
+  },
+  {
+    action: &quot;SprintAction&quot;,
+    regexes: [&quot;^sprint$&quot;, &quot;^run forward$&quot;],
+  },
+  {
+    action: &quot;CoinFlipAction&quot;,
+    regexes: [&quot;^flip a coin$&quot;, &quot;^heads or tails$&quot;],
+  },
+  {
+    action: &quot;RollDiceAction&quot;,
+    regexes: [&quot;^roll (?:a |the )?(?:die|dice)$&quot;, &quot;^roll a d(\\d+)$&quot;],
+  },
+  {
+    action: &quot;CountdownAction&quot;,
+    regexes: [&quot;^count ?down from (\\d+)$&quot;],
+  },
+  {
+    action: &quot;ComplimentPlayerAction&quot;,
+    regexes: [&quot;^say something nice$&quot;, &quot;^compliment me$&quot;],
+  },
+  {
+    action: &quot;WhisperSecretAction&quot;,
+    regexes: [&quot;^tell me a secret$&quot;],
+  },
 ];
 
 class RespondToMessageAction extends BaseAction {
-
   getId() {
     return this.constructor.name;
   }
 
-  do(opts) {
-
+  async do(opts) {
     const message = opts.message;
     const sender = opts.sender;
 
+    let action;
+    let messageElems;
     let status;
 
     bag.logStepHeading(`Responding to message...`);
 
-    let action;
-
     for (const messageConfig of MESSAGE_MAPPING) {
       for (const messageRegex of messageConfig.regexes) {
-        if (message.match(new RegExp(messageRegex))) {
-          bag.logStepItemSuccess(`Found matching action: ${messageConfig.action}, for message: ${message}, from sender: ${sender}`);
+        const regexResult = message
+          .toLowerCase()
+          .match(new RegExp(messageRegex));
+
+        if (regexResult) {
+          bag.logStepItemSuccess(
+            `Found matching action: ${messageConfig.action}, for message: ${message}, from sender: ${sender}`,
+          );
           action = eval(`new ${messageConfig.action}(this.npc)`);
+          messageElems = regexResult;
         }
       }
     }
 
     if (action) {
-      action.do({
+      await action.do({
         message: message,
-        player: sender
+        messageElems: messageElems,
+        player: sender,
       });
-      status = &#039;success&#039;;
-
+      status = &quot;success&quot;;
     } else {
-      bag.logStepItemSuccess(`Forwarding to ChatGPT message: ${message}, from sender: ${sender}`);
-      new ForwardToChatGptAction(this.npc).do({
+      bag.logStepItemSuccess(
+        `Forwarding to ChatGPT message: ${message}, from sender: ${sender}`,
+      );
+      await new ForwardToChatGptAction(this.npc).do({
         message: message,
-        player: sender
+        player: sender,
       });
-      status = &#039;success&#039;;
+      status = &quot;success&quot;;
     }
 
     this.registerInfo(status);
   }
 }
 
-export {
-  RespondToMessageAction as default
-};</textarea>
+export { RespondToMessageAction as default };</textarea>
   </div>
 </div>
 

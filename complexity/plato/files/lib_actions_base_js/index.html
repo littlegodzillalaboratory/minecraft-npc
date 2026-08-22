@@ -48,7 +48,7 @@
     </div>
     <div class="col-md-6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
-      <p class="stat">25</p>
+      <p class="stat">22</p>
     </div>
   </div>
   <div class="row historical">
@@ -90,20 +90,19 @@
 <div class="container">
   <div class="row">
     <textarea id="file-source" class="col-md-12">&quot;use strict&quot;;
-import bag from &#039;bagofcli&#039;;
+import bag from &quot;bagofcli&quot;;
 
 class BaseAction {
-
   constructor(npc) {
     this.npc = npc;
   }
 
   getId() {
-    bag.logStepItemError(&#039;Action should implement getId method!&#039;);
+    bag.logStepItemError(&quot;Action should implement getId method!&quot;);
   }
 
   do(opts) {
-    bag.logStepItemError(&#039;Action should implement do method!&#039;);
+    bag.logStepItemError(&quot;Action should implement do method!&quot;);
   }
 
   registerInfo(status) {
@@ -111,9 +110,7 @@ class BaseAction {
   }
 }
 
-export {
-  BaseAction as default
-};</textarea>
+export { BaseAction as default };</textarea>
   </div>
 </div>
 
