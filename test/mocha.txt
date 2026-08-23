@@ -531,15 +531,15 @@
   [32m  [32m✔[39m[0m[90m should contain commands with actions[0m
 
 [0m  cli - start[0m
-  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (140ms)[0m
+  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (133ms)[0m
 AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1339:18)
-    at afterConnectMultiple (node:net:1942:7) {
+    at internalConnectMultiple (node:net:1426:18)
+    at afterConnectMultiple (node:net:2095:7) {
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:25565
-        at createConnectionError (node:net:1905:14)
-        at afterConnectMultiple (node:net:1935:16) {
+        at createConnectionError (node:net:2058:14)
+        at afterConnectMultiple (node:net:2088:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -547,8 +547,8 @@ AggregateError [ECONNREFUSED]:
       port: 25565
     },
     Error: connect ECONNREFUSED 127.0.0.1:25565
-        at createConnectionError (node:net:1905:14)
-        at afterConnectMultiple (node:net:1935:16) {
+        at createConnectionError (node:net:2058:14)
+        at afterConnectMultiple (node:net:2088:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -558,13 +558,13 @@ AggregateError [ECONNREFUSED]:
   ]
 }
 AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1339:18)
-    at afterConnectMultiple (node:net:1942:7) {
+    at internalConnectMultiple (node:net:1426:18)
+    at afterConnectMultiple (node:net:2095:7) {
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:25565
-        at createConnectionError (node:net:1905:14)
-        at afterConnectMultiple (node:net:1935:16) {
+        at createConnectionError (node:net:2058:14)
+        at afterConnectMultiple (node:net:2088:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -572,8 +572,8 @@ AggregateError [ECONNREFUSED]:
       port: 25565
     },
     Error: connect ECONNREFUSED 127.0.0.1:25565
-        at createConnectionError (node:net:1905:14)
-        at afterConnectMultiple (node:net:1935:16) {
+        at createConnectionError (node:net:2058:14)
+        at afterConnectMultiple (node:net:2088:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -638,9 +638,9 @@ string
 [0m    validation[0m
   * [31mUnable to move bob to invalid location: a 2 3[39m
   * [31mUnable to say invalid message: [39m
-  * [31mUnable to move bob 0 blocks forward[39m
     [32m  [32m✔[39m[0m[90m should fail validation branch[0m
 [0m    moveToObject[0m
+  * [31mUnable to move bob 0 blocks forward[39m
   * [32mbob is moving to object: bed[39m
   * [31mUnable to move bob to invalid object: bedroom: Cannot read properties of undefined (reading 'position')[39m
     [32m  [32m✔[39m[0m[90m should move to a discoverable object or say when it cannot be found[0m
@@ -1049,7 +1049,7 @@ string
 
 [0m  SprintSkill[0m
   [32m  [32m✔[39m[0m[90m should sprint forward then stop[0m
-  [32m  [32m✔[39m[0m[90m should default the sprint duration when not specified[0m[31m (2003ms)[0m
+  [32m  [32m✔[39m[0m[90m should default the sprint duration when not specified[0m[31m (2002ms)[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  StopSkill[0m
