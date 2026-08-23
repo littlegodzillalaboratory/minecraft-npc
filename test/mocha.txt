@@ -531,7 +531,7 @@
   [32m  [32m✔[39m[0m[90m should contain commands with actions[0m
 
 [0m  cli - start[0m
-  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (140ms)[0m
+  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (138ms)[0m
 AggregateError [ECONNREFUSED]: 
     at internalConnectMultiple (node:net:1135:18)
     at afterConnectMultiple (node:net:1716:7) {
@@ -614,7 +614,7 @@ AggregateError [ECONNREFUSED]:
   * [32mWebInventory plugin[39m
 [1m[36mSpawning bot...[39m[22m
   * [32mbob has been spawned[39m
-  [32m  [32m✔[39m[0m[90m should wire up plugins on spawn and route chat messages addressed to the bot[0m[33m (62ms)[0m
+  [32m  [32m✔[39m[0m[90m should wire up plugins on spawn and route chat messages addressed to the bot[0m[33m (61ms)[0m
 
 [0m  Npc[0m
 [0m    eat[0m
@@ -863,7 +863,7 @@ string
 
 [0m  DanceSkill[0m
   [32m  [32m✔[39m[0m[90m should toggle dance moves on and off[0m
-  [32m  [32m✔[39m[0m[90m should default the step delay when not specified[0m[31m (2405ms)[0m
+  [32m  [32m✔[39m[0m[90m should default the step delay when not specified[0m[31m (2406ms)[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  DefendPlayerSkill[0m
@@ -1062,7 +1062,7 @@ string
 
 [0m  SprintSkill[0m
   [32m  [32m✔[39m[0m[90m should sprint forward then stop[0m
-  [32m  [32m✔[39m[0m[90m should default the sprint duration when not specified[0m[31m (2003ms)[0m
+  [32m  [32m✔[39m[0m[90m should default the sprint duration when not specified[0m[31m (2002ms)[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  StopSkill[0m
