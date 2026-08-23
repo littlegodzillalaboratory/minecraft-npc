@@ -531,15 +531,15 @@
   [32m  [32m✔[39m[0m[90m should contain commands with actions[0m
 
 [0m  cli - start[0m
-  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (117ms)[0m
+  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (140ms)[0m
 AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1135:18)
-    at afterConnectMultiple (node:net:1716:7) {
+    at internalConnectMultiple (node:net:1339:18)
+    at afterConnectMultiple (node:net:1942:7) {
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:25565
-        at createConnectionError (node:net:1679:14)
-        at afterConnectMultiple (node:net:1709:16) {
+        at createConnectionError (node:net:1905:14)
+        at afterConnectMultiple (node:net:1935:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -547,8 +547,8 @@ AggregateError [ECONNREFUSED]:
       port: 25565
     },
     Error: connect ECONNREFUSED 127.0.0.1:25565
-        at createConnectionError (node:net:1679:14)
-        at afterConnectMultiple (node:net:1709:16) {
+        at createConnectionError (node:net:1905:14)
+        at afterConnectMultiple (node:net:1935:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -558,13 +558,13 @@ AggregateError [ECONNREFUSED]:
   ]
 }
 AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1135:18)
-    at afterConnectMultiple (node:net:1716:7) {
+    at internalConnectMultiple (node:net:1339:18)
+    at afterConnectMultiple (node:net:1942:7) {
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:25565
-        at createConnectionError (node:net:1679:14)
-        at afterConnectMultiple (node:net:1709:16) {
+        at createConnectionError (node:net:1905:14)
+        at afterConnectMultiple (node:net:1935:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -572,8 +572,8 @@ AggregateError [ECONNREFUSED]:
       port: 25565
     },
     Error: connect ECONNREFUSED 127.0.0.1:25565
-        at createConnectionError (node:net:1679:14)
-        at afterConnectMultiple (node:net:1709:16) {
+        at createConnectionError (node:net:1905:14)
+        at afterConnectMultiple (node:net:1935:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -972,7 +972,7 @@ Tossing item: stone x 2
 
 [0m  JumpSkill[0m
   [32m  [32m✔[39m[0m[90m should press and release jump control[0m
-  [32m  [32m✔[39m[0m[90m should default the jump duration when not specified[0m[31m (502ms)[0m
+  [32m  [32m✔[39m[0m[90m should default the jump duration when not specified[0m[31m (501ms)[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  ListChestSkill[0m
