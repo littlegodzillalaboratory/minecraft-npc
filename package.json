@@ -10,7 +10,7 @@
     "ai",
     "openai"
   ],
-  "version": "0.10.0",
+  "version": "0.10.1-pre.0",
   "homepage": "https://github.com/littlegodzillalaboratory/minecraft-npc",
   "author": "Little Godzilla Laboratory <blah+lgl@cliffano.com> (https://littlegodzillalaboratory.github.io/)",
   "contributors": [
