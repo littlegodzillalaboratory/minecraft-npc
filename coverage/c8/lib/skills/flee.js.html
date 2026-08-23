@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.59% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>35/37</span>
+                <span class='fraction'>37/37</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/6</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.59% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>35/37</span>
+                <span class='fraction'>37/37</span>
             </div>
         
             
@@ -106,22 +106,18 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -129,11 +125,15 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -142,14 +142,14 @@ import BaseSkill from "./base.js";
 import MoveToLocationSkill from "./move-to-location.js";
 &nbsp;
 class FleeSkill extends BaseSkill {
-<span class="fstat-no" title="function not covered" >  getId() {</span>
-<span class="cstat-no" title="statement not covered" >    return this.constructor.name;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  getId() {
+    return this.constructor.name;
+  }
 &nbsp;
   do(opts) {
     const FLEE_DISTANCE = 16;
     const threat = this.bot.nearestEntity((candidate) =&gt; {
-      if (candidate.type !== "mob") <span class="branch-0 cbranch-no" title="branch not covered" >return false;</span>
+      if (candidate.type !== "mob") return false;
       const def = this.bot.registry.entitiesByName[candidate.name];
       return def !== undefined &amp;&amp; def.category === "Hostile mobs";
     });
@@ -162,7 +162,7 @@ class FleeSkill extends BaseSkill {
     const position = this.bot.entity.position;
     const dx = position.x - threat.position.x;
     const dz = position.z - threat.position.z;
-    const distance = Math.sqrt(dx * dx + dz * dz) <span class="branch-0 cbranch-no" title="branch not covered" >|| 1;</span>
+    const distance = Math.sqrt(dx * dx + dz * dz) || 1;
     const scale = FLEE_DISTANCE / distance;
 &nbsp;
     new MoveToLocationSkill(this.bot).do({
@@ -181,7 +181,7 @@ export { FleeSkill as default };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-08-22T13:37:04.020Z
+                at 2026-08-23T06:33:36.165Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
