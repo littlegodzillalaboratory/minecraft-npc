@@ -21,4 +21,9 @@ describe("LookAtLocationSkill", () => {
     assert.equals(bot.lookAt.firstCall.args[0].y, 2);
     assert.equals(bot.lookAt.firstCall.args[0].z, 3);
   });
+  it("should return class name as id", () => {
+    const skill = new LookAtLocationSkill({});
+    assert.equals(skill.getId(), "LookAtLocationSkill");
+  });
+
 });

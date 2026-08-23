@@ -18,4 +18,9 @@ describe("WhisperSkill", () => {
     skill.do({ player: "alice", message: "psst" });
     assert.equals(bot.whisper.firstCall.args, ["alice", "psst"]);
   });
+  it("should return class name as id", () => {
+    const skill = new WhisperSkill({});
+    assert.equals(skill.getId(), "WhisperSkill");
+  });
+
 });

@@ -36,4 +36,9 @@ describe("UnequipItemSkill", () => {
     assert.equals(thrownError.message, "someerror");
     assert.equals(bot.chat.callCount, 0);
   });
+  it("should return class name as id", () => {
+    const skill = new UnequipItemSkill({});
+    assert.equals(skill.getId(), "UnequipItemSkill");
+  });
+
 });

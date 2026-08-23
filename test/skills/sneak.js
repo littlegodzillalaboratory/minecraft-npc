@@ -20,4 +20,9 @@ describe("SneakSkill", () => {
     skill.do({ enable: false });
     assert.equals(bot.setControlState.secondCall.args, ["sneak", false]);
   });
+  it("should return class name as id", () => {
+    const skill = new SneakSkill({});
+    assert.equals(skill.getId(), "SneakSkill");
+  });
+
 });

@@ -60,4 +60,9 @@ describe("FollowPlayerSkill", () => {
     assert.equals(bot.chat.firstCall.args[0], "I cannot see you, alice");
     assert.equals(bot.pathfinder.setGoal.callCount, 0);
   });
+  it("should return class name as id", () => {
+    const skill = new FollowPlayerSkill({});
+    assert.equals(skill.getId(), "FollowPlayerSkill");
+  });
+
 });

@@ -36,4 +36,9 @@ describe("FishSkill", () => {
     assert.equals(bot.chat.firstCall.args[0], "I have no fishing rod");
     assert.equals(bot.fish.callCount, 0);
   });
+  it("should return class name as id", () => {
+    const skill = new FishSkill({});
+    assert.equals(skill.getId(), "FishSkill");
+  });
+
 });

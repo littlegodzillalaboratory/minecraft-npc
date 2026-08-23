@@ -58,6 +58,19 @@ describe("GuardLocationSkill", () => {
     assert.equals(pvpAttack.callCount, 0);
   });
 
+  it("should run GuardLocationSkill and ignore non-mob entities", () => {
+    const arrow = { type: "item", position: { x: 5, y: 64, z: 5 } };
+    const pvpAttack = sinon.spy();
+    const bot = {
+      registry: { entitiesByName: {} },
+      entities: { 1: arrow },
+      pvp: { attack: pvpAttack },
+    };
+    const skill = new GuardLocationSkill(bot);
+    skill.do({ posX: 0, posY: 64, posZ: 0 });
+    assert.equals(pvpAttack.callCount, 0);
+  });
+
   it("should run GuardLocationSkill and do nothing when no entities are present", () => {
     const pvpAttack = sinon.spy();
     const bot = {
@@ -69,4 +82,9 @@ describe("GuardLocationSkill", () => {
     skill.do({ posX: 0, posY: 64, posZ: 0 });
     assert.equals(pvpAttack.callCount, 0);
   });
+  it("should return class name as id", () => {
+    const skill = new GuardLocationSkill({});
+    assert.equals(skill.getId(), "GuardLocationSkill");
+  });
+
 });

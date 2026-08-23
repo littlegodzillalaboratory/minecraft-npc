@@ -28,4 +28,22 @@ describe("ListInventoryAction", () => {
     assert.equals(sayMessage.firstCall.args[0], "I have: stone x 2");
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });
+
+  it("should say inventory is empty when there are no items", async () => {
+    const sayMessage = sinon.stub().resolves("success");
+    const setActionInfo = sinon.spy();
+    const action = new ListInventoryAction({
+      sayMessage,
+      getRegister: () => ({ setActionInfo }),
+      getBot: () => ({
+        inventory: { items: () => [] },
+      }),
+    });
+    await action.do({
+      message: "list inventory",
+      messageElems: ["list inventory"],
+      player: "alice",
+    });
+    assert.equals(sayMessage.firstCall.args[0], "My inventory is empty");
+  });
 });

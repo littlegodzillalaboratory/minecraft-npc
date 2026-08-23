@@ -32,4 +32,26 @@ describe("SayNearestPlayerAction", () => {
     );
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });
+
+  it("should say it does not see any players nearby", async () => {
+    const sayMessage = sinon.stub().resolves("success");
+    const setActionInfo = sinon.spy();
+    const action = new SayNearestPlayerAction({
+      sayMessage,
+      getRegister: () => ({ setActionInfo }),
+      getBot: () => ({
+        username: "bob",
+        nearestEntity: () => null,
+      }),
+    });
+    await action.do({
+      message: "who is nearest to you",
+      messageElems: ["who is nearest to you"],
+      player: "alice",
+    });
+    assert.equals(
+      sayMessage.firstCall.args[0],
+      "I do not see any players nearby",
+    );
+  });
 });

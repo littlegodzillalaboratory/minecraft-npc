@@ -34,4 +34,25 @@ describe("FindNearestEntityAction", () => {
     );
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });
+
+  it("should say it cannot see the entity when none is nearby", async () => {
+    const sayMessage = sinon.stub().resolves("success");
+    const setActionInfo = sinon.spy();
+    const action = new FindNearestEntityAction({
+      sayMessage,
+      getRegister: () => ({ setActionInfo }),
+      getBot: () => ({
+        nearestEntity: () => null,
+      }),
+    });
+    await action.do({
+      message: "where is the nearest sheep",
+      messageElems: ["where is the nearest sheep", "sheep"],
+      player: "alice",
+    });
+    assert.equals(
+      sayMessage.firstCall.args[0],
+      "I cannot see any sheep nearby",
+    );
+  });
 });

@@ -31,4 +31,23 @@ describe("GoToPlayerAction", () => {
     assert.equals(sayMessage.callCount, 0);
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });
+
+  it("should say it cannot see the player when not found", async () => {
+    const moveToLocation = sinon.stub().resolves("success");
+    const sayMessage = sinon.stub().resolves("success");
+    const setActionInfo = sinon.spy();
+    const action = new GoToPlayerAction({
+      moveToLocation,
+      sayMessage,
+      getRegister: () => ({ setActionInfo }),
+      getBot: () => ({ players: {} }),
+    });
+    await action.do({
+      message: "go to player carol",
+      messageElems: ["go to player carol", "carol"],
+      player: "alice",
+    });
+    assert.equals(moveToLocation.callCount, 0);
+    assert.equals(sayMessage.firstCall.args[0], "I cannot see carol");
+  });
 });

@@ -55,6 +55,48 @@ describe("TillSoilSkill", () => {
     assert.equals(bot.chat.firstCall.args[0], "I have no hoe to till with");
   });
 
+  it("should evaluate candidate blocks using the block above them", async () => {
+    const originalMovements = pathfinder.Movements;
+    const originalGoalNear = pathfinder.goals.GoalNear;
+    try {
+      pathfinder.Movements = class {};
+      pathfinder.goals.GoalNear = class {};
+      const hoe = { name: "iron_hoe" };
+      const ground = {
+        name: "grass_block",
+        position: { x: 1, y: 2, z: 3, offset: () => ({}) },
+      };
+      const candidate = { position: { offset: () => ({}) } };
+      const blockAt = sinon.stub();
+      blockAt.onCall(0).returns(null);
+      blockAt.onCall(1).returns({ name: "dirt" });
+      blockAt.onCall(2).returns({ name: "air" });
+      const bot = {
+        inventory: { items: () => [hoe] },
+        registry: { blocksByName: { grass_block: { id: 2 }, dirt: { id: 3 } } },
+        findBlock: (findOpts) => {
+          findOpts.useExtraInfo(candidate);
+          findOpts.useExtraInfo(candidate);
+          return findOpts.useExtraInfo(candidate) ? ground : null;
+        },
+        blockAt,
+        pathfinder: {
+          setMovements: sinon.spy(),
+          goto: sinon.stub().resolves(),
+        },
+        equip: sinon.stub().resolves(),
+        activateBlock: sinon.stub().resolves(),
+        chat: sinon.spy(),
+      };
+      const skill = new TillSoilSkill(bot);
+      await skill.do({});
+      assert.same(bot.activateBlock.firstCall.args[0], ground);
+    } finally {
+      pathfinder.Movements = originalMovements;
+      pathfinder.goals.GoalNear = originalGoalNear;
+    }
+  });
+
   it("should say no ground to till when none is found", async () => {
     const bot = {
       inventory: { items: () => [{ name: "iron_hoe" }] },
@@ -69,4 +111,9 @@ describe("TillSoilSkill", () => {
       "There is no ground to till nearby",
     );
   });
+  it("should return class name as id", () => {
+    const skill = new TillSoilSkill({});
+    assert.equals(skill.getId(), "TillSoilSkill");
+  });
+
 });

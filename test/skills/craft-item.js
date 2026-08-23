@@ -61,4 +61,9 @@ describe("CraftItemSkill", () => {
     assert.equals(bot.chat.firstCall.args[0], "I cannot craft stick right now");
     assert.equals(bot.craft.callCount, 0);
   });
+  it("should return class name as id", () => {
+    const skill = new CraftItemSkill({});
+    assert.equals(skill.getId(), "CraftItemSkill");
+  });
+
 });

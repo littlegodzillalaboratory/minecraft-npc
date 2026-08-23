@@ -32,4 +32,25 @@ describe("SayActionCountAction", () => {
     );
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });
+
+  it("should say zero actions when there is no latest action", async () => {
+    const sayMessage = sinon.stub().resolves("success");
+    const setActionInfo = sinon.spy();
+    const action = new SayActionCountAction({
+      sayMessage,
+      getRegister: () => ({
+        setActionInfo,
+        getLatestAction: () => null,
+      }),
+    });
+    await action.do({
+      message: "what have you been up to",
+      messageElems: ["what have you been up to"],
+      player: "alice",
+    });
+    assert.equals(
+      sayMessage.firstCall.args[0],
+      "I have performed 0 actions so far",
+    );
+  });
 });

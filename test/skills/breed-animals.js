@@ -64,4 +64,28 @@ describe("BreedAnimalsSkill", () => {
       "I have no food to breed the cow with",
     );
   });
+  it("should default to wheat for unlisted animal species", async () => {
+    const nameless = { position: { distanceTo: () => 4 } };
+    const alpacaOne = { name: "alpaca", position: { distanceTo: () => 4 } };
+    const alpacaTwo = { name: "alpaca", position: { distanceTo: () => 6 } };
+    const wheat = { name: "wheat" };
+    const bot = {
+      entities: { 1: nameless, 2: alpacaOne, 3: alpacaTwo },
+      entity: { position: {} },
+      inventory: { items: () => [wheat] },
+      equip: sinon.stub().resolves(),
+      useOn: sinon.stub().resolves(),
+      chat: sinon.spy(),
+    };
+    const skill = new BreedAnimalsSkill(bot);
+    await skill.do({ entityName: "alpaca" });
+    assert.same(bot.equip.firstCall.args[0], wheat);
+    assert.equals(bot.useOn.callCount, 2);
+  });
+
+  it("should return class name as id", () => {
+    const skill = new BreedAnimalsSkill({});
+    assert.equals(skill.getId(), "BreedAnimalsSkill");
+  });
+
 });

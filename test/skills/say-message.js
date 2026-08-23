@@ -16,4 +16,9 @@ describe("SayMessageSkill", () => {
     skill.do({ message: "hello" });
     assert.equals(chat.firstCall.args[0], "hello");
   });
+  it("should return class name as id", () => {
+    const skill = new SayMessageSkill({});
+    assert.equals(skill.getId(), "SayMessageSkill");
+  });
+
 });

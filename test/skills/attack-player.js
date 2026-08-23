@@ -34,4 +34,9 @@ describe("AttackPlayerSkill", () => {
     assert.equals(bot.chat.firstCall.args[0], "I cannot see carol");
     assert.equals(bot.pvp.attack.callCount, 0);
   });
+  it("should return class name as id", () => {
+    const skill = new AttackPlayerSkill({});
+    assert.equals(skill.getId(), "AttackPlayerSkill");
+  });
+
 });

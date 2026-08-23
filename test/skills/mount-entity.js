@@ -36,4 +36,9 @@ describe("MountEntitySkill", () => {
     );
     assert.equals(bot.mount.callCount, 0);
   });
+  it("should return class name as id", () => {
+    const skill = new MountEntitySkill({});
+    assert.equals(skill.getId(), "MountEntitySkill");
+  });
+
 });

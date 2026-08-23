@@ -56,4 +56,22 @@ describe("GiveItemSkill", () => {
     assert.equals(bot.chat.firstCall.args[0], "I do not have any apple");
     assert.equals(bot.toss.callCount, 0);
   });
+  it("should match items by their singular name", async () => {
+    const bot = {
+      players: { alice: { entity: { position: { offset: () => ({}) } } } },
+      inventory: { items: () => [{ name: "apple", type: 10, count: 1 }] },
+      lookAt: sinon.stub().resolves(),
+      toss: sinon.stub().resolves(),
+      chat: sinon.spy(),
+    };
+    const skill = new GiveItemSkill(bot);
+    await skill.do({ player: "alice", itemName: "apples" });
+    assert.equals(bot.toss.firstCall.args, [10, null, 1]);
+  });
+
+  it("should return class name as id", () => {
+    const skill = new GiveItemSkill({});
+    assert.equals(skill.getId(), "GiveItemSkill");
+  });
+
 });

@@ -62,4 +62,9 @@ describe("DigBlockSkill", () => {
     assert.equals(bot.chat.firstCall.args[0], "I cannot dig bedrock");
     assert.equals(bot.dig.callCount, 0);
   });
+  it("should return class name as id", () => {
+    const skill = new DigBlockSkill({});
+    assert.equals(skill.getId(), "DigBlockSkill");
+  });
+
 });

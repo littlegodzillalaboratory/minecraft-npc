@@ -36,4 +36,9 @@ describe("AttackNearestEntitySkill", () => {
     );
     assert.equals(bot.pvp.attack.callCount, 0);
   });
+  it("should return class name as id", () => {
+    const skill = new AttackNearestEntitySkill({});
+    assert.equals(skill.getId(), "AttackNearestEntitySkill");
+  });
+
 });

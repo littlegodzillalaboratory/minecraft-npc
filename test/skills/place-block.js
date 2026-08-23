@@ -66,4 +66,9 @@ describe("PlaceBlockSkill", () => {
     );
     assert.equals(bot.placeBlock.callCount, 0);
   });
+  it("should return class name as id", () => {
+    const skill = new PlaceBlockSkill({});
+    assert.equals(skill.getId(), "PlaceBlockSkill");
+  });
+
 });

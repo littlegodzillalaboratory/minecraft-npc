@@ -51,4 +51,25 @@ describe("FeedAnimalSkill", () => {
     assert.equals(bot.chat.firstCall.args[0], "I have no food for the cow");
     assert.equals(bot.useOn.callCount, 0);
   });
+  it("should default to wheat for unlisted animal species", async () => {
+    const alpaca = { name: "alpaca" };
+    const wheat = { name: "wheat" };
+    const bot = {
+      nearestEntity: (predicate) => (predicate(alpaca) ? alpaca : null),
+      inventory: { items: () => [{ name: "stone" }, wheat] },
+      equip: sinon.stub().resolves(),
+      useOn: sinon.stub().resolves(),
+      chat: sinon.spy(),
+    };
+    const skill = new FeedAnimalSkill(bot);
+    await skill.do({ entityName: "alpaca" });
+    assert.same(bot.equip.firstCall.args[0], wheat);
+    assert.same(bot.useOn.firstCall.args[0], alpaca);
+  });
+
+  it("should return class name as id", () => {
+    const skill = new FeedAnimalSkill({});
+    assert.equals(skill.getId(), "FeedAnimalSkill");
+  });
+
 });

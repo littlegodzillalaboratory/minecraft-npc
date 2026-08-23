@@ -10,7 +10,8 @@ describe("CoinFlipAction", () => {
     sinon.restore();
   });
 
-  it("should run CoinFlipAction", async () => {
+  it("should land on heads when random is below 0.5", async () => {
+    sinon.stub(Math, "random").returns(0.1);
     const sayMessage = sinon.stub().resolves("success");
     const setActionInfo = sinon.spy();
     const action = new CoinFlipAction({
@@ -22,10 +23,23 @@ describe("CoinFlipAction", () => {
       messageElems: ["flip a coin"],
       player: "alice",
     });
-    assert.match(
-      sayMessage.firstCall.args[0],
-      /The coin landed on (?:heads|tails)/,
-    );
+    assert.equals(sayMessage.firstCall.args[0], "The coin landed on heads");
     assert.equals(setActionInfo.firstCall.args[1], "success");
+  });
+
+  it("should land on tails when random is 0.5 or above", async () => {
+    sinon.stub(Math, "random").returns(0.5);
+    const sayMessage = sinon.stub().resolves("success");
+    const setActionInfo = sinon.spy();
+    const action = new CoinFlipAction({
+      sayMessage,
+      getRegister: () => ({ setActionInfo }),
+    });
+    await action.do({
+      message: "flip a coin",
+      messageElems: ["flip a coin"],
+      player: "alice",
+    });
+    assert.equals(sayMessage.firstCall.args[0], "The coin landed on tails");
   });
 });

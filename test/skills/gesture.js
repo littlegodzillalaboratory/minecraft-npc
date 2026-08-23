@@ -35,4 +35,9 @@ describe("GestureSkill", () => {
     assert.equals(bot.look.getCall(1).args, [-0.6, 0]);
     assert.equals(bot.look.getCall(2).args, [0, 0]);
   });
+  it("should return class name as id", () => {
+    const skill = new GestureSkill({});
+    assert.equals(skill.getId(), "GestureSkill");
+  });
+
 });

@@ -43,4 +43,9 @@ describe("MoveToLocationSkill", () => {
       pathfinder.goals.GoalNear = originalGoalNear;
     }
   });
+  it("should return class name as id", () => {
+    const skill = new MoveToLocationSkill({});
+    assert.equals(skill.getId(), "MoveToLocationSkill");
+  });
+
 });

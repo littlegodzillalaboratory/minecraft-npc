@@ -22,4 +22,19 @@ describe("DanceSkill", () => {
     assert.equals(bot.setControlState.getCall(2).args, ["sneak", true]);
     assert.equals(bot.setControlState.getCall(3).args, ["sneak", false]);
   });
+  it("should default the step delay when not specified", async function () {
+    this.timeout(15000);
+    const bot = {
+      setControlState: sinon.spy(),
+    };
+    const skill = new DanceSkill(bot);
+    await skill.do({});
+    assert.equals(bot.setControlState.callCount, 8);
+  });
+
+  it("should return class name as id", () => {
+    const skill = new DanceSkill({});
+    assert.equals(skill.getId(), "DanceSkill");
+  });
+
 });

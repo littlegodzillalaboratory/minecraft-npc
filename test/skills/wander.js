@@ -24,4 +24,9 @@ describe("WanderSkill", () => {
     assert.isTrue(Math.abs(opts.posX) <= 16);
     assert.isTrue(Math.abs(opts.posZ) <= 16);
   });
+  it("should return class name as id", () => {
+    const skill = new WanderSkill({});
+    assert.equals(skill.getId(), "WanderSkill");
+  });
+
 });

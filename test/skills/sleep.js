@@ -120,4 +120,9 @@ describe("SleepSkill", () => {
       "Cannot read properties of null (reading 'name')",
     );
   });
+  it("should return class name as id", () => {
+    const skill = new SleepSkill({});
+    assert.equals(skill.getId(), "SleepSkill");
+  });
+
 });

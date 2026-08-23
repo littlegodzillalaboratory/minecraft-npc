@@ -29,4 +29,23 @@ describe("SayTimeAction", () => {
     );
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });
+
+  it("should say it is day time outside the night range", async () => {
+    const sayMessage = sinon.stub().resolves("success");
+    const setActionInfo = sinon.spy();
+    const action = new SayTimeAction({
+      sayMessage,
+      getRegister: () => ({ setActionInfo }),
+      getBot: () => ({ time: { timeOfDay: 6000 } }),
+    });
+    await action.do({
+      message: "what time is it",
+      messageElems: ["what time is it"],
+      player: "alice",
+    });
+    assert.equals(
+      sayMessage.firstCall.args[0],
+      "The time of day is 6000, it is day time",
+    );
+  });
 });

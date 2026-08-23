@@ -31,6 +31,28 @@ describe("FleeSkill", () => {
     assert.equals(moveStub.firstCall.args[0].posZ, 0);
   });
 
+  it("should ignore non-mob candidates and default distance when threat is on top of the bot", () => {
+    const moveStub = sinon.stub(MoveToLocationSkill.prototype, "do");
+    const arrow = { type: "item", position: { x: 0, y: 64, z: 0 } };
+    const zombie = {
+      type: "mob",
+      name: "zombie",
+      position: { x: 0, y: 64, z: 0 },
+    };
+    const bot = {
+      nearestEntity: (predicate) =>
+        [arrow, zombie].find(predicate) || null,
+      registry: { entitiesByName: { zombie: { category: "Hostile mobs" } } },
+      entity: { position: { x: 0, y: 64, z: 0 } },
+      chat: sinon.spy(),
+    };
+    const skill = new FleeSkill(bot);
+    skill.do({});
+    assert.equals(moveStub.callCount, 1);
+    assert.equals(moveStub.firstCall.args[0].posX, 0);
+    assert.equals(moveStub.firstCall.args[0].posZ, 0);
+  });
+
   it("should say nothing to flee from when no hostile mob is nearby", () => {
     const moveStub = sinon.stub(MoveToLocationSkill.prototype, "do");
     const bot = {
@@ -44,4 +66,9 @@ describe("FleeSkill", () => {
     assert.equals(bot.chat.firstCall.args[0], "There is nothing to flee from");
     assert.equals(moveStub.callCount, 0);
   });
+  it("should return class name as id", () => {
+    const skill = new FleeSkill({});
+    assert.equals(skill.getId(), "FleeSkill");
+  });
+
 });

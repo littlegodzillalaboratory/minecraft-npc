@@ -43,4 +43,9 @@ describe("DropItemSkill", () => {
     assert.equals(bot.chat.firstCall.args[0], "I do not have any sword");
     assert.equals(bot.toss.callCount, 0);
   });
+  it("should return class name as id", () => {
+    const skill = new DropItemSkill({});
+    assert.equals(skill.getId(), "DropItemSkill");
+  });
+
 });

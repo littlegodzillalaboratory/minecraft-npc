@@ -37,4 +37,9 @@ describe("CollectItemsSkill", () => {
     );
     assert.equals(moveStub.callCount, 0);
   });
+  it("should return class name as id", () => {
+    const skill = new CollectItemsSkill({});
+    assert.equals(skill.getId(), "CollectItemsSkill");
+  });
+
 });

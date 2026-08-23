@@ -21,4 +21,9 @@ describe("MessageChatGptSkill", () => {
     assert.equals(bot.chatgpt.sendMessage.callCount, 1);
     assert.equals(chat.firstCall.args[0], "reply");
   });
+  it("should return class name as id", () => {
+    const skill = new MessageChatGptSkill({});
+    assert.equals(skill.getId(), "MessageChatGptSkill");
+  });
+
 });

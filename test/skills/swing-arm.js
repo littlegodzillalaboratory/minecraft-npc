@@ -18,4 +18,9 @@ describe("SwingArmSkill", () => {
     skill.do({});
     assert.equals(bot.swingArm.firstCall.args[0], "right");
   });
+  it("should return class name as id", () => {
+    const skill = new SwingArmSkill({});
+    assert.equals(skill.getId(), "SwingArmSkill");
+  });
+
 });

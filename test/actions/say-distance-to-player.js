@@ -34,4 +34,23 @@ describe("SayDistanceToPlayerAction", () => {
     );
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });
+
+  it("should say it cannot see the player when not found", async () => {
+    const sayMessage = sinon.stub().resolves("success");
+    const setActionInfo = sinon.spy();
+    const action = new SayDistanceToPlayerAction({
+      sayMessage,
+      getRegister: () => ({ setActionInfo }),
+      getBot: () => ({
+        players: {},
+        entity: { position: {} },
+      }),
+    });
+    await action.do({
+      message: "how far am i",
+      messageElems: ["how far am i"],
+      player: "alice",
+    });
+    assert.equals(sayMessage.firstCall.args[0], "I cannot see you, alice");
+  });
 });

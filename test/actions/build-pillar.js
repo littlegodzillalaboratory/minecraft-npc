@@ -25,4 +25,19 @@ describe("BuildPillarAction", () => {
     assert.equals(buildPillar.firstCall.args[0], 5);
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });
+
+  it("should default height to 3 when not specified", async () => {
+    const buildPillar = sinon.stub().resolves("success");
+    const setActionInfo = sinon.spy();
+    const action = new BuildPillarAction({
+      buildPillar,
+      getRegister: () => ({ setActionInfo }),
+    });
+    await action.do({
+      message: "build a pillar",
+      messageElems: ["build a pillar"],
+      player: "alice",
+    });
+    assert.equals(buildPillar.firstCall.args[0], 3);
+  });
 });

@@ -37,4 +37,9 @@ describe("EatFoodSkill", () => {
     assert.equals(bot.chat.firstCall.args[0], "I do not have any apple");
     assert.equals(bot.consume.callCount, 0);
   });
+  it("should return class name as id", () => {
+    const skill = new EatFoodSkill({});
+    assert.equals(skill.getId(), "EatFoodSkill");
+  });
+
 });

@@ -62,4 +62,9 @@ describe("ActivateBlockSkill", () => {
       "I do not know any block like gizmo",
     );
   });
+  it("should return class name as id", () => {
+    const skill = new ActivateBlockSkill({});
+    assert.equals(skill.getId(), "ActivateBlockSkill");
+  });
+
 });

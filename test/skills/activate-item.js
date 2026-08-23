@@ -35,4 +35,9 @@ describe("ActivateItemSkill", () => {
     assert.equals(bot.chat.firstCall.args[0], "I do not have any egg");
     assert.equals(bot.activateItem.callCount, 0);
   });
+  it("should return class name as id", () => {
+    const skill = new ActivateItemSkill({});
+    assert.equals(skill.getId(), "ActivateItemSkill");
+  });
+
 });

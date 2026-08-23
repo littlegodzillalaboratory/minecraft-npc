@@ -30,4 +30,9 @@ describe("FaceDirectionSkill", () => {
     await skill.do({ direction: "around" });
     assert.equals(bot.look.firstCall.args[0], 1 + Math.PI);
   });
+  it("should return class name as id", () => {
+    const skill = new FaceDirectionSkill({});
+    assert.equals(skill.getId(), "FaceDirectionSkill");
+  });
+
 });

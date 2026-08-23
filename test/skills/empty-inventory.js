@@ -22,4 +22,9 @@ describe("EmptyInventorySkill", () => {
     await skill.do({});
     assert.equals(tossStack.callCount, 1);
   });
+  it("should return class name as id", () => {
+    const skill = new EmptyInventorySkill({});
+    assert.equals(skill.getId(), "EmptyInventorySkill");
+  });
+
 });

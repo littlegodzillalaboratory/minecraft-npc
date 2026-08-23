@@ -35,4 +35,9 @@ describe("HuntFoodSkill", () => {
       "There is nothing to hunt nearby",
     );
   });
+  it("should return class name as id", () => {
+    const skill = new HuntFoodSkill({});
+    assert.equals(skill.getId(), "HuntFoodSkill");
+  });
+
 });

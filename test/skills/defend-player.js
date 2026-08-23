@@ -44,6 +44,29 @@ describe("DefendPlayerSkill", () => {
     );
   });
 
+  it("should ignore non-mob entities and unregistered mobs", () => {
+    const arrow = { type: "item", position: { distanceTo: () => 5 } };
+    const unknownMob = {
+      type: "mob",
+      name: "unknown_mob",
+      position: { distanceTo: () => 5 },
+    };
+    const bot = {
+      players: { alice: { entity: { position: {} } } },
+      entities: { 1: arrow, 2: unknownMob },
+      registry: { entitiesByName: {} },
+      pvp: { attack: sinon.spy() },
+      chat: sinon.spy(),
+    };
+    const skill = new DefendPlayerSkill(bot);
+    skill.do({ player: "alice" });
+    assert.equals(bot.pvp.attack.callCount, 0);
+    assert.equals(
+      bot.chat.firstCall.args[0],
+      "You are safe, there are no threats nearby",
+    );
+  });
+
   it("should say cannot see player when player entity is missing", () => {
     const bot = {
       players: {},
@@ -56,4 +79,9 @@ describe("DefendPlayerSkill", () => {
     skill.do({ player: "alice" });
     assert.equals(bot.chat.firstCall.args[0], "I cannot see you, alice");
   });
+  it("should return class name as id", () => {
+    const skill = new DefendPlayerSkill({});
+    assert.equals(skill.getId(), "DefendPlayerSkill");
+  });
+
 });

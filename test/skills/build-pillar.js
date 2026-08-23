@@ -66,4 +66,24 @@ describe("BuildPillarSkill", () => {
       "I could not place 2 of the pillar blocks",
     );
   });
+  it("should default the step delay when not specified", async () => {
+    const dirt = { name: "dirt" };
+    const bot = {
+      inventory: { items: () => [dirt] },
+      registry: { blocksByName: { dirt: { id: 3 } } },
+      equip: sinon.stub().resolves(),
+      placeBlock: sinon.stub().resolves(),
+      setControlState: sinon.spy(),
+      chat: sinon.spy(),
+    };
+    const skill = new BuildPillarSkill(bot);
+    await skill.do({ height: 0 });
+    assert.equals(bot.placeBlock.callCount, 0);
+  });
+
+  it("should return class name as id", () => {
+    const skill = new BuildPillarSkill({});
+    assert.equals(skill.getId(), "BuildPillarSkill");
+  });
+
 });

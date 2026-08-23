@@ -33,4 +33,9 @@ describe("TossHeldItemSkill", () => {
     assert.equals(bot.chat.firstCall.args[0], "I am not holding anything");
     assert.equals(bot.tossStack.callCount, 0);
   });
+  it("should return class name as id", () => {
+    const skill = new TossHeldItemSkill({});
+    assert.equals(skill.getId(), "TossHeldItemSkill");
+  });
+
 });

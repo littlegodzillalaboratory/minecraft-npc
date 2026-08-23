@@ -106,4 +106,9 @@ describe("EatSkill", () => {
     );
     assert.isUndefined(equipStub.firstCall.args[0]);
   });
+  it("should return class name as id", () => {
+    const skill = new EatSkill({});
+    assert.equals(skill.getId(), "EatSkill");
+  });
+
 });

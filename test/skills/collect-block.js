@@ -83,4 +83,33 @@ describe("CollectBlockSkill", () => {
       "I do not know any block like unobtainium",
     );
   });
+  it("should say it cannot dig the block when digging is not possible", async () => {
+    const restore = stubPathfinder();
+    try {
+      const block = { name: "bedrock", position: { x: 1, y: 2, z: 3 } };
+      const bot = {
+        registry: { blocksByName: { bedrock: { id: 9, name: "bedrock" } } },
+        findBlock: () => block,
+        pathfinder: {
+          setMovements: sinon.spy(),
+          goto: sinon.stub().resolves(),
+        },
+        canDigBlock: () => false,
+        dig: sinon.stub().resolves(),
+        chat: sinon.spy(),
+      };
+      const skill = new CollectBlockSkill(bot);
+      await skill.do({ blockName: "bedrock" });
+      assert.equals(bot.chat.firstCall.args[0], "I cannot dig bedrock");
+      assert.equals(bot.dig.callCount, 0);
+    } finally {
+      restore();
+    }
+  });
+
+  it("should return class name as id", () => {
+    const skill = new CollectBlockSkill({});
+    assert.equals(skill.getId(), "CollectBlockSkill");
+  });
+
 });

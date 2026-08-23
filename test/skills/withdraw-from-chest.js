@@ -51,6 +51,19 @@ describe("WithdrawFromChestSkill", () => {
     assert.equals(container.withdraw.callCount, 2);
   });
 
+  it("should say there is no chest nearby when none is found", async () => {
+    const bot = {
+      registry: { blocksByName: { chest: { id: 54 } } },
+      findBlock: () => null,
+      openContainer: sinon.stub().resolves(),
+      chat: sinon.spy(),
+    };
+    const skill = new WithdrawFromChestSkill(bot);
+    await skill.do({});
+    assert.equals(bot.chat.firstCall.args[0], "There is no chest nearby");
+    assert.equals(bot.openContainer.callCount, 0);
+  });
+
   it("should say the chest has no matching items", async () => {
     const container = {
       containerItems: () => [],
@@ -68,4 +81,9 @@ describe("WithdrawFromChestSkill", () => {
     assert.equals(bot.chat.firstCall.args[0], "The chest has no bread");
     assert.equals(container.withdraw.callCount, 0);
   });
+  it("should return class name as id", () => {
+    const skill = new WithdrawFromChestSkill({});
+    assert.equals(skill.getId(), "WithdrawFromChestSkill");
+  });
+
 });

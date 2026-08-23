@@ -28,4 +28,22 @@ describe("GoHomeAction", () => {
     assert.equals(moveToLocation.firstCall.args[2], 3);
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });
+
+  it("should default to origin when no init coords are configured", async () => {
+    const moveToLocation = sinon.stub().resolves("success");
+    const setActionInfo = sinon.spy();
+    const action = new GoHomeAction({
+      moveToLocation,
+      getRegister: () => ({ setActionInfo }),
+      getOpts: () => ({}),
+    });
+    await action.do({
+      message: "go home",
+      messageElems: ["go home"],
+      player: "alice",
+    });
+    assert.equals(moveToLocation.firstCall.args[0], 0);
+    assert.equals(moveToLocation.firstCall.args[1], 0);
+    assert.equals(moveToLocation.firstCall.args[2], 0);
+  });
 });

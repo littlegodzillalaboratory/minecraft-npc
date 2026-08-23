@@ -28,4 +28,25 @@ describe("SayArmorAction", () => {
     assert.equals(sayMessage.firstCall.args[0], "I am wearing: iron_helmet");
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });
+
+  it("should say no armor when nothing is equipped", async () => {
+    const sayMessage = sinon.stub().resolves("success");
+    const setActionInfo = sinon.spy();
+    const action = new SayArmorAction({
+      sayMessage,
+      getRegister: () => ({ setActionInfo }),
+      getBot: () => ({
+        inventory: { slots: {} },
+      }),
+    });
+    await action.do({
+      message: "what are you wearing",
+      messageElems: ["what are you wearing"],
+      player: "alice",
+    });
+    assert.equals(
+      sayMessage.firstCall.args[0],
+      "I am not wearing any armor",
+    );
+  });
 });

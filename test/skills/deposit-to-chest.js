@@ -47,4 +47,9 @@ describe("DepositToChestSkill", () => {
     await skill.do({});
     assert.equals(bot.chat.firstCall.args[0], "There is no chest nearby");
   });
+  it("should return class name as id", () => {
+    const skill = new DepositToChestSkill({});
+    assert.equals(skill.getId(), "DepositToChestSkill");
+  });
+
 });

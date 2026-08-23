@@ -32,4 +32,26 @@ describe("CountEntitiesAction", () => {
     assert.equals(sayMessage.firstCall.args[0], "I can see 1 cows nearby");
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });
+
+  it("should ignore entities without a name", async () => {
+    const sayMessage = sinon.stub().resolves("success");
+    const setActionInfo = sinon.spy();
+    const action = new CountEntitiesAction({
+      sayMessage,
+      getRegister: () => ({ setActionInfo }),
+      getBot: () => ({
+        entities: {
+          1: { name: "cow", position: { distanceTo: () => 5 } },
+          2: { position: { distanceTo: () => 5 } },
+        },
+        entity: { position: {} },
+      }),
+    });
+    await action.do({
+      message: "how many cows are nearby",
+      messageElems: ["how many cows are nearby", "cows"],
+      player: "alice",
+    });
+    assert.equals(sayMessage.firstCall.args[0], "I can see 1 cows nearby");
+  });
 });

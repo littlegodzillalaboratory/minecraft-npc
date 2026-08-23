@@ -51,4 +51,9 @@ describe("UseItemOnEntitySkill", () => {
     assert.equals(bot.chat.firstCall.args[0], "I do not have any bucket");
     assert.equals(bot.useOn.callCount, 0);
   });
+  it("should return class name as id", () => {
+    const skill = new UseItemOnEntitySkill({});
+    assert.equals(skill.getId(), "UseItemOnEntitySkill");
+  });
+
 });

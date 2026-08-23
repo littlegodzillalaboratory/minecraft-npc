@@ -34,4 +34,9 @@ describe("StopSkill", () => {
     skill.do({});
     assert.isTrue(true);
   });
+  it("should return class name as id", () => {
+    const skill = new StopSkill({});
+    assert.equals(skill.getId(), "StopSkill");
+  });
+
 });

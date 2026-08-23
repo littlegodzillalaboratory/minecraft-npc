@@ -52,4 +52,9 @@ describe("EquipItemSkill", () => {
     assert.equals(thrownError.message, "someerror");
     assert.equals(bot.chat.callCount, 0);
   });
+  it("should return class name as id", () => {
+    const skill = new EquipItemSkill({});
+    assert.equals(skill.getId(), "EquipItemSkill");
+  });
+
 });

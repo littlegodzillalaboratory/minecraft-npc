@@ -50,4 +50,9 @@ describe("MoveToObjectSkill", () => {
     assert.exception(() => skill.do({ objectName: "bed" }));
     assert.equals(findBlock.callCount, 1);
   });
+  it("should return class name as id", () => {
+    const skill = new MoveToObjectSkill({});
+    assert.equals(skill.getId(), "MoveToObjectSkill");
+  });
+
 });

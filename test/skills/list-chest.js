@@ -53,4 +53,9 @@ describe("ListChestSkill", () => {
     await skill.do({});
     assert.equals(bot.chat.firstCall.args[0], "There is no chest nearby");
   });
+  it("should return class name as id", () => {
+    const skill = new ListChestSkill({});
+    assert.equals(skill.getId(), "ListChestSkill");
+  });
+
 });

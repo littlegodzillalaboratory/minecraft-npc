@@ -73,4 +73,9 @@ describe("MoveBlocksDistanceToDirectionSkill", () => {
       assert.isObject(result);
     }
   });
+  it("should return class name as id", () => {
+    const skill = new MoveBlocksDistanceToDirectionSkill({});
+    assert.equals(skill.getId(), "MoveBlocksDistanceToDirectionSkill");
+  });
+
 });

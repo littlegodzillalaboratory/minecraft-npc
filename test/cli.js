@@ -76,3 +76,53 @@ describe("cli - start", function () {
     cli.exec();
   });
 });
+
+describe("cli - start with lookupConfig error", function () {
+  beforeEach(function () {
+    this.mockBag = sinon.mock(bag);
+  });
+
+  afterEach(function () {
+    this.mockBag.verify();
+    this.mockBag.restore();
+  });
+
+  it("should exit with error when lookupConfig fails", function (done) {
+    const testError = new Error("boom");
+    sinon.stub(bag, "lookupConfig").value(function (keys, opts, cb) {
+      cb(testError);
+    });
+    sinon.stub(bag, "command").value(function (base, actions) {
+      actions.commands.start.action({
+        confFile: "someconffile.yaml",
+      });
+    });
+    sinon.stub(bag, "exit").value(function (err) {
+      assert.same(err, testError);
+      done();
+    });
+    cli.exec();
+  });
+});
+
+describe("cli - start with default conf file", function () {
+  beforeEach(function () {
+    this.mockBag = sinon.mock(bag);
+  });
+
+  afterEach(function () {
+    this.mockBag.verify();
+    this.mockBag.restore();
+  });
+
+  it("should default conf file to minecraft-npc.yaml when not specified", function (done) {
+    sinon.stub(bag, "lookupConfig").value(function (keys, opts, cb) {
+      assert.equals(opts.file, "minecraft-npc.yaml");
+      done();
+    });
+    sinon.stub(bag, "command").value(function (base, actions) {
+      actions.commands.start.action({});
+    });
+    cli.exec();
+  });
+});

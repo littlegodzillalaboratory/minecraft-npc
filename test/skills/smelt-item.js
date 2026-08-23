@@ -46,6 +46,18 @@ describe("SmeltItemSkill", () => {
     assert.equals(bot.chat.firstCall.args[0], "There is no furnace nearby");
   });
 
+  it("should say it does not have the item when no input matches", async () => {
+    const bot = {
+      registry: { blocksByName: { furnace: { id: 61 } } },
+      findBlock: () => ({ name: "furnace" }),
+      inventory: { items: () => [{ name: "coal", type: 263, count: 8 }] },
+      chat: sinon.spy(),
+    };
+    const skill = new SmeltItemSkill(bot);
+    await skill.do({ itemName: "iron ore" });
+    assert.equals(bot.chat.firstCall.args[0], "I do not have any iron ore");
+  });
+
   it("should say no fuel when inventory has no fuel", async () => {
     const bot = {
       registry: { blocksByName: { furnace: { id: 61 } } },
@@ -57,4 +69,9 @@ describe("SmeltItemSkill", () => {
     await skill.do({ itemName: "iron ore" });
     assert.equals(bot.chat.firstCall.args[0], "I have no fuel to smelt with");
   });
+  it("should return class name as id", () => {
+    const skill = new SmeltItemSkill({});
+    assert.equals(skill.getId(), "SmeltItemSkill");
+  });
+
 });

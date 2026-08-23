@@ -39,4 +39,9 @@ describe("EquipArmorSkill", () => {
     assert.equals(bot.chat.firstCall.args[0], "I have no armor to wear");
     assert.equals(bot.equip.callCount, 0);
   });
+  it("should return class name as id", () => {
+    const skill = new EquipArmorSkill({});
+    assert.equals(skill.getId(), "EquipArmorSkill");
+  });
+
 });

@@ -56,4 +56,9 @@ describe("HarvestCropsSkill", () => {
     );
     assert.equals(bot.dig.callCount, 0);
   });
+  it("should return class name as id", () => {
+    const skill = new HarvestCropsSkill({});
+    assert.equals(skill.getId(), "HarvestCropsSkill");
+  });
+
 });

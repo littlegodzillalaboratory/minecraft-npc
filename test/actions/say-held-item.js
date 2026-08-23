@@ -26,4 +26,23 @@ describe("SayHeldItemAction", () => {
     assert.equals(sayMessage.firstCall.args[0], "I am holding torch");
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });
+
+  it("should say it is not holding anything when heldItem is empty", async () => {
+    const sayMessage = sinon.stub().resolves("success");
+    const setActionInfo = sinon.spy();
+    const action = new SayHeldItemAction({
+      sayMessage,
+      getRegister: () => ({ setActionInfo }),
+      getBot: () => ({ heldItem: null }),
+    });
+    await action.do({
+      message: "what are you holding",
+      messageElems: ["what are you holding"],
+      player: "alice",
+    });
+    assert.equals(
+      sayMessage.firstCall.args[0],
+      "I am not holding anything",
+    );
+  });
 });

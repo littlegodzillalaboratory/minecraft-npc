@@ -22,4 +22,19 @@ describe("SprintSkill", () => {
     assert.equals(bot.setControlState.getCall(2).args, ["forward", false]);
     assert.equals(bot.setControlState.getCall(3).args, ["sprint", false]);
   });
+  it("should default the sprint duration when not specified", async function () {
+    this.timeout(15000);
+    const bot = {
+      setControlState: sinon.spy(),
+    };
+    const skill = new SprintSkill(bot);
+    await skill.do({});
+    assert.equals(bot.setControlState.callCount, 4);
+  });
+
+  it("should return class name as id", () => {
+    const skill = new SprintSkill({});
+    assert.equals(skill.getId(), "SprintSkill");
+  });
+
 });

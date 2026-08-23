@@ -32,4 +32,9 @@ describe("DismountSkill", () => {
     assert.equals(bot.chat.firstCall.args[0], "I am not riding anything");
     assert.equals(bot.dismount.callCount, 0);
   });
+  it("should return class name as id", () => {
+    const skill = new DismountSkill({});
+    assert.equals(skill.getId(), "DismountSkill");
+  });
+
 });
