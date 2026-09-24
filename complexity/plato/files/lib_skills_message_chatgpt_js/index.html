@@ -48,7 +48,7 @@
     </div>
     <div class="col-md-6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
-      <p class="stat">24</p>
+      <p class="stat">21</p>
     </div>
   </div>
   <div class="row historical">
@@ -98,10 +98,7 @@ class MessageChatGptSkill extends BaseSkill {
   }
 
   async do(opts) {
-    const reply = await this.bot.chatgpt.sendMessage(
-      opts.username,
-      opts.message,
-    );
+    const reply = await this.bot.chatgpt.sendMessage(opts.player, opts.message);
     console.log(&quot;The reply the skill got from ChatGPT is: &quot; + reply);
     // console.dir(this.bot);
     // console.log(&quot;u23The reply the skill got from ChatGPT is: &quot; + reply);
