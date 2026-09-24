@@ -58,7 +58,7 @@ describe("MinecraftNpc", () => {
       chatGptInstructions: "i",
       chatGptEnableModeration: true,
       chatGptEnableMessageLogging: true,
-      chatGptMinimumConfidenceScore: 0.7,
+      chatGptMinimumReplyConfidenceScore: 0.7,
       chatGptCoolDownInSeconds: 5,
       chatGptFallbackMessage: "fallback",
       chatGptEnableSecurityInstructions: true,

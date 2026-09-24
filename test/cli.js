@@ -49,7 +49,7 @@ describe("cli - start", function () {
         "chatgpt_instructions",
         "chatgpt_enable_moderation",
         "chatgpt_enable_message_logging",
-        "chatgpt_minimum_confidence_score",
+        "chatgpt_minimum_reply_confidence_score",
         "chatgpt_cool_down_in_seconds",
         "chatgpt_fallback_message",
         "chatgpt_enable_security_instructions",
