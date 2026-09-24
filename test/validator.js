@@ -57,4 +57,19 @@ describe("validator", () => {
     assert.isTrue(validator.isValidGesture("shake"));
     assert.isFalse(validator.isValidGesture("wink"));
   });
+
+  it("should validate non-empty arrays of strings", () => {
+    assert.isTrue(validator.isValidStringArray(["chicken"]));
+    assert.isFalse(validator.isValidStringArray([]));
+    assert.isFalse(validator.isValidStringArray(["chicken", 2]));
+    assert.isFalse(validator.isValidStringArray([""]));
+    assert.isFalse(validator.isValidStringArray("chicken"));
+  });
+
+  it("should validate non-negative integers", () => {
+    assert.isTrue(validator.isValidNonNegativeInteger(0));
+    assert.isTrue(validator.isValidNonNegativeInteger(20));
+    assert.isFalse(validator.isValidNonNegativeInteger(-1));
+    assert.isFalse(validator.isValidNonNegativeInteger(1.5));
+  });
 });

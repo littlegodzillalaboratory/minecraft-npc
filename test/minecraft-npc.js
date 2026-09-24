@@ -64,6 +64,9 @@ describe("MinecraftNpc", () => {
       chatGptEnableSecurityInstructions: true,
     });
     sinon.stub(npc, "_getMinecraftNpcVersion").resolves("1.0.0");
+    const disableAutoModeStub = sinon
+      .stub(npc.npc, "disableAutoMode")
+      .resolves("success");
 
     const cb = sinon.spy();
     await npc.start(cb);
@@ -113,6 +116,7 @@ describe("MinecraftNpc", () => {
     events.kicked("err", "result");
     events.error("err2", "result2");
     assert.equals(cb.callCount, 2);
+    assert.equals(disableAutoModeStub.callCount, 2);
 
     // Avoid executing spawn callback here because web inventory plugin starts
     // an HTTP server that can make this unit test flaky in Docker CI contexts.
@@ -177,8 +181,12 @@ describe("MinecraftNpc - spawn and chat handling", () => {
       webInventoryPort: 3001,
       initCoords: [1, 2, 3],
       initMessages: ["hello"],
+      autoModeEnabled: true,
     });
     sinon.stub(npc, "_getMinecraftNpcVersion").resolves("1.0.0");
+    const enableAutoModeStub = sinon
+      .stub(npc.npc, "enableAutoMode")
+      .returns("success");
 
     await npc.start(sinon.spy());
     onceHandlers.spawn();
@@ -192,6 +200,7 @@ describe("MinecraftNpc - spawn and chat handling", () => {
       posZ: 3,
     });
     assert.equals(sayInitStub.firstCall.args[0], { messages: ["hello"] });
+    assert.equals(enableAutoModeStub.callCount, 1);
     assert.isFunction(events.chat);
 
     // message from the bot itself is ignored

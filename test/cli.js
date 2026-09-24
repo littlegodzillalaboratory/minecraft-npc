@@ -53,6 +53,14 @@ describe("cli - start", function () {
         "chatgpt_cool_down_in_seconds",
         "chatgpt_fallback_message",
         "chatgpt_enable_security_instructions",
+        "auto_mode_enabled",
+        "auto_mode_evaluation_interval_in_seconds",
+        "auto_mode_hunger_threshold",
+        "auto_mode_minimum_food_reserve",
+        "auto_mode_flee_health_threshold",
+        "auto_mode_allowed_hunt_animals",
+        "auto_mode_maximum_hunting_distance",
+        "auto_mode_threat_radius",
       ]);
       assert.equals(opts.file, "someconffile.yaml");
       cb(null, {

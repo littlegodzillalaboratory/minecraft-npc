@@ -6,6 +6,7 @@ import RespondToMessageAction from "../../lib/actions/respond-to-message.js";
 import StopCurrentAction from "../../lib/actions/stop-current-action.js";
 import TellJokeAction from "../../lib/actions/tell-joke.js";
 import EatAction from "../../lib/actions/eat.js";
+import EnableAutoModeAction from "../../lib/actions/enable-auto-mode.js";
 import referee from "@sinonjs/referee";
 import sinon from "sinon";
 const assert = referee.assert;
@@ -35,6 +36,22 @@ describe("RespondToMessageAction", () => {
     });
 
     assert.equals(stopStub.callCount, 1);
+    assert.equals(forwardStub.callCount, 0);
+  });
+
+  it("should invoke enable auto-mode action for its configured message", async () => {
+    const npc = { getRegister: () => ({ setActionInfo: sinon.spy() }) };
+    const action = new RespondToMessageAction(npc);
+    const enableStub = sinon
+      .stub(EnableAutoModeAction.prototype, "do")
+      .resolves();
+    const forwardStub = sinon
+      .stub(ForwardToChatGptAction.prototype, "do")
+      .resolves();
+
+    await action.do({ message: "enable auto mode", sender: "alice" });
+
+    assert.equals(enableStub.callCount, 1);
     assert.equals(forwardStub.callCount, 0);
   });
 

@@ -57,6 +57,14 @@ minecraft-npc start --conf-file minecraft-npc.yaml
 | chatgpt_minimum_confidence_score | Minimum confidence score threshold for ChatGPT responses | Optional | |
 | chatgpt_cool_down_in_seconds | Cool-down period in seconds between ChatGPT responses | Optional | |
 | chatgpt_fallback_message | Message to send when ChatGPT cannot provide a response | Optional | |
+| auto_mode_enabled | Enable deterministic autonomous survival behaviour after spawning | Optional | `false` |
+| auto_mode_evaluation_interval_in_seconds | Seconds between autonomous policy evaluations | Optional | `2` |
+| auto_mode_hunger_threshold | Food level at or below which the NPC eats | Optional | `14` |
+| auto_mode_minimum_food_reserve | Minimum inventory food count before the NPC hunts | Optional | `12` |
+| auto_mode_flee_health_threshold | Health at or below which the NPC flees nearby threats | Optional | `8` |
+| auto_mode_allowed_hunt_animals | Animal names that autonomous hunting may target | Optional | `[cow, pig, chicken, sheep, rabbit]` |
+| auto_mode_maximum_hunting_distance | Maximum distance to an autonomous hunting target | Optional | `64` |
+| auto_mode_threat_radius | Radius used to detect hostile mobs | Optional | `16` |
 
 ## Debugging
 
@@ -143,6 +151,22 @@ This division gives each layer a clear responsibility:
 * Actions answer: "What steps fulfil this player command?"
 * Skills answer: "How is this single Minecraft operation performed?"
 * `Npc` provides the boundary that executes skills and normalises their results.
+
+### Autonomous engines (experimental)
+
+Long-running decision loops live under `lib/engines/`, separately from actions
+and skills. Auto-mode uses a deterministic survival policy: flee a nearby
+threat when health is low, otherwise defend, eat when hungry, hunt an allowed
+animal when food reserves are low, and remain idle when no intervention is
+needed. The engine observes state through query skills and performs decisions
+through the same actions available to players.
+
+Players can say `enable auto mode`, `disable auto mode`, or `auto mode status`.
+Disabling auto-mode cancels its timer and current movement. Disconnect and
+error handling also stop the engine. Hunting is constrained by
+`auto_mode_allowed_hunt_animals`; protected or baby animals are not selected.
+This separation leaves room for future engines, such as an AI-driven one, without
+putting autonomous policy inside actions or skills.
 
 ## Colophon
 

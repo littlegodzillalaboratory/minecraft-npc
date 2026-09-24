@@ -11,25 +11,62 @@ describe("HuntFoodSkill", () => {
   });
 
   it("should attack the nearest food animal", () => {
-    const cow = { name: "cow" };
+    const chicken = {
+      name: "chicken",
+      position: { distanceTo: () => 5 },
+    };
     const bot = {
-      nearestEntity: (predicate) => (predicate(cow) ? cow : null),
+      entity: { position: {} },
+      nearestEntity: (predicate) => (predicate(chicken) ? chicken : null),
       pvp: { attack: sinon.spy() },
       chat: sinon.spy(),
     };
     const skill = new HuntFoodSkill(bot);
-    skill.do({});
-    assert.same(bot.pvp.attack.firstCall.args[0], cow);
+    skill.do({ allowedAnimals: ["chicken"], maximumDistance: 32 });
+    assert.same(bot.pvp.attack.firstCall.args[0], chicken);
+  });
+
+  it("should protect disallowed, distant, baby, named, and tamed animals", () => {
+    const animals = [
+      { name: "cow", position: { distanceTo: () => 5 } },
+      { name: "chicken", position: { distanceTo: () => 50 } },
+      { name: "chicken", position: { distanceTo: () => 5 }, isBaby: true },
+      {
+        name: "chicken",
+        position: { distanceTo: () => 5 },
+        customName: "Clucky",
+      },
+      {
+        name: "chicken",
+        position: { distanceTo: () => 5 },
+        ownerUuid: "owner",
+      },
+    ];
+    const bot = {
+      entity: { position: {} },
+      nearestEntity: (predicate) =>
+        animals.find((animal) => predicate(animal)) || null,
+      pvp: { attack: sinon.spy() },
+      chat: sinon.spy(),
+    };
+
+    new HuntFoodSkill(bot).do({
+      allowedAnimals: ["chicken"],
+      maximumDistance: 32,
+    });
+
+    assert.equals(bot.pvp.attack.callCount, 0);
   });
 
   it("should say nothing to hunt when no food animal is nearby", () => {
     const bot = {
+      entity: { position: {} },
       nearestEntity: () => null,
       pvp: { attack: sinon.spy() },
       chat: sinon.spy(),
     };
     const skill = new HuntFoodSkill(bot);
-    skill.do({});
+    skill.do({ allowedAnimals: ["chicken"], maximumDistance: 32 });
     assert.equals(
       bot.chat.firstCall.args[0],
       "There is nothing to hunt nearby",

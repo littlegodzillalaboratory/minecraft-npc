@@ -1,5 +1,27 @@
 [
   {
+    "action": "EnableAutoModeAction",
+    "regexes": [
+      "^enable auto mode$",
+      "^start auto mode$",
+      "^be autonomous$"
+    ]
+  },
+  {
+    "action": "DisableAutoModeAction",
+    "regexes": [
+      "^disable auto mode$",
+      "^stop auto mode$"
+    ]
+  },
+  {
+    "action": "SayAutoModeStatusAction",
+    "regexes": [
+      "^auto mode status$",
+      "^what is your autonomous goal$"
+    ]
+  },
+  {
     "action": "EatAction",
     "regexes": [
       "^eat$",

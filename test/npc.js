@@ -129,6 +129,19 @@ describe("Npc", () => {
     });
   });
 
+  describe("auto-mode", () => {
+    it("should expose engine lifecycle methods", async () => {
+      const npc = new Npc({ username: "bob" }, new Register(), {});
+      sinon.stub(npc.autoMode, "start").returns("started");
+      sinon.stub(npc.autoMode, "stop").resolves("stopped");
+      sinon.stub(npc.autoMode, "getStatus").returns({ enabled: true });
+
+      assert.equals(npc.enableAutoMode(), "started");
+      assert.equals(await npc.disableAutoMode(), "stopped");
+      assert.equals(npc.getAutoModeStatus(), { enabled: true });
+    });
+  });
+
   describe("getPosition / getPlayerPosition", () => {
     it("should return own and player position", () => {
       const bot = {
@@ -187,6 +200,32 @@ describe("Npc", () => {
       assert.equals(npc.countEntities("zombies", 10), 1);
       assert.equals(npc.findNearbyThreats(10), ["zombie"]);
       assert.equals(npc.getPlayerDistance("alice"), 5);
+    });
+
+    it("should expose autonomous survival observations", () => {
+      const origin = { distanceTo: () => 0 };
+      const chicken = {
+        name: "chicken",
+        position: { distanceTo: () => 3 },
+      };
+      const bot = {
+        username: "npc",
+        health: 17,
+        food: 9,
+        time: { timeOfDay: 6000 },
+        entity: { position: origin },
+        inventory: { items: () => [{ name: "bread", count: 2 }] },
+        entities: {},
+        registry: {
+          foodsByName: { bread: {} },
+          entitiesByName: {},
+        },
+        nearestEntity: (predicate) => (predicate(chicken) ? chicken : null),
+      };
+      const npc = new Npc(bot, new Register(), {});
+
+      assert.equals(npc.getSurvivalState(12).foodCount, 2);
+      assert.same(npc.findNearestAllowedAnimal(["chicken"], 16), chicken);
     });
   });
 
@@ -270,6 +309,7 @@ describe("Npc", () => {
       const sendMessage = sinon.stub().resolves("ok");
       const bot = {
         username: "bob",
+        entity: { position: { x: 1, y: 2, z: 3 } },
         inventory: { items: () => [] },
         tossStack: () => {},
         pathfinder: { setMovements: () => {}, setGoal: () => {} },
@@ -280,6 +320,8 @@ describe("Npc", () => {
         pvp: { attack: sinon.spy() },
         chatgpt: { sendMessage: sendMessage },
         chat: () => {},
+        on: sinon.spy(),
+        removeListener: sinon.spy(),
       };
       try {
         const npc = new Npc(bot, new Register(), {});
@@ -486,8 +528,16 @@ describe("Npc catalog methods", () => {
     it("should execute huntFood", async () => {
       sinon.stub(HuntFoodSkill.prototype, "do");
       const npc = new Npc({ username: "bob" }, new Register(), {});
-      assert.equals(await npc.huntFood(), "success");
+      assert.equals(await npc.huntFood(["chicken"], 32), "success");
       assert.equals(HuntFoodSkill.prototype.do.callCount, 1);
+    });
+
+    it("should reject invalid hunting policy", async () => {
+      sinon.stub(HuntFoodSkill.prototype, "do");
+      const npc = new Npc({ username: "bob" }, new Register(), {});
+
+      assert.equals(await npc.huntFood([], 0), "failed");
+      assert.equals(HuntFoodSkill.prototype.do.callCount, 0);
     });
   });
 
