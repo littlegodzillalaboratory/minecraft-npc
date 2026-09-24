@@ -156,7 +156,10 @@ This division gives each layer a clear responsibility:
 ### Autonomous engines (experimental)
 
 Long-running decision loops live under `lib/engines/`, separately from actions
-and skills. Auto-mode uses a deterministic survival policy: flee a nearby
+and skills. Every engine extends `BaseEngine`, which provides scheduling,
+lifecycle state, overlap prevention, status reporting, and consistent error
+handling. Concrete engines provide an identity, evaluation interval, and
+policy evaluation. Auto-mode uses a deterministic survival policy: flee a nearby
 threat when health is low, otherwise defend, eat when hungry, hunt an allowed
 animal when food reserves are low, and remain idle when no intervention is
 needed. The engine observes state through query skills and performs decisions

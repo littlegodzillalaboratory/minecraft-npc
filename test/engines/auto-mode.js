@@ -32,6 +32,9 @@ describe("AutoMode", () => {
     const npc = createNpc();
     const engine = new AutoMode(npc, {});
 
+    assert.equals(engine.getId(), "AutoMode");
+    assert.equals(engine.getEvaluationIntervalInSeconds(), 2);
+
     assert.equals(engine.start(), "success");
     assert.equals(engine.start(), "success");
     assert.equals(engine.getStatus(), {
@@ -81,7 +84,7 @@ describe("AutoMode", () => {
 
   it("should eat available food when hungry", async () => {
     const npc = createNpc({ hunger: 14, foodCount: 1 });
-    const action = sinon.stub(EatAction.prototype, "do").resolves("success");
+    const action = sinon.stub(EatAction.prototype, "do").resolves(undefined);
     const engine = new AutoMode(npc, { autoModeHungerThreshold: 14 });
     engine.enabled = true;
 
@@ -89,6 +92,7 @@ describe("AutoMode", () => {
 
     assert.equals(action.callCount, 1);
     assert.equals(engine.currentGoal, "eat available food");
+    assert.equals(engine.lastOutcome, "success");
     await engine.stop();
   });
 
