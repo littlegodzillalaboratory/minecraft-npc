@@ -27,5 +27,6 @@ chatgpt_enable_security_instructions: true
 chatgpt_enable_moderation: true
 chatgpt_enable_message_logging: true
 chatgpt_minimum_reply_confidence_score: 0.7
+chatgpt_minimum_jailbreak_confidence_score: 0.7
 chatgpt_cool_down_in_seconds: 5
 chatgpt_fallback_message: "Herobrine didn't understand that. Please rephrase your question or ask something else."

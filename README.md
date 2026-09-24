@@ -55,6 +55,7 @@ minecraft-npc start --conf-file minecraft-npc.yaml
 | chatgpt_enable_moderation | Enable ChatGPT moderation of messages | Optional | `false` |
 | chatgpt_enable_message_logging | Enable logging of ChatGPT messages | Optional | `false` |
 | chatgpt_minimum_reply_confidence_score | Minimum self-reported confidence score accepted for ChatGPT replies | Optional | |
+| chatgpt_minimum_jailbreak_confidence_score | Minimum OpenAI Guardrails confidence required to classify a message as a jailbreak attempt | Optional | `0.7` |
 | chatgpt_cool_down_in_seconds | Cool-down period in seconds between ChatGPT responses | Optional | |
 | chatgpt_fallback_message | Message to send when ChatGPT cannot provide a response | Optional | |
 | auto_mode_enabled | Enable deterministic autonomous survival behaviour after spawning | Optional | `false` |

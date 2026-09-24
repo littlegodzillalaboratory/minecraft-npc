@@ -59,6 +59,7 @@ describe("MinecraftNpc", () => {
       chatGptEnableModeration: true,
       chatGptEnableMessageLogging: true,
       chatGptMinimumReplyConfidenceScore: 0.7,
+      chatGptMinimumJailbreakConfidenceScore: 0.8,
       chatGptCoolDownInSeconds: 5,
       chatGptFallbackMessage: "fallback",
       chatGptEnableSecurityInstructions: true,
@@ -96,6 +97,11 @@ describe("MinecraftNpc", () => {
     assert.equals(
       fakeBot.chatgpt.setConfig.firstCall.args[0].minimumReplyConfidenceScore,
       0.7,
+    );
+    assert.equals(
+      fakeBot.chatgpt.setConfig.firstCall.args[0]
+        .minimumJailbreakConfidenceScore,
+      0.8,
     );
     assert.equals(
       fakeBot.chatgpt.setConfig.firstCall.args[0].coolDownInSeconds,

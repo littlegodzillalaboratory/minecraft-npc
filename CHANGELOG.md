@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add configurable deterministic auto-mode for survival, defence, eating, and restricted hunting (experimental)
 - Add chat actions to enable, disable, and report auto-mode status
+- Add `chatgpt_minimum_jailbreak_confidence_score` configuration property
 
 ### Changed
 - Massive refactoring of actions and skills for design consistency
