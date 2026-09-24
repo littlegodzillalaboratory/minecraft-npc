@@ -44,11 +44,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
-      <p class="stat">70.49</p>
+      <p class="stat">71.72</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
-      <p class="stat">54</p>
+      <p class="stat">52</p>
     </div>
   </div>
   <div class="row historical">
@@ -62,11 +62,11 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
-      <p class="stat">18.06</p>
+      <p class="stat">17.78</p>
     </div>
     <div class="col-md-6">
       <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
-      <p class="stat">0.54</p>
+      <p class="stat">0.53</p>
     </div>
   </div>
 </div>
@@ -122,8 +122,7 @@ class BreedAnimalsSkill extends BaseSkill {
       .slice(0, 2);
 
     if (animals.length &lt; 2) {
-      this.bot.chat(`I cannot find two ${opts.entityName} to breed nearby`);
-      return;
+      return this.fail(`I cannot find two ${opts.entityName} to breed nearby`);
     }
 
     const foods = ANIMAL_FOODS[animals[0].name] || [&quot;wheat&quot;];
@@ -132,8 +131,7 @@ class BreedAnimalsSkill extends BaseSkill {
       .find((candidate) =&gt; foods.includes(candidate.name));
 
     if (!food) {
-      this.bot.chat(`I have no food to breed the ${opts.entityName} with`);
-      return;
+      return this.fail(`I have no food to breed the ${opts.entityName} with`);
     }
 
     await this.bot.equip(food, &quot;hand&quot;);

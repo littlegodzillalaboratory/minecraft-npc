@@ -15,6 +15,8 @@
 [0m  BaseAction[0m
   [32m  [32m✔[39m[0m[90m should log default BaseAction errors[0m
   [32m  [32m✔[39m[0m[90m should register BaseAction status[0m
+  [32m  [32m✔[39m[0m[90m should relay a structured outcome message and register its status[0m
+  [32m  [32m✔[39m[0m[90m should move to successful query outcomes and preserve failures[0m
 
 [0m  BreedAnimalsAction[0m
 [1m[36mBreeding animals: cow...[39m[22m
@@ -531,15 +533,15 @@
   [32m  [32m✔[39m[0m[90m should contain commands with actions[0m
 
 [0m  cli - start[0m
-  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (104ms)[0m
+  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (116ms)[0m
 AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1492:18)
-    at afterConnectMultiple (node:net:2161:7) {
+    at internalConnectMultiple (node:net:1135:18)
+    at afterConnectMultiple (node:net:1716:7) {
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:25565
-        at createConnectionError (node:net:2124:14)
-        at afterConnectMultiple (node:net:2154:16) {
+        at createConnectionError (node:net:1679:14)
+        at afterConnectMultiple (node:net:1709:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -547,8 +549,8 @@ AggregateError [ECONNREFUSED]:
       port: 25565
     },
     Error: connect ECONNREFUSED 127.0.0.1:25565
-        at createConnectionError (node:net:2124:14)
-        at afterConnectMultiple (node:net:2154:16) {
+        at createConnectionError (node:net:1679:14)
+        at afterConnectMultiple (node:net:1709:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -558,13 +560,13 @@ AggregateError [ECONNREFUSED]:
   ]
 }
 AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1492:18)
-    at afterConnectMultiple (node:net:2161:7) {
+    at internalConnectMultiple (node:net:1135:18)
+    at afterConnectMultiple (node:net:1716:7) {
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:25565
-        at createConnectionError (node:net:2124:14)
-        at afterConnectMultiple (node:net:2154:16) {
+        at createConnectionError (node:net:1679:14)
+        at afterConnectMultiple (node:net:1709:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -572,8 +574,8 @@ AggregateError [ECONNREFUSED]:
       port: 25565
     },
     Error: connect ECONNREFUSED 127.0.0.1:25565
-        at createConnectionError (node:net:2124:14)
-        at afterConnectMultiple (node:net:2154:16) {
+        at createConnectionError (node:net:1679:14)
+        at afterConnectMultiple (node:net:1709:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -614,9 +616,7 @@ AggregateError [ECONNREFUSED]:
   * [32mWebInventory plugin[39m
 [1m[36mSpawning bot...[39m[22m
   * [32mbob has been spawned[39m
-  [32m  [32m✔[39m[0m[90m should wire up plugins on spawn and route chat messages addressed to the bot[0m[33m (41ms)[0m
-(node:4006) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
-(Use `node --trace-deprecation ...` to show where the warning was created)
+  [32m  [32m✔[39m[0m[90m should wire up plugins on spawn and route chat messages addressed to the bot[0m[33m (49ms)[0m
 
 [0m  Npc[0m
 [0m    eat[0m
@@ -635,8 +635,16 @@ AggregateError [ECONNREFUSED]:
     [32m  [32m✔[39m[0m[90m should return bot/register/opts references[0m
 [0m    getPosition / getPlayerPosition[0m
     [32m  [32m✔[39m[0m[90m should return own and player position[0m
+[0m    domain queries[0m
+    [32m  [32m✔[39m[0m[90m should expose inventory, player, entity, and threat information[0m
+[0m    skill outcome handling[0m
+  * [32mSucceeded[39m
+  * [31mFailed: Broken[39m
+    [32m  [32m✔[39m[0m[90m should preserve deferred information and convert errors to outcomes[0m
+  * [31mInvalid query[39m
+  * [31mFailed: Query broke[39m
+    [32m  [32m✔[39m[0m[90m should report query validation and execution failures[0m
 [0m    emptyInventory[0m
-[]
   * [32mbob is emptying inventory[39m
     [32m  [32m✔[39m[0m[90m should execute emptyInventory[0m
 [0m    moveToLocation / guardLocation / messageChatGpt / sayMessage[0m
@@ -644,9 +652,6 @@ AggregateError [ECONNREFUSED]:
   * [32mbob is moving to location: 1 2 3[39m
   * [32mbob is guarding location: 1 2 3[39m
   * [32mbob is saying message: hello[39m
-The reply the skill got from ChatGPT is: ok
-'ok'
-string
   * [32mbob is sending ChatGPT message: hello[39m
     [32m  [32m✔[39m[0m[90m should execute moveToLocation, guardLocation, messageChatGpt, and sayMessage[0m
 [0m    validation[0m
@@ -655,8 +660,8 @@ string
   * [31mUnable to move bob 0 blocks forward[39m
     [32m  [32m✔[39m[0m[90m should fail validation branch[0m
 [0m    moveToObject[0m
-  * [32mbob is moving to object: bed[39m
-  * [31mUnable to move bob to invalid object: bedroom: Cannot read properties of undefined (reading 'position')[39m
+  * [32mbob found object: bed[39m
+  * [31mUnable to find object: bedroom: I cannot find any bedroom nearby[39m
     [32m  [32m✔[39m[0m[90m should move to a discoverable object or say when it cannot be found[0m
 
 [0m  Npc catalog methods[0m
@@ -673,7 +678,7 @@ string
   * [32mbob is facing north[39m
     [32m  [32m✔[39m[0m[90m should execute faceDirection[0m
 [0m    wander[0m
-  * [32mbob is wandering around[39m
+  * [32mbob selected a wander destination[39m
     [32m  [32m✔[39m[0m[90m should execute wander[0m
 [0m    attackPlayer[0m
   * [32mbob is attacking player: carol[39m
@@ -688,7 +693,7 @@ string
   * [32mbob is defending player: alice[39m
     [32m  [32m✔[39m[0m[90m should execute defendPlayer[0m
 [0m    flee[0m
-  * [32mbob is fleeing[39m
+  * [32mbob selected a flee destination[39m
     [32m  [32m✔[39m[0m[90m should execute flee[0m
 [0m    equipItem[0m
   * [32mbob is equipping sword to hand[39m
@@ -712,7 +717,7 @@ string
   * [32mbob is eating apple[39m
     [32m  [32m✔[39m[0m[90m should execute eatFood[0m
 [0m    collectItems[0m
-  * [32mbob is collecting dropped items[39m
+  * [32mbob found a dropped item[39m
     [32m  [32m✔[39m[0m[90m should execute collectItems[0m
 [0m    digBlock[0m
   * [32mbob is digging block: below[39m
@@ -830,6 +835,8 @@ string
 
 [0m  BaseSkill[0m
   [32m  [32m✔[39m[0m[90m should log default BaseSkill errors[0m
+  [32m  [32m✔[39m[0m[90m should defer player-facing outcomes when managed by an NPC[0m
+  [32m  [32m✔[39m[0m[90m should preserve standalone skill messaging[0m
 
 [0m  BreedAnimalsSkill[0m
   [32m  [32m✔[39m[0m[90m should feed two nearby animals of the given kind[0m
@@ -865,7 +872,7 @@ string
 
 [0m  DanceSkill[0m
   [32m  [32m✔[39m[0m[90m should toggle dance moves on and off[0m
-  [32m  [32m✔[39m[0m[90m should default the step delay when not specified[0m[31m (2405ms)[0m
+  [32m  [32m✔[39m[0m[90m should default the step delay when not specified[0m[31m (2404ms)[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  DefendPlayerSkill[0m
@@ -892,6 +899,12 @@ string
   [32m  [32m✔[39m[0m[90m should say not riding anything when there is no vehicle[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
+[0m  domain query skills[0m
+  [32m  [32m✔[39m[0m[90m exposes stable skill identifiers[0m
+  [32m  [32m✔[39m[0m[90m queries inventory information[0m
+  [32m  [32m✔[39m[0m[90m queries players and their positions[0m
+  [32m  [32m✔[39m[0m[90m queries entities and threats[0m
+
 [0m  DropItemSkill[0m
   [32m  [32m✔[39m[0m[90m should toss the matching item[0m
   [32m  [32m✔[39m[0m[90m should match a plural item name against singular item[0m
@@ -910,8 +923,6 @@ string
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  EmptyInventorySkill[0m
-[ { name: 'stone', count: 2 } ]
-Tossing item: stone x 2
   [32m  [32m✔[39m[0m[90m should run EmptyInventorySkill[0m[31m (501ms)[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
@@ -1000,9 +1011,6 @@ Tossing item: stone x 2
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  MessageChatGptSkill[0m
-The reply the skill got from ChatGPT is: reply
-'reply'
-string
   [32m  [32m✔[39m[0m[90m should run MessageChatGptSkill[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
@@ -1022,7 +1030,7 @@ string
 
 [0m  MoveToObjectSkill[0m
   [32m  [32m✔[39m[0m[90m should find a matching object block[0m
-  [32m  [32m✔[39m[0m[90m should throw when object block is not discoverable[0m
+  [32m  [32m✔[39m[0m[90m should report when object block is not discoverable[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  PlaceBlockSkill[0m
@@ -1127,5 +1135,5 @@ string
   [32m  [32m✔[39m[0m[90m should validate gesture[0m
 
 
-[92m [0m[32m 418 passing[0m[90m (6s)[0m
+[92m [0m[32m 429 passing[0m[90m (6s)[0m
 
