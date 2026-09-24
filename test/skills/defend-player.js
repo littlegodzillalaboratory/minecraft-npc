@@ -12,7 +12,7 @@ describe("DefendPlayerSkill", () => {
 
   it("should attack hostile mob near the player", () => {
     const zombie = {
-      type: "mob",
+      type: "hostile",
       name: "zombie",
       position: { distanceTo: () => 5 },
     };

@@ -88,7 +88,7 @@ describe("domain query skills", () => {
   it("queries entities and threats", () => {
     const zombie = {
       name: "zombie",
-      type: "mob",
+      type: "hostile",
       position: { x: 3, y: 0, z: 4, distanceTo: () => 5 },
     };
     const cow = {
@@ -98,7 +98,7 @@ describe("domain query skills", () => {
     };
     const distantZombie = {
       name: "zombie",
-      type: "mob",
+      type: "hostile",
       position: { x: 50, y: 0, z: 0, distanceTo: () => 50 },
     };
     const unknownMob = {

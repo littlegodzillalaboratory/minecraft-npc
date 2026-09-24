@@ -11,7 +11,9 @@ describe("StopSkill", () => {
   });
 
   it("should run StopSkill with available bot controls", () => {
+    const stopGuarding = sinon.spy();
     const bot = {
+      guardController: { stop: stopGuarding },
       pathfinder: {
         stop: sinon.spy(),
         setGoal: sinon.spy(),
@@ -23,6 +25,7 @@ describe("StopSkill", () => {
     };
     const skill = new StopSkill(bot);
     skill.do({});
+    assert.equals(stopGuarding.callCount, 1);
     assert.equals(bot.pathfinder.stop.callCount, 1);
     assert.equals(bot.pathfinder.setGoal.callCount, 1);
     assert.equals(bot.pvp.stop.callCount, 1);
