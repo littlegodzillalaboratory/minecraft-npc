@@ -85,5 +85,4 @@ describe("BuildPillarSkill", () => {
     const skill = new BuildPillarSkill({});
     assert.equals(skill.getId(), "BuildPillarSkill");
   });
-
 });

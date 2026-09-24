@@ -34,5 +34,4 @@ describe("FaceDirectionSkill", () => {
     const skill = new FaceDirectionSkill({});
     assert.equals(skill.getId(), "FaceDirectionSkill");
   });
-
 });

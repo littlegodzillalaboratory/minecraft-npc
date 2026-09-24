@@ -132,5 +132,4 @@ describe("PlantSeedsSkill", () => {
     const skill = new PlantSeedsSkill({});
     assert.equals(skill.getId(), "PlantSeedsSkill");
   });
-
 });

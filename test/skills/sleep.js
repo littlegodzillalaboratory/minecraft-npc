@@ -124,5 +124,4 @@ describe("SleepSkill", () => {
     const skill = new SleepSkill({});
     assert.equals(skill.getId(), "SleepSkill");
   });
-
 });

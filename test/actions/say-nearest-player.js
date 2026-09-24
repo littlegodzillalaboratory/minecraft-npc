@@ -16,9 +16,9 @@ describe("SayNearestPlayerAction", () => {
     const action = new SayNearestPlayerAction({
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({
-        username: "bob",
-        nearestEntity: () => ({ type: "player", username: "alice" }),
+      findNearestPlayer: sinon.stub().returns({
+        type: "player",
+        username: "alice",
       }),
     });
     await action.do({
@@ -39,10 +39,7 @@ describe("SayNearestPlayerAction", () => {
     const action = new SayNearestPlayerAction({
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({
-        username: "bob",
-        nearestEntity: () => null,
-      }),
+      findNearestPlayer: sinon.stub().returns(null),
     });
     await action.do({
       message: "who is nearest to you",

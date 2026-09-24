@@ -16,9 +16,7 @@ describe("ListInventoryAction", () => {
     const action = new ListInventoryAction({
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({
-        inventory: { items: () => [{ name: "stone", count: 2 }] },
-      }),
+      getInventorySummary: sinon.stub().returns(["stone x 2"]),
     });
     await action.do({
       message: "list inventory",
@@ -35,9 +33,7 @@ describe("ListInventoryAction", () => {
     const action = new ListInventoryAction({
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({
-        inventory: { items: () => [] },
-      }),
+      getInventorySummary: sinon.stub().returns([]),
     });
     await action.do({
       message: "list inventory",

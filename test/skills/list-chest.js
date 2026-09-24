@@ -57,5 +57,4 @@ describe("ListChestSkill", () => {
     const skill = new ListChestSkill({});
     assert.equals(skill.getId(), "ListChestSkill");
   });
-
 });

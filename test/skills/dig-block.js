@@ -66,5 +66,4 @@ describe("DigBlockSkill", () => {
     const skill = new DigBlockSkill({});
     assert.equals(skill.getId(), "DigBlockSkill");
   });
-
 });

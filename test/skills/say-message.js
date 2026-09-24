@@ -20,5 +20,4 @@ describe("SayMessageSkill", () => {
     const skill = new SayMessageSkill({});
     assert.equals(skill.getId(), "SayMessageSkill");
   });
-
 });

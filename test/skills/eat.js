@@ -110,5 +110,4 @@ describe("EatSkill", () => {
     const skill = new EatSkill({});
     assert.equals(skill.getId(), "EatSkill");
   });
-
 });

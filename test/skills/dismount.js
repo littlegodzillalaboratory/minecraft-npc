@@ -36,5 +36,4 @@ describe("DismountSkill", () => {
     const skill = new DismountSkill({});
     assert.equals(skill.getId(), "DismountSkill");
   });
-
 });

@@ -36,5 +36,4 @@ describe("DanceSkill", () => {
     const skill = new DanceSkill({});
     assert.equals(skill.getId(), "DanceSkill");
   });
-
 });

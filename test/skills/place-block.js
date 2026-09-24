@@ -70,5 +70,4 @@ describe("PlaceBlockSkill", () => {
     const skill = new PlaceBlockSkill({});
     assert.equals(skill.getId(), "PlaceBlockSkill");
   });
-
 });

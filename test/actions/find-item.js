@@ -16,9 +16,7 @@ describe("FindItemAction", () => {
     const action = new FindItemAction({
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({
-        inventory: { items: () => [] },
-      }),
+      countInventoryItem: sinon.stub().returns(0),
     });
     await action.do({
       message: "do you have a boat",
@@ -35,9 +33,7 @@ describe("FindItemAction", () => {
     const action = new FindItemAction({
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({
-        inventory: { items: () => [{ name: "boat", count: 2 }] },
-      }),
+      countInventoryItem: sinon.stub().returns(2),
     });
     await action.do({
       message: "do you have a boat",
@@ -53,9 +49,7 @@ describe("FindItemAction", () => {
     const action = new FindItemAction({
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({
-        inventory: { items: () => [{ name: "boat", count: 1 }] },
-      }),
+      countInventoryItem: sinon.stub().returns(1),
     });
     await action.do({
       message: "do you have boats",

@@ -77,5 +77,4 @@ describe("MoveBlocksDistanceToDirectionSkill", () => {
     const skill = new MoveBlocksDistanceToDirectionSkill({});
     assert.equals(skill.getId(), "MoveBlocksDistanceToDirectionSkill");
   });
-
 });

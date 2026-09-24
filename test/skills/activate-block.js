@@ -66,5 +66,4 @@ describe("ActivateBlockSkill", () => {
     const skill = new ActivateBlockSkill({});
     assert.equals(skill.getId(), "ActivateBlockSkill");
   });
-
 });

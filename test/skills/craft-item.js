@@ -65,5 +65,4 @@ describe("CraftItemSkill", () => {
     const skill = new CraftItemSkill({});
     assert.equals(skill.getId(), "CraftItemSkill");
   });
-
 });

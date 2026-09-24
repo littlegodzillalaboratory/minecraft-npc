@@ -64,5 +64,4 @@ describe("FollowPlayerSkill", () => {
     const skill = new FollowPlayerSkill({});
     assert.equals(skill.getId(), "FollowPlayerSkill");
   });
-
 });

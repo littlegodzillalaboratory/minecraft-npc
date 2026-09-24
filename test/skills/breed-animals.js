@@ -87,5 +87,4 @@ describe("BreedAnimalsSkill", () => {
     const skill = new BreedAnimalsSkill({});
     assert.equals(skill.getId(), "BreedAnimalsSkill");
   });
-
 });

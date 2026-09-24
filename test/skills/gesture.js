@@ -39,5 +39,4 @@ describe("GestureSkill", () => {
     const skill = new GestureSkill({});
     assert.equals(skill.getId(), "GestureSkill");
   });
-
 });

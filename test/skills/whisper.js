@@ -22,5 +22,4 @@ describe("WhisperSkill", () => {
     const skill = new WhisperSkill({});
     assert.equals(skill.getId(), "WhisperSkill");
   });
-
 });

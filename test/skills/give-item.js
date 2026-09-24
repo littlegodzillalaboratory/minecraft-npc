@@ -73,5 +73,4 @@ describe("GiveItemSkill", () => {
     const skill = new GiveItemSkill({});
     assert.equals(skill.getId(), "GiveItemSkill");
   });
-
 });

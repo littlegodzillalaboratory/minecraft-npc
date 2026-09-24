@@ -39,5 +39,4 @@ describe("ActivateItemSkill", () => {
     const skill = new ActivateItemSkill({});
     assert.equals(skill.getId(), "ActivateItemSkill");
   });
-
 });

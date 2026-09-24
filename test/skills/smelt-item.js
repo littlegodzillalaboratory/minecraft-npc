@@ -85,5 +85,4 @@ describe("SmeltItemSkill", () => {
     const skill = new SmeltItemSkill({});
     assert.equals(skill.getId(), "SmeltItemSkill");
   });
-
 });

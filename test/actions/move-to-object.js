@@ -11,10 +11,15 @@ describe("MoveToObjectAction", () => {
   });
 
   it("should run MoveToObjectAction on valid message", async () => {
-    const moveToObject = sinon.stub().resolves("success");
+    const moveToObject = sinon.stub().resolves({
+      status: "success",
+      value: { posX: 1, posY: 2, posZ: 3 },
+    });
+    const moveToLocation = sinon.stub().resolves("success");
     const setActionInfo = sinon.spy();
     const action = new MoveToObjectAction({
       moveToObject,
+      moveToLocation,
       getRegister: () => ({ setActionInfo }),
     });
     await action.do({
@@ -22,6 +27,7 @@ describe("MoveToObjectAction", () => {
       messageElems: ["walk to a bed", "bed"],
     });
     assert.equals(moveToObject.firstCall.args[0], "bed");
+    assert.equals(moveToLocation.firstCall.args, [1, 2, 3]);
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });
 });

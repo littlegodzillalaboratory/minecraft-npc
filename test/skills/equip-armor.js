@@ -43,5 +43,4 @@ describe("EquipArmorSkill", () => {
     const skill = new EquipArmorSkill({});
     assert.equals(skill.getId(), "EquipArmorSkill");
   });
-
 });

@@ -60,5 +60,4 @@ describe("HarvestCropsSkill", () => {
     const skill = new HarvestCropsSkill({});
     assert.equals(skill.getId(), "HarvestCropsSkill");
   });
-
 });

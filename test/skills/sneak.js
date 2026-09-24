@@ -24,5 +24,4 @@ describe("SneakSkill", () => {
     const skill = new SneakSkill({});
     assert.equals(skill.getId(), "SneakSkill");
   });
-
 });

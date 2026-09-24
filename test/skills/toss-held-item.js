@@ -37,5 +37,4 @@ describe("TossHeldItemSkill", () => {
     const skill = new TossHeldItemSkill({});
     assert.equals(skill.getId(), "TossHeldItemSkill");
   });
-
 });

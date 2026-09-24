@@ -47,5 +47,4 @@ describe("MoveToLocationSkill", () => {
     const skill = new MoveToLocationSkill({});
     assert.equals(skill.getId(), "MoveToLocationSkill");
   });
-
 });

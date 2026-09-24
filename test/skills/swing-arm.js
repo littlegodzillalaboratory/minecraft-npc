@@ -22,5 +22,4 @@ describe("SwingArmSkill", () => {
     const skill = new SwingArmSkill({});
     assert.equals(skill.getId(), "SwingArmSkill");
   });
-
 });

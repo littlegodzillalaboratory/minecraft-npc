@@ -40,9 +40,6 @@ describe("SayHeldItemAction", () => {
       messageElems: ["what are you holding"],
       player: "alice",
     });
-    assert.equals(
-      sayMessage.firstCall.args[0],
-      "I am not holding anything",
-    );
+    assert.equals(sayMessage.firstCall.args[0], "I am not holding anything");
   });
 });

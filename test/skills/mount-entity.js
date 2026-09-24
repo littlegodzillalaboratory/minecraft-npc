@@ -40,5 +40,4 @@ describe("MountEntitySkill", () => {
     const skill = new MountEntitySkill({});
     assert.equals(skill.getId(), "MountEntitySkill");
   });
-
 });

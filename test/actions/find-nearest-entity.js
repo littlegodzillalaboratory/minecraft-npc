@@ -16,11 +16,9 @@ describe("FindNearestEntityAction", () => {
     const action = new FindNearestEntityAction({
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({
-        nearestEntity: () => ({
-          name: "sheep",
-          position: { x: 1, y: 2, z: 3 },
-        }),
+      findNearestEntity: sinon.stub().returns({
+        name: "sheep",
+        position: { x: 1, y: 2, z: 3 },
       }),
     });
     await action.do({
@@ -41,9 +39,7 @@ describe("FindNearestEntityAction", () => {
     const action = new FindNearestEntityAction({
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({
-        nearestEntity: () => null,
-      }),
+      findNearestEntity: sinon.stub().returns(null),
     });
     await action.do({
       message: "where is the nearest sheep",

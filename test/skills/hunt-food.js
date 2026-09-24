@@ -39,5 +39,4 @@ describe("HuntFoodSkill", () => {
     const skill = new HuntFoodSkill({});
     assert.equals(skill.getId(), "HuntFoodSkill");
   });
-
 });

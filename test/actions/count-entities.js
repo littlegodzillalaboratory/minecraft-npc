@@ -16,13 +16,7 @@ describe("CountEntitiesAction", () => {
     const action = new CountEntitiesAction({
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({
-        entities: {
-          1: { name: "cow", position: { distanceTo: () => 5 } },
-          2: { name: "cow", position: { distanceTo: () => 50 } },
-        },
-        entity: { position: {} },
-      }),
+      countEntities: sinon.stub().returns(1),
     });
     await action.do({
       message: "how many cows are nearby",
@@ -39,13 +33,7 @@ describe("CountEntitiesAction", () => {
     const action = new CountEntitiesAction({
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({
-        entities: {
-          1: { name: "cow", position: { distanceTo: () => 5 } },
-          2: { position: { distanceTo: () => 5 } },
-        },
-        entity: { position: {} },
-      }),
+      countEntities: sinon.stub().returns(1),
     });
     await action.do({
       message: "how many cows are nearby",

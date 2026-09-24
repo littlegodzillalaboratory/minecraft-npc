@@ -16,12 +16,7 @@ describe("SayDistanceToPlayerAction", () => {
     const action = new SayDistanceToPlayerAction({
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({
-        players: {
-          alice: { entity: { position: { distanceTo: () => 12.3 } } },
-        },
-        entity: { position: {} },
-      }),
+      getPlayerDistance: sinon.stub().returns(12.3),
     });
     await action.do({
       message: "how far am i",
@@ -41,10 +36,7 @@ describe("SayDistanceToPlayerAction", () => {
     const action = new SayDistanceToPlayerAction({
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({
-        players: {},
-        entity: { position: {} },
-      }),
+      getPlayerDistance: sinon.stub().returns(null),
     });
     await action.do({
       message: "how far am i",

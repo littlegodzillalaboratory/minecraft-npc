@@ -141,6 +141,102 @@ describe("Npc", () => {
     });
   });
 
+  describe("domain queries", () => {
+    it("should expose inventory, player, entity, and threat information", () => {
+      const origin = {
+        x: 0,
+        y: 0,
+        z: 0,
+        distanceTo: (position) =>
+          Math.sqrt(position.x ** 2 + position.y ** 2 + position.z ** 2),
+      };
+      const alice = {
+        type: "player",
+        username: "alice",
+        position: { x: 3, y: 0, z: 4 },
+      };
+      const zombie = {
+        type: "mob",
+        name: "zombie",
+        position: { x: 2, y: 0, z: 0, distanceTo: () => 2 },
+      };
+      const bot = {
+        username: "npc",
+        entity: { position: origin },
+        inventory: {
+          items: () => [{ name: "oak_log", count: 3 }],
+          slots: [null, null, null, null, null, { name: "iron_helmet" }],
+        },
+        players: { npc: {}, alice: { entity: alice } },
+        entities: { zombie: zombie },
+        registry: {
+          entitiesByName: { zombie: { category: "Hostile mobs" } },
+        },
+        nearestEntity: (predicate) =>
+          [alice, zombie].find((entity) => predicate(entity)) || null,
+      };
+      const npc = new Npc(bot, new Register(), {});
+
+      assert.equals(npc.countInventoryItem("oak logs"), 3);
+      assert.equals(npc.getInventorySummary(), ["oak_log x 3"]);
+      assert.equals(npc.getEquippedArmor(), ["iron_helmet"]);
+      assert.equals(npc.listVisiblePlayers(), ["alice"]);
+      assert.same(npc.findNearestPlayer(), alice);
+      assert.same(npc.findNearestEntity("zombie"), zombie);
+      assert.equals(npc.countEntities("zombies"), 1);
+      assert.equals(npc.countEntities("zombies", 10), 1);
+      assert.equals(npc.findNearbyThreats(10), ["zombie"]);
+      assert.equals(npc.getPlayerDistance("alice"), 5);
+    });
+  });
+
+  describe("skill outcome handling", () => {
+    it("should preserve deferred information and convert errors to outcomes", async () => {
+      const npc = new Npc({ username: "bob" }, new Register(), {});
+      const informed = await npc._doSkill(
+        { do: sinon.stub().resolves({ message: "Finished" }) },
+        {},
+        () => true,
+        "Succeeded",
+        "Failed",
+      );
+      const failed = await npc._doSkill(
+        { do: sinon.stub().rejects(new Error("Broken")) },
+        {},
+        () => true,
+        "Succeeded",
+        "Failed",
+      );
+
+      assert.equals(informed, { status: "success", message: "Finished" });
+      assert.equals(failed, { status: "failed", message: "Broken" });
+    });
+
+    it("should report query validation and execution failures", async () => {
+      const npc = new Npc({ username: "bob" }, new Register(), {});
+      const invalid = await npc._doQuerySkill(
+        { do: sinon.spy() },
+        {},
+        () => false,
+        "Succeeded",
+        "Invalid query",
+      );
+      const failed = await npc._doQuerySkill(
+        { do: sinon.stub().rejects(new Error("Query broke")) },
+        {},
+        () => true,
+        "Succeeded",
+        "Failed",
+      );
+
+      assert.equals(invalid, {
+        status: "failed",
+        message: "Invalid query",
+      });
+      assert.equals(failed, { status: "failed", message: "Query broke" });
+    });
+  });
+
   describe("emptyInventory", () => {
     it("should execute emptyInventory", async () => {
       const bot = {
@@ -257,11 +353,14 @@ describe("Npc", () => {
         bot.findBlock.onSecondCall().returns(undefined);
 
         const npc = new Npc(bot, new Register(), {});
-        assert.equals(await npc.moveToObject("bed"), "success");
-        assert.equals(bot.pathfinder.setGoal.callCount, 1);
-        // _doSkill catches the skill's error (no block found) and reports failure
-        assert.equals(await npc.moveToObject("bedroom"), "failed");
-        assert.equals(bot.chat.callCount, 1);
+        assert.equals(await npc.moveToObject("bed"), {
+          status: "success",
+          value: { posX: 8, posY: 9, posZ: 10 },
+        });
+        const missing = await npc.moveToObject("bedroom");
+        assert.equals(missing.status, "failed");
+        assert.equals(missing.message, "I cannot find any bedroom nearby");
+        assert.equals(bot.chat.callCount, 0);
       } finally {
         pathfinder.Movements = originalMovements;
         pathfinder.goals.GoalNear = originalGoalNear;
@@ -360,7 +459,7 @@ describe("Npc catalog methods", () => {
     it("should execute wander", async () => {
       sinon.stub(WanderSkill.prototype, "do");
       const npc = new Npc({ username: "bob" }, new Register(), {});
-      assert.equals(await npc.wander(), "success");
+      assert.equals((await npc.wander()).status, "success");
       assert.equals(WanderSkill.prototype.do.callCount, 1);
     });
   });
@@ -405,7 +504,7 @@ describe("Npc catalog methods", () => {
     it("should execute flee", async () => {
       sinon.stub(FleeSkill.prototype, "do");
       const npc = new Npc({ username: "bob" }, new Register(), {});
-      assert.equals(await npc.flee(), "success");
+      assert.equals((await npc.flee()).status, "success");
       assert.equals(FleeSkill.prototype.do.callCount, 1);
     });
   });
@@ -477,7 +576,7 @@ describe("Npc catalog methods", () => {
     it("should execute collectItems", async () => {
       sinon.stub(CollectItemsSkill.prototype, "do");
       const npc = new Npc({ username: "bob" }, new Register(), {});
-      assert.equals(await npc.collectItems(), "success");
+      assert.equals((await npc.collectItems()).status, "success");
       assert.equals(CollectItemsSkill.prototype.do.callCount, 1);
     });
   });

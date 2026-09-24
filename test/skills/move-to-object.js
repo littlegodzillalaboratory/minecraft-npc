@@ -1,5 +1,4 @@
 "use strict";
-import MoveToLocationSkill from "../../lib/skills/move-to-location.js";
 import MoveToObjectSkill from "../../lib/skills/move-to-object.js";
 import referee from "@sinonjs/referee";
 import sinon from "sinon";
@@ -13,10 +12,6 @@ describe("MoveToObjectSkill", () => {
 
   it("should find a matching object block", () => {
     const findBlock = sinon.stub().returns({ position: { x: 4, y: 5, z: 6 } });
-    const moveToLocationDoStub = sinon.stub(
-      MoveToLocationSkill.prototype,
-      "do",
-    );
     const skill = new MoveToObjectSkill({
       registry: {
         blocksByName: {
@@ -27,15 +22,12 @@ describe("MoveToObjectSkill", () => {
       chat: sinon.spy(),
       findBlock,
     });
-    skill.do({ objectName: "bed" });
+    const position = skill.do({ objectName: "bed" });
     assert.equals(findBlock.firstCall.args[0].matching[0], 1);
-    assert.equals(moveToLocationDoStub.callCount, 1);
-    assert.equals(moveToLocationDoStub.firstCall.args[0].posX, 4);
-    assert.equals(moveToLocationDoStub.firstCall.args[0].posY, 5);
-    assert.equals(moveToLocationDoStub.firstCall.args[0].posZ, 6);
+    assert.equals(position, { posX: 4, posY: 5, posZ: 6 });
   });
 
-  it("should throw when object block is not discoverable", () => {
+  it("should report when object block is not discoverable", () => {
     const findBlock = sinon.stub().returns(null);
     const chat = sinon.spy();
     const skill = new MoveToObjectSkill({
@@ -47,12 +39,12 @@ describe("MoveToObjectSkill", () => {
       chat,
       findBlock,
     });
-    assert.exception(() => skill.do({ objectName: "bed" }));
+    skill.do({ objectName: "bed" });
+    assert.equals(chat.firstCall.args[0], "I cannot find any bed nearby");
     assert.equals(findBlock.callCount, 1);
   });
   it("should return class name as id", () => {
     const skill = new MoveToObjectSkill({});
     assert.equals(skill.getId(), "MoveToObjectSkill");
   });
-
 });

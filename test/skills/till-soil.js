@@ -115,5 +115,4 @@ describe("TillSoilSkill", () => {
     const skill = new TillSoilSkill({});
     assert.equals(skill.getId(), "TillSoilSkill");
   });
-
 });

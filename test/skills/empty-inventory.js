@@ -26,5 +26,4 @@ describe("EmptyInventorySkill", () => {
     const skill = new EmptyInventorySkill({});
     assert.equals(skill.getId(), "EmptyInventorySkill");
   });
-
 });

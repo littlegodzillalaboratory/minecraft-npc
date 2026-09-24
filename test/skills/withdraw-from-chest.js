@@ -102,5 +102,4 @@ describe("WithdrawFromChestSkill", () => {
     const skill = new WithdrawFromChestSkill({});
     assert.equals(skill.getId(), "WithdrawFromChestSkill");
   });
-
 });

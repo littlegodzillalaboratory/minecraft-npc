@@ -41,5 +41,4 @@ describe("EatFoodSkill", () => {
     const skill = new EatFoodSkill({});
     assert.equals(skill.getId(), "EatFoodSkill");
   });
-
 });

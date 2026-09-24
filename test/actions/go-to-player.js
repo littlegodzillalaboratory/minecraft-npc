@@ -18,9 +18,7 @@ describe("GoToPlayerAction", () => {
       moveToLocation,
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({
-        players: { carol: { entity: { position: { x: 4, y: 5, z: 6 } } } },
-      }),
+      getPlayerPosition: sinon.stub().returns({ x: 4, y: 5, z: 6 }),
     });
     await action.do({
       message: "go to player carol",
@@ -40,7 +38,7 @@ describe("GoToPlayerAction", () => {
       moveToLocation,
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({ players: {} }),
+      getPlayerPosition: sinon.stub().returns(null),
     });
     await action.do({
       message: "go to player carol",

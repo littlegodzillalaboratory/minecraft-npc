@@ -86,5 +86,4 @@ describe("GuardLocationSkill", () => {
     const skill = new GuardLocationSkill({});
     assert.equals(skill.getId(), "GuardLocationSkill");
   });
-
 });

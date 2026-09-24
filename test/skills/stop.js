@@ -38,5 +38,4 @@ describe("StopSkill", () => {
     const skill = new StopSkill({});
     assert.equals(skill.getId(), "StopSkill");
   });
-
 });

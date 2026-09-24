@@ -16,7 +16,7 @@ describe("ListPlayersAction", () => {
     const action = new ListPlayersAction({
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({ username: "bob", players: { bob: {}, alice: {} } }),
+      listVisiblePlayers: sinon.stub().returns(["alice"]),
     });
     await action.do({
       message: "who is online",
@@ -33,7 +33,7 @@ describe("ListPlayersAction", () => {
     const action = new ListPlayersAction({
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({ username: "bob", players: { bob: {} } }),
+      listVisiblePlayers: sinon.stub().returns([]),
     });
     await action.do({
       message: "who is online",

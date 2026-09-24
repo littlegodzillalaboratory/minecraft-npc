@@ -40,5 +40,4 @@ describe("UnequipItemSkill", () => {
     const skill = new UnequipItemSkill({});
     assert.equals(skill.getId(), "UnequipItemSkill");
   });
-
 });

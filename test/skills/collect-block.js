@@ -111,5 +111,4 @@ describe("CollectBlockSkill", () => {
     const skill = new CollectBlockSkill({});
     assert.equals(skill.getId(), "CollectBlockSkill");
   });
-
 });

@@ -85,6 +85,65 @@ Bot has been kicked:
 "{\"translate\":\"multiplayer.disconnect.incompatible\",\"with\":[\"1.20.4\"]}"
 ```
 
+## Design
+
+Minecraft NPC separates command orchestration from Minecraft domain operations.
+Code under `lib/actions/` decides what should happen for a command, while code
+under `lib/skills/` performs one focused operation against the Mineflayer bot.
+
+### Actions
+
+Actions are intentionally lightweight. An action should:
+
+* Retrieve command values and configuration from its options.
+* Log a step heading describing the requested activity.
+* Invoke one skill, or coordinate several skills when the activity requires a
+  sequence of operations.
+* Produce player-facing messages when a result needs to be explained.
+* Register the final action status.
+
+Actions own orchestration and presentation. Decisions such as "find a player,
+then walk to that player's position" belong in an action because they compose
+multiple capabilities. Keeping this coordination out of skills makes the flow
+visible at the command boundary and prevents hidden chains of side effects.
+
+Actions should use the public methods on `Npc` rather than reading Mineflayer
+state directly. If an action needs domain information that is not exposed yet,
+add a focused query skill and an `Npc` method for it.
+
+### Skills
+
+A skill is a self-contained Minecraft capability. A skill should:
+
+* Perform one focused command or query against the Mineflayer bot.
+* Receive all operation-specific input through its options.
+* Return useful data for query operations.
+* Report failures through the shared skill outcome mechanism.
+* Avoid command parsing, action registration, and step-heading logging.
+
+Skills must not call other skills. When an operation needs multiple skills, the
+action coordinates them through `Npc`. This keeps each skill reusable and makes
+its dependencies, side effects, and unit tests straightforward.
+
+Domain skills should not decide when or what the NPC says. They return values,
+errors, or structured outcomes so the action can choose the appropriate
+player-facing message. Communication itself can still be a skill when speaking
+is the requested capability, such as saying or whispering a message.
+
+### Outcomes and status
+
+Skills managed by `Npc` defer informational and failure messages to the calling
+action. `Npc` converts skill results into a consistent status or structured
+outcome, and the action registers that status after any required follow-up
+skills and messages have completed. Standalone skill use retains the legacy
+direct-chat behaviour for compatibility.
+
+This division gives each layer a clear responsibility:
+
+* Actions answer: "What steps fulfil this player command?"
+* Skills answer: "How is this single Minecraft operation performed?"
+* `Npc` provides the boundary that executes skills and normalises their results.
+
 ## Colophon
 
 <!-- BEGIN:DEVELOPERS_GUIDE -->

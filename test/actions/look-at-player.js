@@ -18,9 +18,7 @@ describe("LookAtPlayerAction", () => {
       lookAtLocation,
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({
-        players: { alice: { entity: { position: { x: 1, y: 2, z: 3 } } } },
-      }),
+      getPlayerPosition: sinon.stub().returns({ x: 1, y: 2, z: 3 }),
     });
     await action.do({
       message: "look at me",
@@ -42,7 +40,7 @@ describe("LookAtPlayerAction", () => {
       lookAtLocation,
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({ players: {} }),
+      getPlayerPosition: sinon.stub().returns(null),
     });
     await action.do({
       message: "look at me",

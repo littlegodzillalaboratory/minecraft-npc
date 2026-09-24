@@ -25,5 +25,4 @@ describe("LookAtLocationSkill", () => {
     const skill = new LookAtLocationSkill({});
     assert.equals(skill.getId(), "LookAtLocationSkill");
   });
-
 });

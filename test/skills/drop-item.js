@@ -47,5 +47,4 @@ describe("DropItemSkill", () => {
     const skill = new DropItemSkill({});
     assert.equals(skill.getId(), "DropItemSkill");
   });
-
 });

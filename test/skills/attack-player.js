@@ -38,5 +38,4 @@ describe("AttackPlayerSkill", () => {
     const skill = new AttackPlayerSkill({});
     assert.equals(skill.getId(), "AttackPlayerSkill");
   });
-
 });

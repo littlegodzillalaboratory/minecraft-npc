@@ -16,17 +16,7 @@ describe("ReportThreatsAction", () => {
     const action = new ReportThreatsAction({
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({
-        entities: {
-          1: {
-            type: "mob",
-            name: "zombie",
-            position: { distanceTo: () => 5 },
-          },
-        },
-        registry: { entitiesByName: { zombie: { category: "Hostile mobs" } } },
-        entity: { position: {} },
-      }),
+      findNearbyThreats: sinon.stub().returns(["zombie"]),
     });
     await action.do({
       message: "report threats",
@@ -43,22 +33,7 @@ describe("ReportThreatsAction", () => {
     const action = new ReportThreatsAction({
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({
-        entities: {
-          1: {
-            type: "item",
-            name: "arrow",
-            position: { distanceTo: () => 5 },
-          },
-          2: {
-            type: "mob",
-            name: "unknown_mob",
-            position: { distanceTo: () => 5 },
-          },
-        },
-        registry: { entitiesByName: {} },
-        entity: { position: {} },
-      }),
+      findNearbyThreats: sinon.stub().returns([]),
     });
     await action.do({
       message: "report threats",

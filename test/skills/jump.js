@@ -34,5 +34,4 @@ describe("JumpSkill", () => {
     const skill = new JumpSkill({});
     assert.equals(skill.getId(), "JumpSkill");
   });
-
 });

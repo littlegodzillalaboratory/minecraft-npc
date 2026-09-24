@@ -16,9 +16,7 @@ describe("SayArmorAction", () => {
     const action = new SayArmorAction({
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({
-        inventory: { slots: { 5: { name: "iron_helmet" } } },
-      }),
+      getEquippedArmor: sinon.stub().returns(["iron_helmet"]),
     });
     await action.do({
       message: "what are you wearing",
@@ -35,18 +33,13 @@ describe("SayArmorAction", () => {
     const action = new SayArmorAction({
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({
-        inventory: { slots: {} },
-      }),
+      getEquippedArmor: sinon.stub().returns([]),
     });
     await action.do({
       message: "what are you wearing",
       messageElems: ["what are you wearing"],
       player: "alice",
     });
-    assert.equals(
-      sayMessage.firstCall.args[0],
-      "I am not wearing any armor",
-    );
+    assert.equals(sayMessage.firstCall.args[0], "I am not wearing any armor");
   });
 });

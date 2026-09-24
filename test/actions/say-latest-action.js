@@ -48,9 +48,6 @@ describe("SayLatestActionAction", () => {
       messageElems: ["what are you doing"],
       player: "alice",
     });
-    assert.equals(
-      sayMessage.firstCall.args[0],
-      "I have not done anything yet",
-    );
+    assert.equals(sayMessage.firstCall.args[0], "I have not done anything yet");
   });
 });

@@ -16,9 +16,7 @@ describe("CountItemAction", () => {
     const action = new CountItemAction({
       sayMessage,
       getRegister: () => ({ setActionInfo }),
-      getBot: () => ({
-        inventory: { items: () => [{ name: "torch", count: 7 }] },
-      }),
+      countInventoryItem: sinon.stub().returns(7),
     });
     await action.do({
       message: "how many torches do you have",

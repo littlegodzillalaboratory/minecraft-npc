@@ -51,5 +51,4 @@ describe("DepositToChestSkill", () => {
     const skill = new DepositToChestSkill({});
     assert.equals(skill.getId(), "DepositToChestSkill");
   });
-
 });

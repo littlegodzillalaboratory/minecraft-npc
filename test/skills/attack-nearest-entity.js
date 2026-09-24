@@ -40,5 +40,4 @@ describe("AttackNearestEntitySkill", () => {
     const skill = new AttackNearestEntitySkill({});
     assert.equals(skill.getId(), "AttackNearestEntitySkill");
   });
-
 });

@@ -40,5 +40,4 @@ describe("FishSkill", () => {
     const skill = new FishSkill({});
     assert.equals(skill.getId(), "FishSkill");
   });
-
 });

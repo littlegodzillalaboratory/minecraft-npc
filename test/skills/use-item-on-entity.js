@@ -55,5 +55,4 @@ describe("UseItemOnEntitySkill", () => {
     const skill = new UseItemOnEntitySkill({});
     assert.equals(skill.getId(), "UseItemOnEntitySkill");
   });
-
 });

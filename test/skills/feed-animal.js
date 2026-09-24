@@ -71,5 +71,4 @@ describe("FeedAnimalSkill", () => {
     const skill = new FeedAnimalSkill({});
     assert.equals(skill.getId(), "FeedAnimalSkill");
   });
-
 });
