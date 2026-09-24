@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Massive refactoring of actions and skills for design consistency
 - Extract domain logic incorrectly scattered in action into skills
+- Move actions and messages mapping to conf/respond-to-messages.json
 
 ### Fixed
 - Fix player identity propagation to ChatGPT replies
