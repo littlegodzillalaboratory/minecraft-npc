@@ -24,7 +24,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="MinecraftNpc.html">MinecraftNpc</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="MinecraftNpc.html#start">start</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#MESSAGE_MAPPING">MESSAGE_MAPPING</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#exec">exec</a></span></li>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="AutoMode.html">AutoMode</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AutoMode.html#getStatus">getStatus</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AutoMode.html#start">start</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AutoMode.html#stop">stop</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="MinecraftNpc.html">MinecraftNpc</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="MinecraftNpc.html#start">start</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#MESSAGE_MAPPING">MESSAGE_MAPPING</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#exec">exec</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#isValidNonNegativeInteger">isValidNonNegativeInteger</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#isValidStringArray">isValidStringArray</a></span></li>
 </nav>
 
 <div id="main">
@@ -106,6 +106,9 @@ import GetInventorySummarySkill from "./skills/get-inventory-summary.js";
 import GetPlayerDistanceSkill from "./skills/get-player-distance.js";
 import GetPlayerPositionSkill from "./skills/get-player-position.js";
 import ListVisiblePlayersSkill from "./skills/list-visible-players.js";
+import FindNearestAllowedAnimalSkill from "./skills/find-nearest-allowed-animal.js";
+import GetSurvivalStateSkill from "./skills/get-survival-state.js";
+import AutoMode from "./engines/auto-mode.js";
 
 class Npc {
   constructor(bot, register, opts) {
@@ -114,6 +117,7 @@ class Npc {
     this.bot.deferSkillMessages = true;
     this.register = register;
     this.opts = opts;
+    this.autoMode = new AutoMode(this, opts);
   }
 
   getBot() {
@@ -184,6 +188,36 @@ class Npc {
   /** Return the distance to a visible player. */
   getPlayerDistance(player) {
     return new GetPlayerDistanceSkill(this.bot).do({ player: player });
+  }
+
+  /** Enable deterministic autonomous survival decisions. */
+  enableAutoMode() {
+    return this.autoMode.start();
+  }
+
+  /** Disable autonomous decisions and cancel their current activity. */
+  disableAutoMode() {
+    return this.autoMode.stop();
+  }
+
+  /** Return the current auto-mode lifecycle state. */
+  getAutoModeStatus() {
+    return this.autoMode.getStatus();
+  }
+
+  /** Return the observations consumed by auto-mode survival policy. */
+  getSurvivalState(threatRadius) {
+    return new GetSurvivalStateSkill(this.bot).do({
+      threatRadius: threatRadius,
+    });
+  }
+
+  /** Find the nearest adult animal permitted by autonomous hunting policy. */
+  findNearestAllowedAnimal(allowedAnimals, maximumDistance) {
+    return new FindNearestAllowedAnimalSkill(this.bot).do({
+      allowedAnimals: allowedAnimals,
+      maximumDistance: maximumDistance,
+    });
   }
 
   eat() {
@@ -460,10 +494,15 @@ class Npc {
     );
   }
 
-  huntFood() {
+  huntFood(allowedAnimals, maximumDistance) {
     const skill = new HuntFoodSkill(this.bot);
-    const opts = {};
-    const validation = () => true;
+    const opts = {
+      allowedAnimals: allowedAnimals,
+      maximumDistance: maximumDistance,
+    };
+    const validation = () =>
+      v.isValidStringArray(allowedAnimals) &amp;&amp;
+      v.isValidPositiveInteger(maximumDistance);
     const successMessage = `${this.bot.username} is hunting for food`;
     const failureMessage = `Unable to hunt for food`;
 
@@ -1127,7 +1166,7 @@ export { Npc as default };
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Thu Sep 24 2026 12:12:57 GMT+0000 (Coordinated Universal Time) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Thu Sep 24 2026 23:21:32 GMT+0000 (Coordinated Universal Time) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

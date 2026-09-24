@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>skills/guard-location.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="AutoMode.html">AutoMode</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AutoMode.html#getStatus">getStatus</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AutoMode.html#start">start</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AutoMode.html#stop">stop</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="MinecraftNpc.html">MinecraftNpc</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="MinecraftNpc.html#start">start</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#MESSAGE_MAPPING">MESSAGE_MAPPING</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#exec">exec</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#isValidNonNegativeInteger">isValidNonNegativeInteger</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#isValidStringArray">isValidStringArray</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">skills/guard-location.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+import pathfinder from "mineflayer-pathfinder";
+
+import BaseSkill from "./base.js";
+
+const GUARD_RADIUS = 30;
+const RETURN_RANGE = 1;
+const SCAN_INTERVAL_TICKS = 20;
+
+class GuardLocationSkill extends BaseSkill {
+  getId() {
+    return this.constructor.name;
+  }
+
+  /**
+   * Maintain a defensive post until its controller is stopped. The guard
+   * periodically acquires nearby hostiles, limits pursuit to the guarded area,
+   * and returns to the post after combat.
+   */
+  do(opts) {
+    this.bot.guardController?.stop();
+
+    const guardPosition = {
+      x: opts.posX,
+      y: opts.posY,
+      z: opts.posZ,
+    };
+    const state = {
+      active: true,
+      attackStarting: false,
+      attackStopping: false,
+      ticks: 0,
+    };
+
+    const distanceFromGuard = (position) => {
+      const dx = position.x - guardPosition.x;
+      const dy = position.y - guardPosition.y;
+      const dz = position.z - guardPosition.z;
+      return Math.sqrt(dx * dx + dy * dy + dz * dz);
+    };
+
+    const isHostileWithinGuardRadius = (entity) => {
+      const definition = this.bot.registry.entitiesByName[entity.name];
+      return (
+        definition?.category === "Hostile mobs" &amp;&amp;
+        distanceFromGuard(entity.position) &lt;= GUARD_RADIUS
+      );
+    };
+
+    const returnToGuardPosition = () => {
+      if (!state.active || !this.bot.pathfinder?.setGoal) return;
+      this.bot.pathfinder.setGoal(
+        new pathfinder.goals.GoalNear(
+          guardPosition.x,
+          guardPosition.y,
+          guardPosition.z,
+          RETURN_RANGE,
+        ),
+      );
+    };
+
+    const scan = () => {
+      if (!state.active) return;
+
+      const target = this.bot.pvp.target;
+      if (target) {
+        const leftGuardArea =
+          distanceFromGuard(target.position) > GUARD_RADIUS ||
+          distanceFromGuard(this.bot.entity.position) > GUARD_RADIUS;
+        if (leftGuardArea &amp;&amp; !state.attackStopping) {
+          state.attackStopping = true;
+          Promise.resolve(this.bot.pvp.stop()).finally(() => {
+            state.attackStopping = false;
+            returnToGuardPosition();
+          });
+        }
+        return;
+      }
+
+      const hostileEntity = Object.values(this.bot.entities).find(
+        isHostileWithinGuardRadius,
+      );
+      if (hostileEntity &amp;&amp; !state.attackStarting) {
+        state.attackStarting = true;
+        Promise.resolve(this.bot.pvp.attack(hostileEntity)).finally(() => {
+          state.attackStarting = false;
+        });
+      } else if (
+        !hostileEntity &amp;&amp;
+        distanceFromGuard(this.bot.entity.position) > RETURN_RANGE
+      ) {
+        returnToGuardPosition();
+      }
+    };
+
+    const onPhysicsTick = () => {
+      state.ticks += 1;
+      if (state.ticks >= SCAN_INTERVAL_TICKS) {
+        state.ticks = 0;
+        scan();
+      }
+    };
+    const onStoppedAttacking = () => {
+      returnToGuardPosition();
+    };
+
+    this.bot.on("entitySpawn", scan);
+    this.bot.on("physicTick", onPhysicsTick);
+    this.bot.on("stoppedAttacking", onStoppedAttacking);
+    // Store the controller on the bot because skill instances are short-lived,
+    // while guarding continues across Mineflayer events after this call ends.
+    this.bot.guardController = {
+      stop: () => {
+        state.active = false;
+        this.bot.removeListener("entitySpawn", scan);
+        this.bot.removeListener("physicTick", onPhysicsTick);
+        this.bot.removeListener("stoppedAttacking", onStoppedAttacking);
+        delete this.bot.guardController;
+      },
+    };
+
+    scan();
+  }
+}
+
+export { GuardLocationSkill as default };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Thu Sep 24 2026 23:21:32 GMT+0000 (Coordinated Universal Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

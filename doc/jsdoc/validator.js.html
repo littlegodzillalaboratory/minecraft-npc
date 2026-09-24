@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>validator.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="AutoMode.html">AutoMode</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AutoMode.html#getStatus">getStatus</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AutoMode.html#start">start</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AutoMode.html#stop">stop</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="MinecraftNpc.html">MinecraftNpc</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="MinecraftNpc.html#start">start</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#MESSAGE_MAPPING">MESSAGE_MAPPING</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#exec">exec</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#isValidNonNegativeInteger">isValidNonNegativeInteger</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#isValidStringArray">isValidStringArray</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">validator.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import _ from "lodash";
+
+function isValidCoord(posX, posY, posZ) {
+  return _.isNumber(posX) &amp;&amp; _.isNumber(posY) &amp;&amp; _.isNumber(posZ);
+}
+
+function isValidMessage(message) {
+  return _.isString(message) &amp;&amp; message.length > 0;
+}
+
+function isValidMoveDirection(distance, direction) {
+  return (
+    _.isInteger(distance) &amp;&amp;
+    distance > 0 &amp;&amp;
+    _.includes(
+      ["forward", "backward", "leftward", "rightward", "downward", "upward"],
+      direction,
+    )
+  );
+}
+
+function isValidFaceDirection(direction) {
+  return _.includes(["north", "south", "east", "west", "around"], direction);
+}
+
+function isValidEquipDestination(destination) {
+  return _.includes(
+    ["hand", "off-hand", "head", "torso", "legs", "feet"],
+    destination,
+  );
+}
+
+function isValidDigTarget(target) {
+  return _.includes(["below", "cursor"], target);
+}
+
+function isValidPositiveInteger(value) {
+  return _.isInteger(value) &amp;&amp; value > 0;
+}
+
+function isValidBoolean(value) {
+  return _.isBoolean(value);
+}
+
+function isValidGesture(gestureName) {
+  return _.includes(["nod", "shake"], gestureName);
+}
+
+/** Return whether a value is a non-empty list of non-empty strings. */
+function isValidStringArray(value) {
+  return (
+    _.isArray(value) &amp;&amp;
+    value.length > 0 &amp;&amp;
+    value.every((item) => _.isString(item) &amp;&amp; item.length > 0)
+  );
+}
+
+/** Return whether a value is an integer at or above zero. */
+function isValidNonNegativeInteger(value) {
+  return _.isInteger(value) &amp;&amp; value >= 0;
+}
+
+const funcs = {
+  isValidCoord: isValidCoord,
+  isValidMessage: isValidMessage,
+  isValidMoveDirection: isValidMoveDirection,
+  isValidFaceDirection: isValidFaceDirection,
+  isValidEquipDestination: isValidEquipDestination,
+  isValidDigTarget: isValidDigTarget,
+  isValidPositiveInteger: isValidPositiveInteger,
+  isValidBoolean: isValidBoolean,
+  isValidGesture: isValidGesture,
+  isValidStringArray: isValidStringArray,
+  isValidNonNegativeInteger: isValidNonNegativeInteger,
+};
+
+export { funcs as default };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Thu Sep 24 2026 23:21:32 GMT+0000 (Coordinated Universal Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

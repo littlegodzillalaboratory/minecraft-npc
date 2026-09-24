@@ -86,6 +86,10 @@
 [1m[36mDigging down...[39m[22m
   [32m  [32m✔[39m[0m[90m should run DigDownAction[0m
 
+[0m  DisableAutoModeAction[0m
+[1m[36mDisabling auto mode...[39m[22m
+  [32m  [32m✔[39m[0m[90m should disable auto mode and register the outcome[0m
+
 [0m  DismountAction[0m
 [1m[36mDismounting...[39m[22m
   [32m  [32m✔[39m[0m[90m should run DismountAction[0m
@@ -108,6 +112,10 @@
 
 [0m  EmptyInventoryAction[0m
   [32m  [32m✔[39m[0m[90m should run EmptyInventoryAction[0m
+
+[0m  EnableAutoModeAction[0m
+[1m[36mEnabling auto mode...[39m[22m
+  [32m  [32m✔[39m[0m[90m should enable auto mode and register the outcome[0m
 
 [0m  EquipArmorAction[0m
 [1m[36mEquipping armor...[39m[22m
@@ -202,6 +210,10 @@
 [0m  HuntFoodAction[0m
 [1m[36mHunting for food...[39m[22m
   [32m  [32m✔[39m[0m[90m should run HuntFoodAction[0m
+[1m[36mHunting for food...[39m[22m
+  [32m  [32m✔[39m[0m[90m should accept policy supplied by auto mode[0m
+[1m[36mHunting for food...[39m[22m
+  [32m  [32m✔[39m[0m[90m should preserve hunting defaults when no policy is configured[0m
 
 [0m  JumpAction[0m
 [1m[36mJumping...[39m[22m
@@ -300,6 +312,9 @@
   * [32mFound matching action: StopCurrentAction, for message: stop, from sender: alice[39m
   [32m  [32m✔[39m[0m[90m should invoke stop action when receiving stop message[0m
 [1m[36mResponding to message...[39m[22m
+  * [32mFound matching action: EnableAutoModeAction, for message: enable auto mode, from sender: alice[39m
+  [32m  [32m✔[39m[0m[90m should invoke enable auto-mode action for its configured message[0m
+[1m[36mResponding to message...[39m[22m
   * [32mFound matching action: MoveBlocksDistanceToDirectionAction, for message: move 5 blocks forward, from sender: alice[39m
   [32m  [32m✔[39m[0m[90m should invoke move blocks distance to direction action when receiving a move blocks (plural) distance to direction command[0m
 [1m[36mResponding to message...[39m[22m
@@ -342,6 +357,12 @@
   [32m  [32m✔[39m[0m[90m should run SayArmorAction[0m
 [1m[36mSaying armor...[39m[22m
   [32m  [32m✔[39m[0m[90m should say no armor when nothing is equipped[0m
+
+[0m  SayAutoModeStatusAction[0m
+[1m[36mReporting auto mode status...[39m[22m
+  [32m  [32m✔[39m[0m[90m should report enabled auto mode status[0m
+[1m[36mReporting auto mode status...[39m[22m
+  [32m  [32m✔[39m[0m[90m should report disabled auto mode status[0m
 
 [0m  SayBiomeAction[0m
 [1m[36mSaying biome...[39m[22m
@@ -533,15 +554,15 @@
   [32m  [32m✔[39m[0m[90m should contain commands with actions[0m
 
 [0m  cli - start[0m
-  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (123ms)[0m
+  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (145ms)[0m
 AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1492:18)
-    at afterConnectMultiple (node:net:2161:7) {
+    at internalConnectMultiple (node:net:1135:18)
+    at afterConnectMultiple (node:net:1716:7) {
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:25565
-        at createConnectionError (node:net:2124:14)
-        at afterConnectMultiple (node:net:2154:16) {
+        at createConnectionError (node:net:1679:14)
+        at afterConnectMultiple (node:net:1709:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -549,8 +570,8 @@ AggregateError [ECONNREFUSED]:
       port: 25565
     },
     Error: connect ECONNREFUSED 127.0.0.1:25565
-        at createConnectionError (node:net:2124:14)
-        at afterConnectMultiple (node:net:2154:16) {
+        at createConnectionError (node:net:1679:14)
+        at afterConnectMultiple (node:net:1709:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -560,13 +581,13 @@ AggregateError [ECONNREFUSED]:
   ]
 }
 AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1492:18)
-    at afterConnectMultiple (node:net:2161:7) {
+    at internalConnectMultiple (node:net:1135:18)
+    at afterConnectMultiple (node:net:1716:7) {
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:25565
-        at createConnectionError (node:net:2124:14)
-        at afterConnectMultiple (node:net:2154:16) {
+        at createConnectionError (node:net:1679:14)
+        at afterConnectMultiple (node:net:1709:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -574,8 +595,8 @@ AggregateError [ECONNREFUSED]:
       port: 25565
     },
     Error: connect ECONNREFUSED 127.0.0.1:25565
-        at createConnectionError (node:net:2124:14)
-        at afterConnectMultiple (node:net:2154:16) {
+        at createConnectionError (node:net:1679:14)
+        at afterConnectMultiple (node:net:1709:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -590,6 +611,15 @@ AggregateError [ECONNREFUSED]:
 
 [0m  cli - start with default conf file[0m
   [32m  [32m✔[39m[0m[90m should default conf file to minecraft-npc.yaml when not specified[0m
+
+[0m  AutoMode[0m
+  [32m  [32m✔[39m[0m[90m should start once, expose status, schedule evaluation, and stop[0m
+  [32m  [32m✔[39m[0m[90m should flee from threats when health is low[0m
+  [32m  [32m✔[39m[0m[90m should defend against threats when healthy[0m
+  [32m  [32m✔[39m[0m[90m should eat available food when hungry[0m
+  [32m  [32m✔[39m[0m[90m should hunt only a policy-approved nearby animal[0m
+  [32m  [32m✔[39m[0m[90m should remain idle when no approved food animal is available[0m
+  [32m  [32m✔[39m[0m[90m should not overlap evaluations and should retain evaluation failures[0m
 
 [0m  MinecraftNpc[0m
   [32m  [32m✔[39m[0m[90m should build bot with constructor defaults[0m
@@ -616,9 +646,7 @@ AggregateError [ECONNREFUSED]:
   * [32mWebInventory plugin[39m
 [1m[36mSpawning bot...[39m[22m
   * [32mbob has been spawned[39m
-  [32m  [32m✔[39m[0m[90m should wire up plugins on spawn and route chat messages addressed to the bot[0m[33m (46ms)[0m
-(node:4321) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
-(Use `node --trace-deprecation ...` to show where the warning was created)
+  [32m  [32m✔[39m[0m[90m should wire up plugins on spawn and route chat messages addressed to the bot[0m[33m (62ms)[0m
 
 [0m  Npc[0m
 [0m    eat[0m
@@ -635,10 +663,13 @@ AggregateError [ECONNREFUSED]:
     [32m  [32m✔[39m[0m[90m should move the bot the requested number of blocks in a direction[0m
 [0m    getBot / getRegister / getOpts[0m
     [32m  [32m✔[39m[0m[90m should return bot/register/opts references[0m
+[0m    auto-mode[0m
+    [32m  [32m✔[39m[0m[90m should expose engine lifecycle methods[0m
 [0m    getPosition / getPlayerPosition[0m
     [32m  [32m✔[39m[0m[90m should return own and player position[0m
 [0m    domain queries[0m
     [32m  [32m✔[39m[0m[90m should expose inventory, player, entity, and threat information[0m
+    [32m  [32m✔[39m[0m[90m should expose autonomous survival observations[0m
 [0m    skill outcome handling[0m
   * [32mSucceeded[39m
   * [31mFailed: Broken[39m
@@ -691,6 +722,8 @@ AggregateError [ECONNREFUSED]:
 [0m    huntFood[0m
   * [32mbob is hunting for food[39m
     [32m  [32m✔[39m[0m[90m should execute huntFood[0m
+  * [31mUnable to hunt for food[39m
+    [32m  [32m✔[39m[0m[90m should reject invalid hunting policy[0m
 [0m    defendPlayer[0m
   * [32mbob is defending player: alice[39m
     [32m  [32m✔[39m[0m[90m should execute defendPlayer[0m
@@ -874,7 +907,7 @@ AggregateError [ECONNREFUSED]:
 
 [0m  DanceSkill[0m
   [32m  [32m✔[39m[0m[90m should toggle dance moves on and off[0m
-  [32m  [32m✔[39m[0m[90m should default the step delay when not specified[0m[31m (2405ms)[0m
+  [32m  [32m✔[39m[0m[90m should default the step delay when not specified[0m[31m (2404ms)[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  DefendPlayerSkill[0m
@@ -951,6 +984,10 @@ AggregateError [ECONNREFUSED]:
   [32m  [32m✔[39m[0m[90m should default to wheat for unlisted animal species[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
+[0m  FindNearestAllowedAnimalSkill[0m
+  [32m  [32m✔[39m[0m[90m should return an allowed adult animal within range[0m
+  [32m  [32m✔[39m[0m[90m should reject disallowed, distant, baby, named, and tamed animals[0m
+
 [0m  FishSkill[0m
   [32m  [32m✔[39m[0m[90m should equip the fishing rod and fish[0m
   [32m  [32m✔[39m[0m[90m should say no fishing rod when inventory has none[0m
@@ -972,6 +1009,9 @@ AggregateError [ECONNREFUSED]:
   [32m  [32m✔[39m[0m[90m should shake head by yawing left and right[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
+[0m  GetSurvivalStateSkill[0m
+  [32m  [32m✔[39m[0m[90m should summarize survival observations[0m
+
 [0m  GiveItemSkill[0m
   [32m  [32m✔[39m[0m[90m should look at the player and toss the item[0m
   [32m  [32m✔[39m[0m[90m should say cannot see player when player entity is missing[0m
@@ -980,11 +1020,15 @@ AggregateError [ECONNREFUSED]:
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  GuardLocationSkill[0m
-  [32m  [32m✔[39m[0m[90m should run GuardLocationSkill and attack hostile mob entity within radius[0m
-  [32m  [32m✔[39m[0m[90m should run GuardLocationSkill and not attack passive mob entity within radius[0m
-  [32m  [32m✔[39m[0m[90m should run GuardLocationSkill and not attack hostile mob entity outside radius[0m
-  [32m  [32m✔[39m[0m[90m should run GuardLocationSkill and ignore non-mob entities[0m
-  [32m  [32m✔[39m[0m[90m should run GuardLocationSkill and do nothing when no entities are present[0m
+  [32m  [32m✔[39m[0m[90m should attack a hostile mob already inside the guard radius[0m
+  [32m  [32m✔[39m[0m[90m should detect hostiles that spawn after guarding starts[0m
+  [32m  [32m✔[39m[0m[90m should periodically scan while guarding[0m
+  [32m  [32m✔[39m[0m[90m should ignore passive, distant, and non-mob entities[0m
+  [32m  [32m✔[39m[0m[90m should stop pursuit outside the guard radius and return to the post[0m
+  [32m  [32m✔[39m[0m[90m should keep pursuing a target while both remain in the guard area[0m
+  [32m  [32m✔[39m[0m[90m should return when displaced or after combat stops[0m
+  [32m  [32m✔[39m[0m[90m should replace and dispose an existing guard controller[0m
+  [32m  [32m✔[39m[0m[90m should tolerate a missing pathfinder while stopping[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  HarvestCropsSkill[0m
@@ -994,6 +1038,7 @@ AggregateError [ECONNREFUSED]:
 
 [0m  HuntFoodSkill[0m
   [32m  [32m✔[39m[0m[90m should attack the nearest food animal[0m
+  [32m  [32m✔[39m[0m[90m should protect disallowed, distant, baby, named, and tamed animals[0m
   [32m  [32m✔[39m[0m[90m should say nothing to hunt when no food animal is nearby[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
@@ -1135,7 +1180,9 @@ AggregateError [ECONNREFUSED]:
   [32m  [32m✔[39m[0m[90m should validate positive integer[0m
   [32m  [32m✔[39m[0m[90m should validate boolean[0m
   [32m  [32m✔[39m[0m[90m should validate gesture[0m
+  [32m  [32m✔[39m[0m[90m should validate non-empty arrays of strings[0m
+  [32m  [32m✔[39m[0m[90m should validate non-negative integers[0m
 
 
-[92m [0m[32m 429 passing[0m[90m (6s)[0m
+[92m [0m[32m 456 passing[0m[90m (6s)[0m
 
