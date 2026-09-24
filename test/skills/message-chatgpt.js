@@ -17,13 +17,14 @@ describe("MessageChatGptSkill", () => {
       chat,
     };
     const skill = new MessageChatGptSkill(bot);
-    await skill.do({ username: "alice", message: "hello" });
+    await skill.do({ player: "alice", message: "hello" });
     assert.equals(bot.chatgpt.sendMessage.callCount, 1);
+    assert.equals(bot.chatgpt.sendMessage.firstCall.args[0], "alice");
+    assert.equals(bot.chatgpt.sendMessage.firstCall.args[1], "hello");
     assert.equals(chat.firstCall.args[0], "reply");
   });
   it("should return class name as id", () => {
     const skill = new MessageChatGptSkill({});
     assert.equals(skill.getId(), "MessageChatGptSkill");
   });
-
 });

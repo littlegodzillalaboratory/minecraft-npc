@@ -171,6 +171,7 @@ describe("Npc", () => {
         }
       };
 
+      const sendMessage = sinon.stub().resolves("ok");
       const bot = {
         username: "bob",
         inventory: { items: () => [] },
@@ -181,7 +182,7 @@ describe("Npc", () => {
           1: { type: "mob", name: "zombie", position: { x: 5, y: 64, z: 5 } },
         },
         pvp: { attack: sinon.spy() },
-        chatgpt: { sendMessage: async () => "ok" },
+        chatgpt: { sendMessage: sendMessage },
         chat: () => {},
       };
       try {
@@ -190,6 +191,9 @@ describe("Npc", () => {
         assert.equals(await npc.guardLocation(1, 2, 3), "success");
         assert.equals(await npc.sayMessage("hello"), "success");
         assert.equals(await npc.messageChatGpt("alice", "hello"), "success");
+        assert.equals(sendMessage.callCount, 1);
+        assert.equals(sendMessage.firstCall.args[0], "alice");
+        assert.equals(sendMessage.firstCall.args[1], "hello");
       } finally {
         pathfinder.Movements = originalMovements;
         pathfinder.goals.GoalNear = originalGoalNear;

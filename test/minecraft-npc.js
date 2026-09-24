@@ -91,7 +91,7 @@ describe("MinecraftNpc", () => {
       true,
     );
     assert.equals(
-      fakeBot.chatgpt.setConfig.firstCall.args[0].minimumConfidenceScore,
+      fakeBot.chatgpt.setConfig.firstCall.args[0].minimumReplyConfidenceScore,
       0.7,
     );
     assert.equals(
