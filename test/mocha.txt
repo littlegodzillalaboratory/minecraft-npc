@@ -114,7 +114,7 @@
   [32m  [32m✔[39m[0m[90m should run EmptyInventoryAction[0m
 
 [0m  EnableAutoModeAction[0m
-[1m[36mEnabling auto mode...[39m[22m
+[1m[36mEnabling auto mode as survivor...[39m[22m
   [32m  [32m✔[39m[0m[90m should enable auto mode and register the outcome[0m
 
 [0m  EquipArmorAction[0m
@@ -550,19 +550,26 @@
 [1m[36mWithdrawing item from chest: bread...[39m[22m
   [32m  [32m✔[39m[0m[90m should run WithdrawItemFromChestAction[0m
 
+[0m  AutoMode[0m
+  [32m  [32m✔[39m[0m[90m should enable the default survivor engine and report its policy[0m
+  [32m  [32m✔[39m[0m[90m should reject an unknown policy engine[0m
+  [32m  [32m✔[39m[0m[90m should disable safely before and after an engine is selected[0m
+  [32m  [32m✔[39m[0m[90m should stop the active engine before selecting another policy[0m
+  [32m  [32m✔[39m[0m[90m should report an idle disabled mode when its default is unknown[0m
+
 [0m  cli - exec[0m
   [32m  [32m✔[39m[0m[90m should contain commands with actions[0m
 
 [0m  cli - start[0m
-  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (83ms)[0m
+  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (98ms)[0m
 AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1492:18)
-    at afterConnectMultiple (node:net:2161:7) {
+    at internalConnectMultiple (node:net:1135:18)
+    at afterConnectMultiple (node:net:1716:7) {
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:25565
-        at createConnectionError (node:net:2124:14)
-        at afterConnectMultiple (node:net:2154:16) {
+        at createConnectionError (node:net:1679:14)
+        at afterConnectMultiple (node:net:1709:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -570,8 +577,8 @@ AggregateError [ECONNREFUSED]:
       port: 25565
     },
     Error: connect ECONNREFUSED 127.0.0.1:25565
-        at createConnectionError (node:net:2124:14)
-        at afterConnectMultiple (node:net:2154:16) {
+        at createConnectionError (node:net:1679:14)
+        at afterConnectMultiple (node:net:1709:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -581,13 +588,13 @@ AggregateError [ECONNREFUSED]:
   ]
 }
 AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1492:18)
-    at afterConnectMultiple (node:net:2161:7) {
+    at internalConnectMultiple (node:net:1135:18)
+    at afterConnectMultiple (node:net:1716:7) {
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:25565
-        at createConnectionError (node:net:2124:14)
-        at afterConnectMultiple (node:net:2154:16) {
+        at createConnectionError (node:net:1679:14)
+        at afterConnectMultiple (node:net:1709:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -595,8 +602,8 @@ AggregateError [ECONNREFUSED]:
       port: 25565
     },
     Error: connect ECONNREFUSED 127.0.0.1:25565
-        at createConnectionError (node:net:2124:14)
-        at afterConnectMultiple (node:net:2154:16) {
+        at createConnectionError (node:net:1679:14)
+        at afterConnectMultiple (node:net:1709:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -612,7 +619,12 @@ AggregateError [ECONNREFUSED]:
 [0m  cli - start with default conf file[0m
   [32m  [32m✔[39m[0m[90m should default conf file to minecraft-npc.yaml when not specified[0m
 
-[0m  AutoMode[0m
+[0m  BaseEngine[0m
+  [32m  [32m✔[39m[0m[90m should log errors for methods concrete engines must implement[0m
+  [32m  [32m✔[39m[0m[90m should own scheduling, status, evaluation, and shutdown lifecycle[0m
+  [32m  [32m✔[39m[0m[90m should prevent overlap, provide idle defaults, and retain failures[0m
+
+[0m  Survivor[0m
   [32m  [32m✔[39m[0m[90m should start once, expose status, schedule evaluation, and stop[0m
   [32m  [32m✔[39m[0m[90m should flee from threats when health is low[0m
   [32m  [32m✔[39m[0m[90m should defend against threats when healthy[0m
@@ -646,9 +658,7 @@ AggregateError [ECONNREFUSED]:
   * [32mWebInventory plugin[39m
 [1m[36mSpawning bot...[39m[22m
   * [32mbob has been spawned[39m
-  [32m  [32m✔[39m[0m[90m should wire up plugins on spawn and route chat messages addressed to the bot[0m
-(node:3963) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
-(Use `node --trace-deprecation ...` to show where the warning was created)
+  [32m  [32m✔[39m[0m[90m should wire up plugins on spawn and route chat messages addressed to the bot[0m[33m (43ms)[0m
 
 [0m  Npc[0m
 [0m    eat[0m
@@ -909,7 +919,7 @@ AggregateError [ECONNREFUSED]:
 
 [0m  DanceSkill[0m
   [32m  [32m✔[39m[0m[90m should toggle dance moves on and off[0m
-  [32m  [32m✔[39m[0m[90m should default the step delay when not specified[0m[31m (2405ms)[0m
+  [32m  [32m✔[39m[0m[90m should default the step delay when not specified[0m[31m (2404ms)[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  DefendPlayerSkill[0m
@@ -1046,7 +1056,7 @@ AggregateError [ECONNREFUSED]:
 
 [0m  JumpSkill[0m
   [32m  [32m✔[39m[0m[90m should press and release jump control[0m
-  [32m  [32m✔[39m[0m[90m should default the jump duration when not specified[0m[31m (501ms)[0m
+  [32m  [32m✔[39m[0m[90m should default the jump duration when not specified[0m[31m (500ms)[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  ListChestSkill[0m
@@ -1121,7 +1131,7 @@ AggregateError [ECONNREFUSED]:
 
 [0m  SprintSkill[0m
   [32m  [32m✔[39m[0m[90m should sprint forward then stop[0m
-  [32m  [32m✔[39m[0m[90m should default the sprint duration when not specified[0m[31m (2001ms)[0m
+  [32m  [32m✔[39m[0m[90m should default the sprint duration when not specified[0m[31m (2003ms)[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  StopSkill[0m
@@ -1186,5 +1196,5 @@ AggregateError [ECONNREFUSED]:
   [32m  [32m✔[39m[0m[90m should validate non-negative integers[0m
 
 
-[92m [0m[32m 456 passing[0m[90m (6s)[0m
+[92m [0m[32m 464 passing[0m[90m (6s)[0m
 

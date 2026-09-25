@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>auto-mode.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="AutoMode.html">AutoMode</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AutoMode.html#disable">disable</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AutoMode.html#enable">enable</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AutoMode.html#getStatus">getStatus</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="BaseEngine.html">BaseEngine</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="BaseEngine.html#evaluate">evaluate</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="BaseEngine.html#getEvaluationIntervalInSeconds">getEvaluationIntervalInSeconds</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="BaseEngine.html#getId">getId</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="BaseEngine.html#getStatus">getStatus</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="BaseEngine.html#start">start</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="BaseEngine.html#stop">stop</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="MinecraftNpc.html">MinecraftNpc</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="MinecraftNpc.html#start">start</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Survivor.html">Survivor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Survivor.html#evaluate">evaluate</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Survivor.html#getEvaluationIntervalInSeconds">getEvaluationIntervalInSeconds</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Survivor.html#getId">getId</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#MESSAGE_MAPPING">MESSAGE_MAPPING</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#exec">exec</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#isValidNonNegativeInteger">isValidNonNegativeInteger</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#isValidStringArray">isValidStringArray</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">auto-mode.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+import Survivor from "./engines/survivor.js";
+
+const DEFAULT_ENGINE = "survivor";
+
+/**
+ * Manage auto-mode independently from the policy engine selected to run it.
+ * New policies can be registered here without changing mode lifecycle callers.
+ */
+class AutoMode {
+  constructor(npc, opts = {}) {
+    this.defaultEngineName = opts.autoModeEngine || DEFAULT_ENGINE;
+    this.engines = new Map([["survivor", new Survivor(npc, opts)]]);
+    this.activeEngine = undefined;
+  }
+
+  /** Enable auto-mode using the requested registered policy engine. */
+  async enable(engineName = this.defaultEngineName) {
+    const engine = this.engines.get(engineName);
+    if (!engine) {
+      return {
+        status: "failed",
+        message: `Unknown auto-mode engine: ${engineName}`,
+      };
+    }
+    if (this.activeEngine &amp;&amp; this.activeEngine !== engine) {
+      await this.activeEngine.stop();
+    }
+    this.activeEngine = engine;
+    return engine.start();
+  }
+
+  /** Disable the selected policy engine and its autonomous activity. */
+  async disable() {
+    if (!this.activeEngine) return "success";
+    return this.activeEngine.stop();
+  }
+
+  /** Return mode state together with the selected policy engine identity. */
+  getStatus() {
+    const engine =
+      this.activeEngine || this.engines.get(this.defaultEngineName);
+    return {
+      engine: engine?.getId().toLowerCase(),
+      ...(engine?.getStatus() || {
+        enabled: false,
+        currentGoal: "idle",
+        lastOutcome: undefined,
+      }),
+    };
+  }
+}
+
+export { AutoMode as default };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Fri Sep 25 2026 00:11:05 GMT+0000 (Coordinated Universal Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

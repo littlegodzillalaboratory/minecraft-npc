@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>engines/base.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="AutoMode.html">AutoMode</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AutoMode.html#disable">disable</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AutoMode.html#enable">enable</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AutoMode.html#getStatus">getStatus</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="BaseEngine.html">BaseEngine</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="BaseEngine.html#evaluate">evaluate</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="BaseEngine.html#getEvaluationIntervalInSeconds">getEvaluationIntervalInSeconds</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="BaseEngine.html#getId">getId</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="BaseEngine.html#getStatus">getStatus</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="BaseEngine.html#start">start</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="BaseEngine.html#stop">stop</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="MinecraftNpc.html">MinecraftNpc</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="MinecraftNpc.html#start">start</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Survivor.html">Survivor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Survivor.html#evaluate">evaluate</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Survivor.html#getEvaluationIntervalInSeconds">getEvaluationIntervalInSeconds</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Survivor.html#getId">getId</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#MESSAGE_MAPPING">MESSAGE_MAPPING</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#exec">exec</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#isValidNonNegativeInteger">isValidNonNegativeInteger</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#isValidStringArray">isValidStringArray</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">engines/base.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+import bag from "bagofcli";
+
+/**
+ * Provide the shared lifecycle contract for continuously evaluated NPC
+ * engines. Concrete engines supply their identity, evaluation interval, and
+ * policy while this class owns scheduling, status, overlap prevention, and
+ * error handling.
+ */
+class BaseEngine {
+  constructor(npc) {
+    this.npc = npc;
+    this.enabled = false;
+    this.evaluating = false;
+    this.currentGoal = "idle";
+    this.lastOutcome = undefined;
+    this.timer = undefined;
+  }
+
+  /** Return the stable engine identifier implemented by a concrete engine. */
+  getId() {
+    bag.logStepItemError("Engine should implement getId method!");
+  }
+
+  /** Return the concrete engine's evaluation interval in seconds. */
+  getEvaluationIntervalInSeconds() {
+    bag.logStepItemError(
+      "Engine should implement getEvaluationIntervalInSeconds method!",
+    );
+  }
+
+  /** Evaluate concrete policy and return its current goal and outcome. */
+  evaluate() {
+    bag.logStepItemError("Engine should implement evaluate method!");
+  }
+
+  /** Enable the engine and immediately schedule its first evaluation. */
+  start() {
+    if (this.enabled) return "success";
+    this.enabled = true;
+    this.currentGoal = "idle";
+    this._schedule(0);
+    return "success";
+  }
+
+  /** Disable the engine, cancel its timer, and stop autonomous movement. */
+  async stop() {
+    const wasEnabled = this.enabled;
+    this.enabled = false;
+    if (this.timer) clearTimeout(this.timer);
+    this.timer = undefined;
+    this.currentGoal = "idle";
+    if (wasEnabled) await this.npc.stop();
+    return "success";
+  }
+
+  /** Return display-ready lifecycle information without exposing internals. */
+  getStatus() {
+    return {
+      enabled: this.enabled,
+      currentGoal: this.currentGoal,
+      lastOutcome: this.lastOutcome,
+    };
+  }
+
+  _schedule(delayInMillis) {
+    if (!this.enabled) return;
+    this.timer = setTimeout(() => this._evaluate(), delayInMillis);
+    this.timer.unref?.();
+  }
+
+  async _evaluate() {
+    if (!this.enabled || this.evaluating) return;
+    this.evaluating = true;
+    try {
+      const result = await this.evaluate();
+      this.currentGoal = result?.goal ?? "idle";
+      this.lastOutcome = result?.outcome ?? "idle";
+    } catch (err) {
+      this.lastOutcome = `failed: ${err.message}`;
+    } finally {
+      this.evaluating = false;
+      this._schedule(this.getEvaluationIntervalInSeconds() * 1000);
+    }
+  }
+}
+
+export { BaseEngine as default };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Fri Sep 25 2026 00:11:05 GMT+0000 (Coordinated Universal Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
