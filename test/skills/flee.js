@@ -28,16 +28,25 @@ describe("FleeSkill", () => {
     assert.equals(destination.posZ, 0);
   });
 
-  it("should ignore non-mob candidates and default distance when threat is on top of the bot", () => {
-    const arrow = { type: "item", position: { x: 0, y: 64, z: 0 } };
+  it("should use registry category regardless of the entity type", () => {
+    const arrow = {
+      type: "item",
+      name: "arrow",
+      position: { x: 0, y: 64, z: 0 },
+    };
     const zombie = {
-      type: "mob",
+      type: "hostile",
       name: "zombie",
       position: { x: 0, y: 64, z: 0 },
     };
     const bot = {
       nearestEntity: (predicate) => [arrow, zombie].find(predicate) || null,
-      registry: { entitiesByName: { zombie: { category: "Hostile mobs" } } },
+      registry: {
+        entitiesByName: {
+          arrow: { category: "Projectiles" },
+          zombie: { category: "Hostile mobs" },
+        },
+      },
       entity: { position: { x: 0, y: 64, z: 0 } },
       chat: sinon.spy(),
     };
