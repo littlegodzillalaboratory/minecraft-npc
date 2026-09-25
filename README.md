@@ -76,118 +76,118 @@ Commands are matched case-insensitively after the NPC's username prefix is remov
 
 | Command | Description | Action | Skill | Note |
 |---------|-------------|--------|-------|------|
-| <code>^enable auto mode(?: as ([a-z][a-z0-9-]*))?$</code><br><code>^start auto mode(?: as ([a-z][a-z0-9-]*))?$</code><br><code>^be autonomous(?: as ([a-z][a-z0-9-]*))?$</code> | Enables autonomous mode using the requested policy engine. | `EnableAutoModeAction` | — | Defaults to `homesteader`; the engine must be registered. |
-| <code>^disable auto mode$</code><br><code>^stop auto mode$</code> | Disables autonomous mode and stops its current activity. | `DisableAutoModeAction` | — | Stops the active engine and its movement. |
-| <code>^auto mode status$</code><br><code>^what is your autonomous goal$</code> | Reports the active auto-mode engine, goal, and state. | `SayAutoModeStatusAction` | `SayMessageSkill` | — |
-| <code>^eat$</code><br><code>^eat something$</code><br><code>^eat food$</code><br><code>^i am hungry$</code><br><code>^i'm hungry$</code> | Makes the NPC eat. | `EatAction` | `EatSkill` | — |
-| <code>^empty inventory$</code><br><code>^drop all items$</code><br><code>^clear inventory$</code> | Makes the NPC empty inventory. | `EmptyInventoryAction` | `EmptyInventorySkill` | — |
-| <code>^what is your location\?$</code><br><code>^send location$</code> | Reports the NPC's current coordinates. | `SayCurrentLocationAction` | `SayMessageSkill` | — |
-| <code>^guard the area$</code><br><code>^defend the area$</code><br><code>^stand your ground$</code> | Makes the NPC guard current location. | `GuardCurrentLocationAction` | `GuardLocationSkill` | Continuous until stopped; guards within a 30-block radius. |
-| <code>^come here$</code><br><code>^get over here$</code> | Moves to the commanding player's position. | `MoveToPlayerLocationAction` | `GetPlayerPositionSkill`<br>`MoveToLocationSkill` | The commanding player must be visible. |
-| <code>^go to sleep$</code><br><code>^time to sleep$</code><br><code>^sleep$</code> | Makes the NPC sleep. | `SleepAction` | `SleepSkill` | Requires a nearby usable bed and a valid sleeping time or thunderstorm. |
-| <code>^stop$</code><br><code>^halt$</code><br><code>^hold up$</code> | Stops current movement, combat, and continuous activities. | `StopCurrentAction` | `StopSkill` | — |
-| <code>^move\s+(\d+)\s+blocks?\s+(forward&#124;backward&#124;leftward&#124;rightward&#124;downward&#124;upward)$</code> | Moves the requested distance in a relative direction. | `MoveBlocksDistanceToDirectionAction` | `MoveBlocksDistanceToDirectionSkill` | — |
-| <code>^(?:move to&#124;find&#124;walk to)\s+(?:a&#124;an&#124;the)\s+(.+)$</code> | Finds a nearby object and moves to it. | `MoveToObjectAction` | `MoveToObjectSkill`<br>`MoveToLocationSkill` | — |
-| <code>^follow me$</code><br><code>^come with me$</code> | Makes the NPC follow player. | `FollowPlayerAction` | `FollowPlayerSkill` | Continuous until stopped; the commanding player must be visible. |
-| <code>^stop following$</code><br><code>^stay there$</code> | Stops following and other current movement. | `StopFollowingAction` | `StopSkill` | — |
-| <code>^go to (-?\d+)[, ]+(-?\d+)[, ]+(-?\d+)$</code> | Makes the NPC move to coordinates. | `MoveToCoordinatesAction` | `MoveToLocationSkill` | — |
-| <code>^go home$</code><br><code>^return home$</code><br><code>^go back home$</code> | Returns to the configured initial coordinates. | `GoHomeAction` | `MoveToLocationSkill` | Home is `init_coords`. |
-| <code>^jump$</code><br><code>^jump up and down$</code> | Makes the NPC jump. | `JumpAction` | `JumpSkill` | — |
-| <code>^look at me$</code> | Turns to look at the commanding player. | `LookAtPlayerAction` | `GetPlayerPositionSkill`<br>`LookAtLocationSkill`<br>`SayMessageSkill` | The commanding player must be visible. |
-| <code>^face (north&#124;south&#124;east&#124;west)$</code><br><code>^look to the (north&#124;south&#124;east&#124;west)$</code> | Makes the NPC face direction. | `FaceDirectionAction` | `FaceDirectionSkill` | — |
-| <code>^turn around$</code> | Turns to face the opposite direction. | `TurnAroundAction` | `FaceDirectionSkill` | — |
-| <code>^wander around$</code><br><code>^go for a walk$</code><br><code>^explore a bit$</code> | Makes the NPC wander around. | `WanderAroundAction` | `WanderSkill`<br>`MoveToLocationSkill` | — |
-| <code>^back away$</code><br><code>^back off$</code><br><code>^give me some space$</code> | Moves away from the current facing direction. | `BackAwayAction` | `MoveBlocksDistanceToDirectionSkill` | — |
-| <code>^go to player (\w+)$</code> | Finds a named player and moves to them. | `GoToPlayerAction` | `GetPlayerPositionSkill`<br>`MoveToLocationSkill`<br>`SayMessageSkill` | The named player must be visible. |
-| <code>^stay here$</code><br><code>^wait here$</code><br><code>^don't move$</code> | Stops current movement and remains in place. | `StayHereAction` | `StopSkill` | — |
-| <code>^attack player (\w+)$</code> | Makes the NPC attack player. | `AttackPlayerAction` | `AttackPlayerSkill` | The named player must be visible. |
-| <code>^(?:attack&#124;kill) (?:the )?nearest ([\w ]+)$</code> | Attacks the nearest matching entity. | `AttackNearestMobAction` | `AttackNearestEntitySkill` | — |
-| <code>^defend me$</code><br><code>^protect me$</code><br><code>^keep me safe$</code> | Attacks a hostile mob threatening the commanding player. | `DefendMeAction` | `DefendPlayerSkill` | Only attacks entities classified as hostile mobs. |
-| <code>^run away$</code><br><code>^flee$</code><br><code>^retreat$</code> | Finds an escape destination away from the nearest threat. | `FleeAction` | `FleeSkill`<br>`MoveToLocationSkill` | Requires a nearby hostile mob. |
-| <code>^(?:equip&#124;hold&#124;wield) (?:your &#124;the &#124;a &#124;an )?([\w ]+)$</code> | Makes the NPC equip item. | `EquipItemAction` | `EquipItemSkill` | — |
-| <code>^draw your (?:sword&#124;weapon)$</code><br><code>^equip (?:your )?weapon$</code><br><code>^arm yourself$</code> | Equips an available weapon. | `EquipWeaponAction` | `EquipItemSkill` | Uses the first available sword or axe. |
-| <code>^raise your shield$</code><br><code>^equip (?:your )?shield$</code> | Equips an available shield. | `EquipShieldAction` | `EquipItemSkill` | Requires a shield in inventory. |
-| <code>^put on (?:your )?armor$</code><br><code>^armor up$</code><br><code>^gear up$</code> | Makes the NPC equip armor. | `EquipArmorAction` | `EquipArmorSkill` | — |
-| <code>^stand down$</code><br><code>^cease fire$</code><br><code>^stop attacking$</code> | Stops combat and other current activities. | `StandDownAction` | `StopSkill` | — |
-| <code>^hunt for food$</code><br><code>^go hunting$</code> | Hunts an allowed nearby animal for food. | `HuntFoodAction` | `HuntFoodSkill` | Limited by the configured animal allow-list and maximum distance. |
-| <code>^keep watch$</code><br><code>^any (?:mobs&#124;threats) nearby$</code><br><code>^report threats$</code> | Reports hostile mobs within the configured radius. | `ReportThreatsAction` | `FindNearbyThreatsSkill`<br>`SayMessageSkill` | — |
-| <code>^list (?:your )?inventory$</code><br><code>^what(?:'s&#124; is) in your inventory$</code><br><code>^show me your inventory$</code> | Reports the contents of the NPC's inventory. | `ListInventoryAction` | `GetInventorySummarySkill`<br>`SayMessageSkill` | — |
-| <code>^drop (?:your &#124;the &#124;a &#124;an )?(?!all\b)([\w ]+)$</code> | Makes the NPC drop item. | `DropItemAction` | `DropItemSkill` | — |
-| <code>^give me (?:a &#124;an &#124;the &#124;some )?(?!space\b)([\w ]+)$</code><br><code>^hand me (?:a &#124;an &#124;the &#124;some )?([\w ]+)$</code> | Gives a matching inventory item to the commanding player. | `GiveItemToPlayerAction` | `GiveItemSkill` | The commanding player must be visible and the item must be in inventory. |
-| <code>^put (?:that&#124;it) away$</code><br><code>^unequip$</code><br><code>^empty your hands?$</code> | Makes the NPC unequip item. | `UnequipItemAction` | `UnequipItemSkill` | — |
-| <code>^toss (?:that&#124;it)$</code><br><code>^throw (?:that&#124;it) away$</code> | Throws the currently held item stack. | `TossHeldItemAction` | `TossHeldItemSkill` | — |
-| <code>^how many ([\w ]+) do you have$</code> | Reports how many matching items are in inventory. | `CountItemAction` | `CountInventoryItemSkill`<br>`SayMessageSkill` | — |
-| <code>^what are you holding$</code><br><code>^show me your hand$</code> | Reports the currently held item. | `SayHeldItemAction` | `SayMessageSkill` | — |
-| <code>^what are you wearing$</code><br><code>^show me your armor$</code> | Reports currently equipped armor. | `SayArmorAction` | `GetEquippedArmorSkill`<br>`SayMessageSkill` | — |
-| <code>^do you have (?:a &#124;an &#124;any )?([\w ]+)$</code> | Reports whether a matching item is in inventory. | `FindItemAction` | `CountInventoryItemSkill`<br>`SayMessageSkill` | — |
-| <code>^eat (?:a&#124;an&#124;the&#124;some) ([\w ]+)$</code> | Makes the NPC eat specific food. | `EatSpecificFoodAction` | `EatFoodSkill` | — |
-| <code>^mine (?:some &#124;a &#124;an &#124;the )?([\w ]+)$</code><br><code>^collect (?:some &#124;a &#124;an &#124;the )?([\w ]+)$</code> | Finds, approaches, and mines a matching block. | `MineBlockAction` | `CollectBlockSkill` | — |
-| <code>^(?:dig&#124;mine&#124;break) (?:that&#124;this)(?: block)?$</code> | Mines the block under the crosshair. | `MineTargetBlockAction` | `DigBlockSkill` | The target must be within cursor reach and diggable. |
-| <code>^dig down$</code><br><code>^dig a hole$</code> | Makes the NPC dig down. | `DigDownAction` | `DigBlockSkill` | The block below must be diggable. |
-| <code>^pick up (?:the )?(?:items&#124;drops)$</code><br><code>^collect (?:the )?(?:items&#124;drops)$</code> | Finds the nearest dropped item and moves to it. | `CollectDropsAction` | `CollectItemsSkill`<br>`MoveToLocationSkill` | — |
-| <code>^chop (?:a &#124;the &#124;down a )?tree$</code><br><code>^chop (?:some )?wood$</code><br><code>^get (?:some )?wood$</code> | Finds and collects a nearby log block. | `ChopTreeAction` | `CollectBlockSkill` | — |
-| <code>^harvest (?:the )?(?:crops&#124;wheat&#124;farm)$</code> | Makes the NPC harvest crops. | `HarvestCropsAction` | `HarvestCropsSkill` | Only harvests mature nearby crops. |
-| <code>^plant (?:the &#124;some )?seeds$</code> | Makes the NPC plant seeds. | `PlantSeedsAction` | `PlantSeedsSkill` | Requires seeds and empty nearby farmland. |
-| <code>^till the (?:soil&#124;ground)$</code><br><code>^hoe the ground$</code> | Makes the NPC till soil. | `TillSoilAction` | `TillSoilSkill` | Requires a hoe and suitable nearby ground. |
-| <code>^open the door$</code> | Finds and activates a nearby door. | `OpenDoorAction` | `ActivateBlockSkill` | — |
-| <code>^close the door$</code><br><code>^shut the door$</code> | Finds and activates a nearby door. | `CloseDoorAction` | `ActivateBlockSkill` | — |
-| <code>^(?:flip&#124;pull&#124;toggle) the lever$</code> | Finds and activates a nearby lever. | `FlipLeverAction` | `ActivateBlockSkill` | — |
-| <code>^(?:press&#124;push) the button$</code> | Finds and activates a nearby button. | `PressButtonAction` | `ActivateBlockSkill` | — |
-| <code>^ring the bell$</code> | Finds and activates a nearby bell. | `RingBellAction` | `ActivateBlockSkill` | — |
-| <code>^pillar up(?: (\d+))?$</code><br><code>^tower up(?: (\d+))?$</code> | Makes the NPC build pillar. | `BuildPillarAction` | `BuildPillarSkill` | Requires placeable blocks in inventory. |
-| <code>^place (?:a &#124;an &#124;the )?([\w ]+)$</code> | Makes the NPC place block. | `PlaceBlockAction` | `PlaceBlockSkill` | — |
-| <code>^set up a crafting table$</code><br><code>^place a crafting table$</code> | Places a crafting table from inventory. | `PlaceCraftingTableAction` | `PlaceBlockSkill` | — |
-| <code>^(?:place&#124;put) (?:a &#124;down a )?torch$</code><br><code>^light it up$</code><br><code>^it(?:'s&#124; is) too dark$</code> | Places a torch from inventory. | `PlaceTorchAction` | `PlaceBlockSkill` | — |
-| <code>^draft (?:a &#124;an &#124;some )?([\w ]+)$</code><br><code>^lake (?:a &#124;an &#124;some )?([\w ]+)$</code> | Makes the NPC craft item. | `CraftItemAction` | `CraftItemSkill` | Requires a known available recipe and, when needed, a nearby crafting table. |
-| <code>^smelt (?:the &#124;some )?([\w ]+)$</code><br><code>^cook (?:the &#124;some )?([\w ]+)$</code> | Makes the NPC smelt item. | `SmeltItemAction` | `SmeltItemSkill` | Requires a nearby furnace, matching input, and fuel. |
-| <code>^what(?:'s&#124; is) in the chest$</code><br><code>^check the chest$</code> | Reports the contents of a nearby container. | `SayChestContentsAction` | `ListChestSkill` | — |
-| <code>^(?:put&#124;deposit&#124;stash) your (?:items&#124;loot&#124;stuff) in(?:to)? the chest$</code> | Makes the NPC deposit to chest. | `DepositToChestAction` | `DepositToChestSkill` | Deposits the complete inventory into the nearest chest, trapped chest, or barrel. |
-| <code>^(?:take&#124;grab&#124;get) (?:the &#124;some &#124;a &#124;an )?([\w ]+) from the chest$</code> | Makes the NPC withdraw item from chest. | `WithdrawItemFromChestAction` | `WithdrawFromChestSkill` | Uses the nearest chest, trapped chest, or barrel. |
-| <code>^empty the chest$</code><br><code>^take everything from the chest$</code> | Withdraws every item from a nearby container. | `EmptyChestAction` | `WithdrawFromChestSkill` | Uses the nearest chest, trapped chest, or barrel. |
-| <code>^(?:ride&#124;mount) (?:the &#124;a &#124;an )?([\w ]+)$</code> | Makes the NPC mount entity. | `MountEntityAction` | `MountEntitySkill` | — |
-| <code>^dismount$</code><br><code>^get off$</code><br><code>^hop off$</code> | Makes the NPC dismount. | `DismountAction` | `DismountSkill` | — |
-| <code>^go fishing$</code><br><code>^catch (?:a &#124;some )?fish$</code> | Makes the NPC fish. | `FishAction` | `FishSkill` | Requires a fishing rod. |
-| <code>^feed the ([\w ]+)$</code> | Makes the NPC feed animal. | `FeedAnimalAction` | `FeedAnimalSkill` | — |
-| <code>^breed the ([\w ]+)$</code> | Makes the NPC breed animals. | `BreedAnimalsAction` | `BreedAnimalsSkill` | Requires two nearby matching animals and suitable food. |
-| <code>^milk the cow$</code> | Uses a bucket on the nearest cow. | `MilkCowAction` | `UseItemOnEntitySkill` | — |
-| <code>^shear the sheep$</code> | Uses shears on the nearest sheep. | `ShearSheepAction` | `UseItemOnEntitySkill` | — |
-| <code>^how many ([\w ]+) are (?:there&#124;around&#124;nearby&#124;near you)$</code> | Reports how many matching entities are nearby. | `CountEntitiesAction` | `CountEntitiesSkill`<br>`SayMessageSkill` | — |
-| <code>^where is the nearest ([\w ]+)$</code> | Reports the nearest matching entity. | `FindNearestEntityAction` | `FindNearestEntitySkill`<br>`SayMessageSkill` | — |
-| <code>^throw an egg$</code> | Equips and throws an egg. | `ThrowEggAction` | `ActivateItemSkill` | Requires an egg in inventory. |
-| <code>^how(?:'s&#124; is) your health$</code><br><code>^health check$</code><br><code>^are you (?:ok&#124;okay&#124;hurt)$</code> | Reports the NPC's health. | `SayHealthAction` | `SayMessageSkill` | — |
-| <code>^are you hungry$</code><br><code>^how(?:'s&#124; is) your (?:food&#124;hunger)$</code> | Reports the NPC's hunger level. | `SayFoodLevelAction` | `SayMessageSkill` | — |
-| <code>^what time is it$</code><br><code>^is it (?:day&#124;night)$</code> | Reports the Minecraft time and whether it is day or night. | `SayTimeAction` | `SayMessageSkill` | — |
-| <code>^what(?:'s&#124; is) the weather$</code><br><code>^is it raining$</code> | Reports the current weather. | `SayWeatherAction` | `SayMessageSkill` | — |
-| <code>^what biome (?:is this&#124;are you in)$</code> | Reports the current biome. | `SayBiomeAction` | `SayMessageSkill` | — |
-| <code>^who(?:'s&#124; is) online$</code><br><code>^list (?:the )?players$</code> | Reports visible players. | `ListPlayersAction` | `ListVisiblePlayersSkill`<br>`SayMessageSkill` | — |
-| <code>^what dimension$</code> | Reports the current dimension. | `SayDimensionAction` | `SayMessageSkill` | — |
-| <code>^what version$</code> | Reports the Minecraft NPC version. | `SayVersionAction` | `SayMessageSkill` | — |
-| <code>^what are you doing$</code><br><code>^status report$</code> | Reports the latest registered action. | `SayLatestActionAction` | `SayMessageSkill` | — |
-| <code>^what have you been up to$</code><br><code>^how busy have you been$</code> | Reports the number of registered actions. | `SayActionCountAction` | `SayMessageSkill` | — |
-| <code>^what level are you$</code><br><code>^how much (?:xp&#124;experience)$</code> | Reports the NPC's experience level. | `SayExperienceAction` | `SayMessageSkill` | — |
-| <code>^how dark is it$</code><br><code>^what(?:'s&#124; is) the light level$</code> | Reports the light level at the current position. | `SayLightLevelAction` | `SayMessageSkill` | — |
-| <code>^how high (?:up )?are you$</code><br><code>^what(?:'s&#124; is) your (?:altitude&#124;elevation)$</code> | Reports the current elevation. | `SayElevationAction` | `SayMessageSkill` | — |
-| <code>^how far (?:away )?am i$</code> | Reports the distance to the commanding player. | `SayDistanceToPlayerAction` | `GetPlayerDistanceSkill`<br>`SayMessageSkill` | — |
-| <code>^who(?:'s&#124; is) (?:closest&#124;nearest) to you$</code> | Reports the nearest visible player. | `SayNearestPlayerAction` | `FindNearestPlayerSkill`<br>`SayMessageSkill` | — |
-| <code>^how long have you been (?:online&#124;running)$</code><br><code>^what(?:'s&#124; is) your uptime$</code> | Reports the process uptime. | `SayUptimeAction` | `SayMessageSkill` | — |
-| <code>^(?:hello&#124;hi&#124;hey&#124;howdy)$</code> | Greets the commanding player. | `GreetAction` | `SayMessageSkill` | — |
-| <code>^(?:bye&#124;goodbye&#124;farewell&#124;see (?:ya&#124;you))$</code> | Says farewell to the commanding player. | `FarewellAction` | `SayMessageSkill` | — |
-| <code>^thank(?:s&#124; you)$</code> | Responds to the player's thanks. | `ThankYouResponseAction` | `SayMessageSkill` | — |
-| <code>^tell (?:me &#124;us )?a joke$</code> | Tells a random joke. | `TellJokeAction` | `SayMessageSkill` | — |
-| <code>^tell (?:me &#124;us )?a (?:fun )?fact$</code> | Tells a random Minecraft fact. | `TellFactAction` | `SayMessageSkill` | — |
-| <code>^sing (?:me &#124;us )?a song$</code><br><code>^sing something$</code> | Sings a short song. | `SingSongAction` | `SayMessageSkill` | — |
-| <code>^dance$</code><br><code>^show me your moves$</code> | Makes the NPC dance. | `DanceAction` | `DanceSkill` | — |
-| <code>^wave$</code><br><code>^say hi with your hand$</code> | Waves by swinging the right arm. | `WaveAction` | `SwingArmSkill` | — |
-| <code>^nod$</code> | Performs a nod gesture. | `NodAction` | `GestureSkill` | — |
-| <code>^shake your head$</code> | Performs a head-shake gesture. | `ShakeHeadAction` | `GestureSkill` | — |
-| <code>^sneak$</code><br><code>^crouch$</code> | Makes the NPC sneak. | `SneakAction` | `SneakSkill` | — |
-| <code>^stand up$</code><br><code>^stop (?:sneaking&#124;crouching)$</code> | Stops sneaking to stand upright. | `StandUpAction` | `SneakSkill` | — |
-| <code>^sprint$</code><br><code>^run forward$</code> | Makes the NPC sprint. | `SprintAction` | `SprintSkill` | Runs forward for a fixed duration. |
-| <code>^flip a coin$</code><br><code>^heads or tails$</code> | Flips a virtual coin and reports the result. | `CoinFlipAction` | `SayMessageSkill` | — |
-| <code>^roll (?:a &#124;the )?(?:die&#124;dice)$</code><br><code>^roll a d(\d+)$</code> | Rolls a die with the requested number of sides. | `RollDiceAction` | `SayMessageSkill` | Defaults to six sides when omitted. |
-| <code>^count ?down from (\d+)$</code> | Counts down from the requested number. | `CountdownAction` | `SayMessageSkill` | — |
-| <code>^say something nice$</code><br><code>^compliment me$</code> | Gives the commanding player a compliment. | `ComplimentPlayerAction` | `SayMessageSkill` | — |
-| <code>^tell me a secret$</code> | Whispers a message to the commanding player. | `WhisperSecretAction` | `WhisperSkill` | — |
+| `^enable auto mode(?: as ([a-z][a-z0-9-]*))?$`; `^start auto mode(?: as ([a-z][a-z0-9-]*))?$`; `^be autonomous(?: as ([a-z][a-z0-9-]*))?$` | Enables autonomous mode using the requested policy engine. | `EnableAutoModeAction` | — | Defaults to `homesteader`; the engine must be registered. |
+| `^disable auto mode$`; `^stop auto mode$` | Disables autonomous mode and stops its current activity. | `DisableAutoModeAction` | — | Stops the active engine and its movement. |
+| `^auto mode status$`; `^what is your autonomous goal$` | Reports the active auto-mode engine, goal, and state. | `SayAutoModeStatusAction` | `SayMessageSkill` | — |
+| `^eat$`; `^eat something$`; `^eat food$`; `^i am hungry$`; `^i'm hungry$` | Makes the NPC eat. | `EatAction` | `EatSkill` | — |
+| `^empty inventory$`; `^drop all items$`; `^clear inventory$` | Makes the NPC empty inventory. | `EmptyInventoryAction` | `EmptyInventorySkill` | — |
+| `^what is your location\?$`; `^send location$` | Reports the NPC's current coordinates. | `SayCurrentLocationAction` | `SayMessageSkill` | — |
+| `^guard the area$`; `^defend the area$`; `^stand your ground$` | Makes the NPC guard current location. | `GuardCurrentLocationAction` | `GuardLocationSkill` | Continuous until stopped; guards within a 30-block radius. |
+| `^come here$`; `^get over here$` | Moves to the commanding player's position. | `MoveToPlayerLocationAction` | `GetPlayerPositionSkill`, `MoveToLocationSkill` | The commanding player must be visible. |
+| `^go to sleep$`; `^time to sleep$`; `^sleep$` | Makes the NPC sleep. | `SleepAction` | `SleepSkill` | Requires a nearby usable bed and a valid sleeping time or thunderstorm. |
+| `^stop$`; `^halt$`; `^hold up$` | Stops current movement, combat, and continuous activities. | `StopCurrentAction` | `StopSkill` | — |
+| `^move\s+(\d+)\s+blocks?\s+(forward\|backward\|leftward\|rightward\|downward\|upward)$` | Moves the requested distance in a relative direction. | `MoveBlocksDistanceToDirectionAction` | `MoveBlocksDistanceToDirectionSkill` | — |
+| `^(?:move to\|find\|walk to)\s+(?:a\|an\|the)\s+(.+)$` | Finds a nearby object and moves to it. | `MoveToObjectAction` | `MoveToObjectSkill`, `MoveToLocationSkill` | — |
+| `^follow me$`; `^come with me$` | Makes the NPC follow player. | `FollowPlayerAction` | `FollowPlayerSkill` | Continuous until stopped; the commanding player must be visible. |
+| `^stop following$`; `^stay there$` | Stops following and other current movement. | `StopFollowingAction` | `StopSkill` | — |
+| `^go to (-?\d+)[, ]+(-?\d+)[, ]+(-?\d+)$` | Makes the NPC move to coordinates. | `MoveToCoordinatesAction` | `MoveToLocationSkill` | — |
+| `^go home$`; `^return home$`; `^go back home$` | Returns to the configured initial coordinates. | `GoHomeAction` | `MoveToLocationSkill` | Home is `init_coords`. |
+| `^jump$`; `^jump up and down$` | Makes the NPC jump. | `JumpAction` | `JumpSkill` | — |
+| `^look at me$` | Turns to look at the commanding player. | `LookAtPlayerAction` | `GetPlayerPositionSkill`, `LookAtLocationSkill`, `SayMessageSkill` | The commanding player must be visible. |
+| `^face (north\|south\|east\|west)$`; `^look to the (north\|south\|east\|west)$` | Makes the NPC face direction. | `FaceDirectionAction` | `FaceDirectionSkill` | — |
+| `^turn around$` | Turns to face the opposite direction. | `TurnAroundAction` | `FaceDirectionSkill` | — |
+| `^wander around$`; `^go for a walk$`; `^explore a bit$` | Makes the NPC wander around. | `WanderAroundAction` | `WanderSkill`, `MoveToLocationSkill` | — |
+| `^back away$`; `^back off$`; `^give me some space$` | Moves away from the current facing direction. | `BackAwayAction` | `MoveBlocksDistanceToDirectionSkill` | — |
+| `^go to player (\w+)$` | Finds a named player and moves to them. | `GoToPlayerAction` | `GetPlayerPositionSkill`, `MoveToLocationSkill`, `SayMessageSkill` | The named player must be visible. |
+| `^stay here$`; `^wait here$`; `^don't move$` | Stops current movement and remains in place. | `StayHereAction` | `StopSkill` | — |
+| `^attack player (\w+)$` | Makes the NPC attack player. | `AttackPlayerAction` | `AttackPlayerSkill` | The named player must be visible. |
+| `^(?:attack\|kill) (?:the )?nearest ([\w ]+)$` | Attacks the nearest matching entity. | `AttackNearestMobAction` | `AttackNearestEntitySkill` | — |
+| `^defend me$`; `^protect me$`; `^keep me safe$` | Attacks a hostile mob threatening the commanding player. | `DefendMeAction` | `DefendPlayerSkill` | Only attacks entities classified as hostile mobs. |
+| `^run away$`; `^flee$`; `^retreat$` | Finds an escape destination away from the nearest threat. | `FleeAction` | `FleeSkill`, `MoveToLocationSkill` | Requires a nearby hostile mob. |
+| `^(?:equip\|hold\|wield) (?:your \|the \|a \|an )?([\w ]+)$` | Makes the NPC equip item. | `EquipItemAction` | `EquipItemSkill` | — |
+| `^draw your (?:sword\|weapon)$`; `^equip (?:your )?weapon$`; `^arm yourself$` | Equips an available weapon. | `EquipWeaponAction` | `EquipItemSkill` | Uses the first available sword or axe. |
+| `^raise your shield$`; `^equip (?:your )?shield$` | Equips an available shield. | `EquipShieldAction` | `EquipItemSkill` | Requires a shield in inventory. |
+| `^put on (?:your )?armor$`; `^armor up$`; `^gear up$` | Makes the NPC equip armor. | `EquipArmorAction` | `EquipArmorSkill` | — |
+| `^stand down$`; `^cease fire$`; `^stop attacking$` | Stops combat and other current activities. | `StandDownAction` | `StopSkill` | — |
+| `^hunt for food$`; `^go hunting$` | Hunts an allowed nearby animal for food. | `HuntFoodAction` | `HuntFoodSkill` | Limited by the configured animal allow-list and maximum distance. |
+| `^keep watch$`; `^any (?:mobs\|threats) nearby$`; `^report threats$` | Reports hostile mobs within the configured radius. | `ReportThreatsAction` | `FindNearbyThreatsSkill`, `SayMessageSkill` | — |
+| `^list (?:your )?inventory$`; `^what(?:'s\| is) in your inventory$`; `^show me your inventory$` | Reports the contents of the NPC's inventory. | `ListInventoryAction` | `GetInventorySummarySkill`, `SayMessageSkill` | — |
+| `^drop (?:your \|the \|a \|an )?(?!all\b)([\w ]+)$` | Makes the NPC drop item. | `DropItemAction` | `DropItemSkill` | — |
+| `^give me (?:a \|an \|the \|some )?(?!space\b)([\w ]+)$`; `^hand me (?:a \|an \|the \|some )?([\w ]+)$` | Gives a matching inventory item to the commanding player. | `GiveItemToPlayerAction` | `GiveItemSkill` | The commanding player must be visible and the item must be in inventory. |
+| `^put (?:that\|it) away$`; `^unequip$`; `^empty your hands?$` | Makes the NPC unequip item. | `UnequipItemAction` | `UnequipItemSkill` | — |
+| `^toss (?:that\|it)$`; `^throw (?:that\|it) away$` | Throws the currently held item stack. | `TossHeldItemAction` | `TossHeldItemSkill` | — |
+| `^how many ([\w ]+) do you have$` | Reports how many matching items are in inventory. | `CountItemAction` | `CountInventoryItemSkill`, `SayMessageSkill` | — |
+| `^what are you holding$`; `^show me your hand$` | Reports the currently held item. | `SayHeldItemAction` | `SayMessageSkill` | — |
+| `^what are you wearing$`; `^show me your armor$` | Reports currently equipped armor. | `SayArmorAction` | `GetEquippedArmorSkill`, `SayMessageSkill` | — |
+| `^do you have (?:a \|an \|any )?([\w ]+)$` | Reports whether a matching item is in inventory. | `FindItemAction` | `CountInventoryItemSkill`, `SayMessageSkill` | — |
+| `^eat (?:a\|an\|the\|some) ([\w ]+)$` | Makes the NPC eat specific food. | `EatSpecificFoodAction` | `EatFoodSkill` | — |
+| `^mine (?:some \|a \|an \|the )?([\w ]+)$`; `^collect (?:some \|a \|an \|the )?([\w ]+)$` | Finds, approaches, and mines a matching block. | `MineBlockAction` | `CollectBlockSkill` | — |
+| `^(?:dig\|mine\|break) (?:that\|this)(?: block)?$` | Mines the block under the crosshair. | `MineTargetBlockAction` | `DigBlockSkill` | The target must be within cursor reach and diggable. |
+| `^dig down$`; `^dig a hole$` | Makes the NPC dig down. | `DigDownAction` | `DigBlockSkill` | The block below must be diggable. |
+| `^pick up (?:the )?(?:items\|drops)$`; `^collect (?:the )?(?:items\|drops)$` | Finds the nearest dropped item and moves to it. | `CollectDropsAction` | `CollectItemsSkill`, `MoveToLocationSkill` | — |
+| `^chop (?:a \|the \|down a )?tree$`; `^chop (?:some )?wood$`; `^get (?:some )?wood$` | Finds and collects a nearby log block. | `ChopTreeAction` | `CollectBlockSkill` | — |
+| `^harvest (?:the )?(?:crops\|wheat\|farm)$` | Makes the NPC harvest crops. | `HarvestCropsAction` | `HarvestCropsSkill` | Only harvests mature nearby crops. |
+| `^plant (?:the \|some )?seeds$` | Makes the NPC plant seeds. | `PlantSeedsAction` | `PlantSeedsSkill` | Requires seeds and empty nearby farmland. |
+| `^till the (?:soil\|ground)$`; `^hoe the ground$` | Makes the NPC till soil. | `TillSoilAction` | `TillSoilSkill` | Requires a hoe and suitable nearby ground. |
+| `^open the door$` | Finds and activates a nearby door. | `OpenDoorAction` | `ActivateBlockSkill` | — |
+| `^close the door$`; `^shut the door$` | Finds and activates a nearby door. | `CloseDoorAction` | `ActivateBlockSkill` | — |
+| `^(?:flip\|pull\|toggle) the lever$` | Finds and activates a nearby lever. | `FlipLeverAction` | `ActivateBlockSkill` | — |
+| `^(?:press\|push) the button$` | Finds and activates a nearby button. | `PressButtonAction` | `ActivateBlockSkill` | — |
+| `^ring the bell$` | Finds and activates a nearby bell. | `RingBellAction` | `ActivateBlockSkill` | — |
+| `^pillar up(?: (\d+))?$`; `^tower up(?: (\d+))?$` | Makes the NPC build pillar. | `BuildPillarAction` | `BuildPillarSkill` | Requires placeable blocks in inventory. |
+| `^place (?:a \|an \|the )?([\w ]+)$` | Makes the NPC place block. | `PlaceBlockAction` | `PlaceBlockSkill` | — |
+| `^set up a crafting table$`; `^place a crafting table$` | Places a crafting table from inventory. | `PlaceCraftingTableAction` | `PlaceBlockSkill` | — |
+| `^(?:place\|put) (?:a \|down a )?torch$`; `^light it up$`; `^it(?:'s\| is) too dark$` | Places a torch from inventory. | `PlaceTorchAction` | `PlaceBlockSkill` | — |
+| `^draft (?:a \|an \|some )?([\w ]+)$`; `^lake (?:a \|an \|some )?([\w ]+)$` | Makes the NPC craft item. | `CraftItemAction` | `CraftItemSkill` | Requires a known available recipe and, when needed, a nearby crafting table. |
+| `^smelt (?:the \|some )?([\w ]+)$`; `^cook (?:the \|some )?([\w ]+)$` | Makes the NPC smelt item. | `SmeltItemAction` | `SmeltItemSkill` | Requires a nearby furnace, matching input, and fuel. |
+| `^what(?:'s\| is) in the chest$`; `^check the chest$` | Reports the contents of a nearby container. | `SayChestContentsAction` | `ListChestSkill` | — |
+| `^(?:put\|deposit\|stash) your (?:items\|loot\|stuff) in(?:to)? the chest$` | Makes the NPC deposit to chest. | `DepositToChestAction` | `DepositToChestSkill` | Deposits the complete inventory into the nearest chest, trapped chest, or barrel. |
+| `^(?:take\|grab\|get) (?:the \|some \|a \|an )?([\w ]+) from the chest$` | Makes the NPC withdraw item from chest. | `WithdrawItemFromChestAction` | `WithdrawFromChestSkill` | Uses the nearest chest, trapped chest, or barrel. |
+| `^empty the chest$`; `^take everything from the chest$` | Withdraws every item from a nearby container. | `EmptyChestAction` | `WithdrawFromChestSkill` | Uses the nearest chest, trapped chest, or barrel. |
+| `^(?:ride\|mount) (?:the \|a \|an )?([\w ]+)$` | Makes the NPC mount entity. | `MountEntityAction` | `MountEntitySkill` | — |
+| `^dismount$`; `^get off$`; `^hop off$` | Makes the NPC dismount. | `DismountAction` | `DismountSkill` | — |
+| `^go fishing$`; `^catch (?:a \|some )?fish$` | Makes the NPC fish. | `FishAction` | `FishSkill` | Requires a fishing rod. |
+| `^feed the ([\w ]+)$` | Makes the NPC feed animal. | `FeedAnimalAction` | `FeedAnimalSkill` | — |
+| `^breed the ([\w ]+)$` | Makes the NPC breed animals. | `BreedAnimalsAction` | `BreedAnimalsSkill` | Requires two nearby matching animals and suitable food. |
+| `^milk the cow$` | Uses a bucket on the nearest cow. | `MilkCowAction` | `UseItemOnEntitySkill` | — |
+| `^shear the sheep$` | Uses shears on the nearest sheep. | `ShearSheepAction` | `UseItemOnEntitySkill` | — |
+| `^how many ([\w ]+) are (?:there\|around\|nearby\|near you)$` | Reports how many matching entities are nearby. | `CountEntitiesAction` | `CountEntitiesSkill`, `SayMessageSkill` | — |
+| `^where is the nearest ([\w ]+)$` | Reports the nearest matching entity. | `FindNearestEntityAction` | `FindNearestEntitySkill`, `SayMessageSkill` | — |
+| `^throw an egg$` | Equips and throws an egg. | `ThrowEggAction` | `ActivateItemSkill` | Requires an egg in inventory. |
+| `^how(?:'s\| is) your health$`; `^health check$`; `^are you (?:ok\|okay\|hurt)$` | Reports the NPC's health. | `SayHealthAction` | `SayMessageSkill` | — |
+| `^are you hungry$`; `^how(?:'s\| is) your (?:food\|hunger)$` | Reports the NPC's hunger level. | `SayFoodLevelAction` | `SayMessageSkill` | — |
+| `^what time is it$`; `^is it (?:day\|night)$` | Reports the Minecraft time and whether it is day or night. | `SayTimeAction` | `SayMessageSkill` | — |
+| `^what(?:'s\| is) the weather$`; `^is it raining$` | Reports the current weather. | `SayWeatherAction` | `SayMessageSkill` | — |
+| `^what biome (?:is this\|are you in)$` | Reports the current biome. | `SayBiomeAction` | `SayMessageSkill` | — |
+| `^who(?:'s\| is) online$`; `^list (?:the )?players$` | Reports visible players. | `ListPlayersAction` | `ListVisiblePlayersSkill`, `SayMessageSkill` | — |
+| `^what dimension$` | Reports the current dimension. | `SayDimensionAction` | `SayMessageSkill` | — |
+| `^what version$` | Reports the Minecraft NPC version. | `SayVersionAction` | `SayMessageSkill` | — |
+| `^what are you doing$`; `^status report$` | Reports the latest registered action. | `SayLatestActionAction` | `SayMessageSkill` | — |
+| `^what have you been up to$`; `^how busy have you been$` | Reports the number of registered actions. | `SayActionCountAction` | `SayMessageSkill` | — |
+| `^what level are you$`; `^how much (?:xp\|experience)$` | Reports the NPC's experience level. | `SayExperienceAction` | `SayMessageSkill` | — |
+| `^how dark is it$`; `^what(?:'s\| is) the light level$` | Reports the light level at the current position. | `SayLightLevelAction` | `SayMessageSkill` | — |
+| `^how high (?:up )?are you$`; `^what(?:'s\| is) your (?:altitude\|elevation)$` | Reports the current elevation. | `SayElevationAction` | `SayMessageSkill` | — |
+| `^how far (?:away )?am i$` | Reports the distance to the commanding player. | `SayDistanceToPlayerAction` | `GetPlayerDistanceSkill`, `SayMessageSkill` | — |
+| `^who(?:'s\| is) (?:closest\|nearest) to you$` | Reports the nearest visible player. | `SayNearestPlayerAction` | `FindNearestPlayerSkill`, `SayMessageSkill` | — |
+| `^how long have you been (?:online\|running)$`; `^what(?:'s\| is) your uptime$` | Reports the process uptime. | `SayUptimeAction` | `SayMessageSkill` | — |
+| `^(?:hello\|hi\|hey\|howdy)$` | Greets the commanding player. | `GreetAction` | `SayMessageSkill` | — |
+| `^(?:bye\|goodbye\|farewell\|see (?:ya\|you))$` | Says farewell to the commanding player. | `FarewellAction` | `SayMessageSkill` | — |
+| `^thank(?:s\| you)$` | Responds to the player's thanks. | `ThankYouResponseAction` | `SayMessageSkill` | — |
+| `^tell (?:me \|us )?a joke$` | Tells a random joke. | `TellJokeAction` | `SayMessageSkill` | — |
+| `^tell (?:me \|us )?a (?:fun )?fact$` | Tells a random Minecraft fact. | `TellFactAction` | `SayMessageSkill` | — |
+| `^sing (?:me \|us )?a song$`; `^sing something$` | Sings a short song. | `SingSongAction` | `SayMessageSkill` | — |
+| `^dance$`; `^show me your moves$` | Makes the NPC dance. | `DanceAction` | `DanceSkill` | — |
+| `^wave$`; `^say hi with your hand$` | Waves by swinging the right arm. | `WaveAction` | `SwingArmSkill` | — |
+| `^nod$` | Performs a nod gesture. | `NodAction` | `GestureSkill` | — |
+| `^shake your head$` | Performs a head-shake gesture. | `ShakeHeadAction` | `GestureSkill` | — |
+| `^sneak$`; `^crouch$` | Makes the NPC sneak. | `SneakAction` | `SneakSkill` | — |
+| `^stand up$`; `^stop (?:sneaking\|crouching)$` | Stops sneaking to stand upright. | `StandUpAction` | `SneakSkill` | — |
+| `^sprint$`; `^run forward$` | Makes the NPC sprint. | `SprintAction` | `SprintSkill` | Runs forward for a fixed duration. |
+| `^flip a coin$`; `^heads or tails$` | Flips a virtual coin and reports the result. | `CoinFlipAction` | `SayMessageSkill` | — |
+| `^roll (?:a \|the )?(?:die\|dice)$`; `^roll a d(\d+)$` | Rolls a die with the requested number of sides. | `RollDiceAction` | `SayMessageSkill` | Defaults to six sides when omitted. |
+| `^count ?down from (\d+)$` | Counts down from the requested number. | `CountdownAction` | `SayMessageSkill` | — |
+| `^say something nice$`; `^compliment me$` | Gives the commanding player a compliment. | `ComplimentPlayerAction` | `SayMessageSkill` | — |
+| `^tell me a secret$` | Whispers a message to the commanding player. | `WhisperSecretAction` | `WhisperSkill` | — |
 
 ## Design
 
