@@ -1,5 +1,5 @@
-test | /opt/hostedtoolcache/node/22.23.2/x64/lib/node_modules/bob/node_modules/.bin/mocha --colors --reporter spec --recursive test/
-(node:4169) [THREE_CJS_DEPRECATED] DeprecationWarning: `require("three")` is deprecated and will be removed.
+test | /opt/hostedtoolcache/node/24.21.0/x64/lib/node_modules/bob/node_modules/.bin/mocha --colors --reporter spec --recursive test/
+(node:4175) [THREE_CJS_DEPRECATED] DeprecationWarning: `require("three")` is deprecated and will be removed.
 Replace `const THREE = require("three")` with `import * as THREE from "three"`.
 (Use `node --trace-deprecation ...` to show where the warning was created)
 
@@ -564,15 +564,15 @@ Replace `const THREE = require("three")` with `import * as THREE from "three"`.
   [32m  [32m✔[39m[0m[90m should contain commands with actions[0m
 
 [0m  cli - start[0m
-  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (148ms)[0m
+  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (152ms)[0m
 AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1135:18)
-    at afterConnectMultiple (node:net:1716:7) {
+    at internalConnectMultiple (node:net:1430:18)
+    at afterConnectMultiple (node:net:2099:7) {
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:25565
-        at createConnectionError (node:net:1679:14)
-        at afterConnectMultiple (node:net:1709:16) {
+        at createConnectionError (node:net:2062:14)
+        at afterConnectMultiple (node:net:2092:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -580,8 +580,8 @@ AggregateError [ECONNREFUSED]:
       port: 25565
     },
     Error: connect ECONNREFUSED 127.0.0.1:25565
-        at createConnectionError (node:net:1679:14)
-        at afterConnectMultiple (node:net:1709:16) {
+        at createConnectionError (node:net:2062:14)
+        at afterConnectMultiple (node:net:2092:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -591,13 +591,13 @@ AggregateError [ECONNREFUSED]:
   ]
 }
 AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1135:18)
-    at afterConnectMultiple (node:net:1716:7) {
+    at internalConnectMultiple (node:net:1430:18)
+    at afterConnectMultiple (node:net:2099:7) {
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:25565
-        at createConnectionError (node:net:1679:14)
-        at afterConnectMultiple (node:net:1709:16) {
+        at createConnectionError (node:net:2062:14)
+        at afterConnectMultiple (node:net:2092:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -605,8 +605,8 @@ AggregateError [ECONNREFUSED]:
       port: 25565
     },
     Error: connect ECONNREFUSED 127.0.0.1:25565
-        at createConnectionError (node:net:1679:14)
-        at afterConnectMultiple (node:net:1709:16) {
+        at createConnectionError (node:net:2062:14)
+        at afterConnectMultiple (node:net:2092:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -693,7 +693,7 @@ AggregateError [ECONNREFUSED]:
   * [32mWebInventory plugin[39m
 [1m[36mSpawning bot...[39m[22m
   * [32mbob has been spawned[39m
-  [32m  [32m✔[39m[0m[90m should wire up plugins on spawn and route chat messages addressed to the bot[0m[33m (62ms)[0m
+  [32m  [32m✔[39m[0m[90m should wire up plugins on spawn and route chat messages addressed to the bot[0m[33m (63ms)[0m
 
 [0m  Npc[0m
 [0m    eat[0m
@@ -936,7 +936,7 @@ AggregateError [ECONNREFUSED]:
   * [32mFinished dancing[39m
   [32m  [32m✔[39m[0m[90m should toggle dance moves on and off[0m
   * [32mFinished dancing[39m
-  [32m  [32m✔[39m[0m[90m should default the step delay when not specified[0m[31m (2405ms)[0m
+  [32m  [32m✔[39m[0m[90m should default the step delay when not specified[0m[31m (2403ms)[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  DefendPlayerSkill[0m
@@ -1014,7 +1014,7 @@ AggregateError [ECONNREFUSED]:
 
 [0m  EmptyInventorySkill[0m
   * [32mEmptied the inventory[39m
-  [32m  [32m✔[39m[0m[90m should run EmptyInventorySkill[0m[31m (501ms)[0m
+  [32m  [32m✔[39m[0m[90m should run EmptyInventorySkill[0m[31m (502ms)[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  EquipArmorSkill[0m
