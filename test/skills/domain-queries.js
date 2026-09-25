@@ -144,4 +144,14 @@ describe("domain query skills", () => {
       "zombie",
     ]);
   });
+
+  it("reports when no matching entity or player is visible", () => {
+    const bot = {
+      username: "npc",
+      nearestEntity: () => null,
+    };
+
+    assert.isNull(new FindNearestEntitySkill(bot).do({ entityName: "zombie" }));
+    assert.isNull(new FindNearestPlayerSkill(bot).do({}));
+  });
 });
