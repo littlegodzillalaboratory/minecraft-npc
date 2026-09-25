@@ -15,9 +15,10 @@ describe("EnableAutoModeAction", () => {
       getRegister: () => ({ setActionInfo: setActionInfo }),
     });
 
-    await action.do({});
+    await action.do({ messageElems: [undefined, "survivor"] });
 
     assert.equals(enableAutoMode.callCount, 1);
+    assert.equals(enableAutoMode.firstCall.args, ["survivor"]);
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });
 });

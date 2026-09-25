@@ -2,9 +2,9 @@
   {
     "action": "EnableAutoModeAction",
     "regexes": [
-      "^enable auto mode$",
-      "^start auto mode$",
-      "^be autonomous$"
+      "^enable auto mode(?: as ([a-z][a-z0-9-]*))?$",
+      "^start auto mode(?: as ([a-z][a-z0-9-]*))?$",
+      "^be autonomous(?: as ([a-z][a-z0-9-]*))?$"
     ]
   },
   {

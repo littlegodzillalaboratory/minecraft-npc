@@ -55,6 +55,7 @@ describe("cli - start", function () {
         "chatgpt_fallback_message",
         "chatgpt_enable_security_instructions",
         "auto_mode_enabled",
+        "auto_mode_engine",
         "auto_mode_evaluation_interval_in_seconds",
         "auto_mode_hunger_threshold",
         "auto_mode_minimum_food_reserve",

@@ -188,6 +188,7 @@ describe("MinecraftNpc - spawn and chat handling", () => {
       initCoords: [1, 2, 3],
       initMessages: ["hello"],
       autoModeEnabled: true,
+      autoModeEngine: "survivor",
     });
     sinon.stub(npc, "_getMinecraftNpcVersion").resolves("1.0.0");
     const enableAutoModeStub = sinon
@@ -207,6 +208,7 @@ describe("MinecraftNpc - spawn and chat handling", () => {
     });
     assert.equals(sayInitStub.firstCall.args[0], { messages: ["hello"] });
     assert.equals(enableAutoModeStub.callCount, 1);
+    assert.equals(enableAutoModeStub.firstCall.args, ["survivor"]);
     assert.isFunction(events.chat);
 
     // message from the bot itself is ignored

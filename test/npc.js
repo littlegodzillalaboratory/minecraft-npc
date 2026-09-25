@@ -132,11 +132,12 @@ describe("Npc", () => {
   describe("auto-mode", () => {
     it("should expose engine lifecycle methods", async () => {
       const npc = new Npc({ username: "bob" }, new Register(), {});
-      sinon.stub(npc.autoMode, "start").returns("started");
-      sinon.stub(npc.autoMode, "stop").resolves("stopped");
+      sinon.stub(npc.autoMode, "enable").returns("started");
+      sinon.stub(npc.autoMode, "disable").resolves("stopped");
       sinon.stub(npc.autoMode, "getStatus").returns({ enabled: true });
 
-      assert.equals(npc.enableAutoMode(), "started");
+      assert.equals(npc.enableAutoMode("survivor"), "started");
+      assert.equals(npc.autoMode.enable.firstCall.args, ["survivor"]);
       assert.equals(await npc.disableAutoMode(), "stopped");
       assert.equals(npc.getAutoModeStatus(), { enabled: true });
     });
