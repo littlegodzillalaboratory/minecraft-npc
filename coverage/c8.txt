@@ -1,4 +1,4 @@
-test | /opt/hostedtoolcache/node/26.10.0/x64/lib/node_modules/bob/node_modules/.bin/mocha --colors --reporter spec --recursive test/
+test | /opt/hostedtoolcache/node/22.23.2/x64/lib/node_modules/bob/node_modules/.bin/mocha --colors --reporter spec --recursive test/
 
 [0m[0m
 [0m  AttackNearestMobAction[0m
@@ -551,7 +551,7 @@ test | /opt/hostedtoolcache/node/26.10.0/x64/lib/node_modules/bob/node_modules/.
   [32m  [32m✔[39m[0m[90m should run WithdrawItemFromChestAction[0m
 
 [0m  AutoMode[0m
-  [32m  [32m✔[39m[0m[90m should enable the default survivor engine and report its policy[0m
+  [32m  [32m✔[39m[0m[90m should enable the default homesteader engine and report its policy[0m
   [32m  [32m✔[39m[0m[90m should reject an unknown policy engine[0m
   [32m  [32m✔[39m[0m[90m should disable safely before and after an engine is selected[0m
   [32m  [32m✔[39m[0m[90m should stop the active engine before selecting another policy[0m
@@ -561,15 +561,15 @@ test | /opt/hostedtoolcache/node/26.10.0/x64/lib/node_modules/bob/node_modules/.
   [32m  [32m✔[39m[0m[90m should contain commands with actions[0m
 
 [0m  cli - start[0m
-  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (140ms)[0m
+  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (143ms)[0m
 AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1492:18)
-    at afterConnectMultiple (node:net:2161:7) {
+    at internalConnectMultiple (node:net:1135:18)
+    at afterConnectMultiple (node:net:1716:7) {
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:25565
-        at createConnectionError (node:net:2124:14)
-        at afterConnectMultiple (node:net:2154:16) {
+        at createConnectionError (node:net:1679:14)
+        at afterConnectMultiple (node:net:1709:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -577,8 +577,8 @@ AggregateError [ECONNREFUSED]:
       port: 25565
     },
     Error: connect ECONNREFUSED 127.0.0.1:25565
-        at createConnectionError (node:net:2124:14)
-        at afterConnectMultiple (node:net:2154:16) {
+        at createConnectionError (node:net:1679:14)
+        at afterConnectMultiple (node:net:1709:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -588,13 +588,13 @@ AggregateError [ECONNREFUSED]:
   ]
 }
 AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1492:18)
-    at afterConnectMultiple (node:net:2161:7) {
+    at internalConnectMultiple (node:net:1135:18)
+    at afterConnectMultiple (node:net:1716:7) {
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:25565
-        at createConnectionError (node:net:2124:14)
-        at afterConnectMultiple (node:net:2154:16) {
+        at createConnectionError (node:net:1679:14)
+        at afterConnectMultiple (node:net:1709:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -602,8 +602,8 @@ AggregateError [ECONNREFUSED]:
       port: 25565
     },
     Error: connect ECONNREFUSED 127.0.0.1:25565
-        at createConnectionError (node:net:2124:14)
-        at afterConnectMultiple (node:net:2154:16) {
+        at createConnectionError (node:net:1679:14)
+        at afterConnectMultiple (node:net:1709:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -624,19 +624,36 @@ AggregateError [ECONNREFUSED]:
   [32m  [32m✔[39m[0m[90m should own scheduling, status, evaluation, and shutdown lifecycle[0m
   [32m  [32m✔[39m[0m[90m should prevent overlap, provide idle defaults, and retain failures[0m
 
-[0m  Survivor[0m
+[0m  Homesteader[0m
 [1m[36mEvaluating...[39m[22m
   * [32mNo survival action needed[39m
   [32m  [32m✔[39m[0m[90m should start once, expose status, schedule evaluation, and stop[0m
 [1m[36mEvaluating...[39m[22m
-  * [32mThreat detected while health is low[39m
+  * [32mThreat detected while health is low: zombie (5 blocks away)[39m
   [32m  [32m✔[39m[0m[90m should flee from threats when health is low[0m
 [1m[36mEvaluating...[39m[22m
-  * [32mThreat detected[39m
+  * [32mThreat detected: breeze (7 blocks away)[39m
   [32m  [32m✔[39m[0m[90m should defend against threats when healthy[0m
 [1m[36mEvaluating...[39m[22m
   * [32mHunger detected and food is available[39m
   [32m  [32m✔[39m[0m[90m should eat available food when hungry[0m
+[1m[36mEvaluating...[39m[22m
+  * [32mNight detected while away from home[39m
+  [32m  [32m✔[39m[0m[90m should return home at night when outside the home radius[0m
+[1m[36mEvaluating...[39m[22m
+  * [32mNight detected while at home[39m
+  [32m  [32m✔[39m[0m[90m should sleep at night when inside the home radius[0m
+[1m[36mEvaluating...[39m[22m
+  * [32mNight detected while at home[39m
+[1m[36mEvaluating...[39m[22m
+  * [32mWaiting before retrying sleep[39m
+[1m[36mEvaluating...[39m[22m
+  * [32mNight detected while at home[39m
+  [32m  [32m✔[39m[0m[90m should wait before retrying sleep after a recent attempt[0m
+  * [32mNo survival action needed[39m
+  [32m  [32m✔[39m[0m[90m should not return home during daytime[0m
+  * [32mNight detected while away from home[39m
+  [32m  [32m✔[39m[0m[90m should use the origin as home when init coordinates are unavailable[0m
 [1m[36mEvaluating...[39m[22m
   * [32mLow food reserves detected[39m
   * [32mAllowed hunting target detected: chicken[39m
@@ -673,9 +690,7 @@ AggregateError [ECONNREFUSED]:
   * [32mWebInventory plugin[39m
 [1m[36mSpawning bot...[39m[22m
   * [32mbob has been spawned[39m
-  [32m  [32m✔[39m[0m[90m should wire up plugins on spawn and route chat messages addressed to the bot[0m[33m (47ms)[0m
-(node:4269) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
-(Use `node --trace-deprecation ...` to show where the warning was created)
+  [32m  [32m✔[39m[0m[90m should wire up plugins on spawn and route chat messages addressed to the bot[0m[33m (62ms)[0m
 
 [0m  Npc[0m
 [0m    eat[0m
@@ -872,6 +887,7 @@ AggregateError [ECONNREFUSED]:
   [32m  [32m✔[39m[0m[90m should log default BaseSkill errors[0m
   [32m  [32m✔[39m[0m[90m should defer player-facing outcomes when managed by an NPC[0m
   [32m  [32m✔[39m[0m[90m should preserve standalone skill messaging[0m
+  [32m  [32m✔[39m[0m[90m should qualify only live, visible, nearby hostile entities[0m
 
 [0m  BreedAnimalsSkill[0m
   * [32mFed two animals for cow breeding[39m
@@ -917,7 +933,7 @@ AggregateError [ECONNREFUSED]:
   * [32mFinished dancing[39m
   [32m  [32m✔[39m[0m[90m should toggle dance moves on and off[0m
   * [32mFinished dancing[39m
-  [32m  [32m✔[39m[0m[90m should default the step delay when not specified[0m[31m (2406ms)[0m
+  [32m  [32m✔[39m[0m[90m should default the step delay when not specified[0m[31m (2405ms)[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  DefendPlayerSkill[0m
@@ -1043,8 +1059,9 @@ AggregateError [ECONNREFUSED]:
   * [32mFound an escape route from zombie[39m
   [32m  [32m✔[39m[0m[90m should move away from the nearest hostile mob[0m
   * [32mFound an escape route from zombie[39m
-  [32m  [32m✔[39m[0m[90m should ignore non-mob candidates and default distance when threat is on top of the bot[0m
+  [32m  [32m✔[39m[0m[90m should use registry category regardless of the entity type[0m
   [32m  [32m✔[39m[0m[90m should say nothing to flee from when no hostile mob is nearby[0m
+  [32m  [32m✔[39m[0m[90m should ignore a hostile mob hidden behind blocks[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  FollowPlayerSkill[0m
@@ -1285,7 +1302,7 @@ AggregateError [ECONNREFUSED]:
   [32m  [32m✔[39m[0m[90m should validate non-negative integers[0m
 
 
-[92m [0m[32m 468 passing[0m[90m (6s)[0m
+[92m [0m[32m 475 passing[0m[90m (6s)[0m
 
 SUCCESS | exit code 0
 ---------------------------------------|---------|----------|---------|---------|-------------------
@@ -1419,7 +1436,7 @@ All files                              |     100 |      100 |     100 |     100 
   withdraw-item-from-chest.js          |     100 |      100 |     100 |     100 |                   
  lib/engines                           |     100 |      100 |     100 |     100 |                   
   base.js                              |     100 |      100 |     100 |     100 |                   
-  survivor.js                          |     100 |      100 |     100 |     100 |                   
+  homesteader.js                       |     100 |      100 |     100 |     100 |                   
  lib/skills                            |     100 |      100 |     100 |     100 |                   
   activate-block.js                    |     100 |      100 |     100 |     100 |                   
   activate-item.js                     |     100 |      100 |     100 |     100 |                   
