@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Fixed
+- Fix package publishing via Suntory 1.9.0
+
 ## 1.0.0 - 2026-09-25
 ### Added
 - Add configurable deterministic auto-mode for survival, defence, eating, and restricted hunting (experimental)
