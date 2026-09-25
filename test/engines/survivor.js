@@ -1,6 +1,7 @@
 "use strict";
 import referee from "@sinonjs/referee";
 import sinon from "sinon";
+import bag from "bagofcli";
 
 import AttackNearestMobAction from "../../lib/actions/attack-nearest-mob.js";
 import Survivor from "../../lib/engines/survivor.js";
@@ -139,5 +140,52 @@ describe("Survivor", () => {
     await engine._evaluate();
     assert.equals(engine.lastOutcome, "failed: observation failed");
     await engine.stop();
+  });
+
+  it("should log evaluation headings and matched survival conditions", async () => {
+    const heading = sinon.stub(bag, "logStepHeading");
+    const success = sinon.stub(bag, "logStepItemSuccess");
+    const npc = createNpc();
+    const engine = new Survivor(npc, {});
+    npc.findNearestAllowedAnimal.returns({ name: "chicken" });
+
+    await engine.evaluate();
+    engine._selectDecision({
+      health: 8,
+      hunger: 20,
+      foodCount: 20,
+      nearbyThreats: ["zombie"],
+    });
+    engine._selectDecision({
+      health: 20,
+      hunger: 20,
+      foodCount: 20,
+      nearbyThreats: ["zombie"],
+    });
+    engine._selectDecision({
+      health: 20,
+      hunger: 14,
+      foodCount: 1,
+      nearbyThreats: [],
+    });
+    engine._selectDecision({
+      health: 20,
+      hunger: 20,
+      foodCount: 0,
+      nearbyThreats: [],
+    });
+
+    assert.equals(heading.firstCall.args, ["Evaluating..."]);
+    assert.equals(
+      success.getCalls().map((call) => call.args[0]),
+      [
+        "No survival action needed",
+        "Threat detected while health is low",
+        "Threat detected",
+        "Hunger detected and food is available",
+        "Low food reserves detected",
+        "Allowed hunting target detected: chicken",
+      ],
+    );
   });
 });
