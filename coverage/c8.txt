@@ -1,5 +1,5 @@
-test | /opt/hostedtoolcache/node/24.21.0/x64/lib/node_modules/bob/node_modules/.bin/mocha --colors --reporter spec --recursive test/
-(node:4173) [THREE_CJS_DEPRECATED] DeprecationWarning: `require("three")` is deprecated and will be removed.
+test | /opt/hostedtoolcache/node/26.10.0/x64/lib/node_modules/bob/node_modules/.bin/mocha --colors --reporter spec --recursive test/
+(node:4022) [THREE_CJS_DEPRECATED] DeprecationWarning: `require("three")` is deprecated and will be removed.
 Replace `const THREE = require("three")` with `import * as THREE from "three"`.
 (Use `node --trace-deprecation ...` to show where the warning was created)
 
@@ -564,15 +564,15 @@ Replace `const THREE = require("three")` with `import * as THREE from "three"`.
   [32m  [32m✔[39m[0m[90m should contain commands with actions[0m
 
 [0m  cli - start[0m
-  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (146ms)[0m
+  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (105ms)[0m
 AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1430:18)
-    at afterConnectMultiple (node:net:2099:7) {
+    at internalConnectMultiple (node:net:1492:18)
+    at afterConnectMultiple (node:net:2161:7) {
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:25565
-        at createConnectionError (node:net:2062:14)
-        at afterConnectMultiple (node:net:2092:16) {
+        at createConnectionError (node:net:2124:14)
+        at afterConnectMultiple (node:net:2154:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -580,8 +580,8 @@ AggregateError [ECONNREFUSED]:
       port: 25565
     },
     Error: connect ECONNREFUSED 127.0.0.1:25565
-        at createConnectionError (node:net:2062:14)
-        at afterConnectMultiple (node:net:2092:16) {
+        at createConnectionError (node:net:2124:14)
+        at afterConnectMultiple (node:net:2154:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -591,13 +591,13 @@ AggregateError [ECONNREFUSED]:
   ]
 }
 AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1430:18)
-    at afterConnectMultiple (node:net:2099:7) {
+    at internalConnectMultiple (node:net:1492:18)
+    at afterConnectMultiple (node:net:2161:7) {
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:25565
-        at createConnectionError (node:net:2062:14)
-        at afterConnectMultiple (node:net:2092:16) {
+        at createConnectionError (node:net:2124:14)
+        at afterConnectMultiple (node:net:2154:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -605,8 +605,8 @@ AggregateError [ECONNREFUSED]:
       port: 25565
     },
     Error: connect ECONNREFUSED 127.0.0.1:25565
-        at createConnectionError (node:net:2062:14)
-        at afterConnectMultiple (node:net:2092:16) {
+        at createConnectionError (node:net:2124:14)
+        at afterConnectMultiple (node:net:2154:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -693,7 +693,8 @@ AggregateError [ECONNREFUSED]:
   * [32mWebInventory plugin[39m
 [1m[36mSpawning bot...[39m[22m
   * [32mbob has been spawned[39m
-  [32m  [32m✔[39m[0m[90m should wire up plugins on spawn and route chat messages addressed to the bot[0m[33m (63ms)[0m
+  [32m  [32m✔[39m[0m[90m should wire up plugins on spawn and route chat messages addressed to the bot[0m[33m (40ms)[0m
+(node:4022) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
 
 [0m  Npc[0m
 [0m    eat[0m
@@ -732,9 +733,9 @@ AggregateError [ECONNREFUSED]:
     [32m  [32m✔[39m[0m[90m should expose autonomous survival observations[0m
 [0m    skill outcome handling[0m
   * [31mFailed: Broken[39m
-    [32m  [32m✔[39m[0m[90m should preserve deferred information and convert errors to outcomes[0m
   * [31mInvalid query[39m
   * [31mFailed: Query broke[39m
+    [32m  [32m✔[39m[0m[90m should preserve deferred information and convert errors to outcomes[0m
     [32m  [32m✔[39m[0m[90m should report query validation and execution failures[0m
 [0m    emptyInventory[0m
   * [32mEmptied the inventory[39m
@@ -747,11 +748,11 @@ AggregateError [ECONNREFUSED]:
   * [32mRelayed ChatGPT's reply to alice[39m
     [32m  [32m✔[39m[0m[90m should execute moveToLocation, guardLocation, messageChatGpt, and sayMessage[0m
 [0m    validation[0m
+    [32m  [32m✔[39m[0m[90m should fail validation branch[0m
+[0m    moveToObject[0m
   * [31mUnable to move bob to invalid location: a 2 3[39m
   * [31mUnable to say invalid message: [39m
   * [31mUnable to move bob 0 blocks forward[39m
-    [32m  [32m✔[39m[0m[90m should fail validation branch[0m
-[0m    moveToObject[0m
   * [32mFound the nearest bed[39m
   * [31mUnable to find object: bedroom: I cannot find any bedroom nearby[39m
     [32m  [32m✔[39m[0m[90m should move to a discoverable object or say when it cannot be found[0m
@@ -1014,7 +1015,7 @@ AggregateError [ECONNREFUSED]:
 
 [0m  EmptyInventorySkill[0m
   * [32mEmptied the inventory[39m
-  [32m  [32m✔[39m[0m[90m should run EmptyInventorySkill[0m[31m (502ms)[0m
+  [32m  [32m✔[39m[0m[90m should run EmptyInventorySkill[0m[31m (501ms)[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  EquipArmorSkill[0m
@@ -1131,7 +1132,7 @@ AggregateError [ECONNREFUSED]:
   * [32mFinished jumping[39m
   [32m  [32m✔[39m[0m[90m should press and release jump control[0m
   * [32mFinished jumping[39m
-  [32m  [32m✔[39m[0m[90m should default the jump duration when not specified[0m[31m (500ms)[0m
+  [32m  [32m✔[39m[0m[90m should default the jump duration when not specified[0m[31m (501ms)[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  ListChestSkill[0m
@@ -1228,7 +1229,7 @@ AggregateError [ECONNREFUSED]:
   * [32mFinished sprinting[39m
   [32m  [32m✔[39m[0m[90m should sprint forward then stop[0m
   * [32mFinished sprinting[39m
-  [32m  [32m✔[39m[0m[90m should default the sprint duration when not specified[0m[31m (2003ms)[0m
+  [32m  [32m✔[39m[0m[90m should default the sprint duration when not specified[0m[31m (2001ms)[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  StopSkill[0m
