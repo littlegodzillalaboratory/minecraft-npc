@@ -39,4 +39,32 @@ describe("BaseSkill", () => {
     assert.isUndefined(skill.fail("Unable to continue"));
     assert.equals(chat.callCount, 2);
   });
+
+  it("should qualify only live, visible, nearby hostile entities", () => {
+    const position = { x: 3, y: 4, z: 0 };
+    const bot = {
+      entity: { position: { x: 0, y: 0, z: 0 } },
+      registry: {
+        entitiesByName: {
+          zombie: { category: "Hostile mobs" },
+          cow: { category: "Passive mobs" },
+        },
+      },
+      canSeeEntity: sinon.stub().returns(true),
+    };
+    const skill = new BaseSkill(bot);
+
+    assert.isTrue(skill.isVisibleThreat({ name: "zombie", position }, 5));
+    assert.isFalse(skill.isVisibleThreat({ name: "zombie", position }, 4));
+    assert.isFalse(
+      skill.isVisibleThreat({ name: "zombie", position, isValid: false }),
+    );
+    assert.isFalse(
+      skill.isVisibleThreat({ name: "zombie", position, health: 0 }),
+    );
+    assert.isFalse(skill.isVisibleThreat({ name: "cow", position }, 5));
+    assert.isFalse(skill.isVisibleThreat(undefined, 5));
+    bot.canSeeEntity.returns(false);
+    assert.isFalse(skill.isVisibleThreat({ name: "zombie", position }, 5));
+  });
 });

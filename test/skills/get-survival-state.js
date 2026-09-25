@@ -37,6 +37,7 @@ describe("GetSurvivalStateSkill", () => {
           position: { distanceTo: () => 50 },
         },
       },
+      canSeeEntity: (entity) => entity.name === "zombie",
     };
     const skill = new GetSurvivalStateSkill(bot);
 
@@ -44,7 +45,7 @@ describe("GetSurvivalStateSkill", () => {
       health: 18,
       hunger: 12,
       foodCount: 2,
-      nearbyThreats: ["zombie"],
+      nearbyThreats: [{ name: "zombie", distance: 5 }],
       timeOfDay: 13000,
       position: position,
     });

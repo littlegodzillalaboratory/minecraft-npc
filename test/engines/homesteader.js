@@ -61,7 +61,10 @@ describe("Homesteader", () => {
   });
 
   it("should flee from threats when health is low", async () => {
-    const npc = createNpc({ health: 8, nearbyThreats: ["zombie"] });
+    const npc = createNpc({
+      health: 8,
+      nearbyThreats: [{ name: "zombie", distance: 5 }],
+    });
     const action = sinon.stub(FleeAction.prototype, "do").resolves("success");
     const engine = new Homesteader(npc, { autoModeFleeHealthThreshold: 8 });
     engine.enabled = true;
@@ -74,7 +77,10 @@ describe("Homesteader", () => {
   });
 
   it("should defend against threats when healthy", async () => {
-    const npc = createNpc({ health: 20, nearbyThreats: ["breeze"] });
+    const npc = createNpc({
+      health: 20,
+      nearbyThreats: [{ name: "breeze", distance: 7 }],
+    });
     const action = sinon
       .stub(AttackNearestMobAction.prototype, "do")
       .resolves("success");
@@ -246,7 +252,7 @@ describe("Homesteader", () => {
       health: 8,
       hunger: 20,
       foodCount: 20,
-      nearbyThreats: ["zombie"],
+      nearbyThreats: [{ name: "zombie", distance: 5 }],
       timeOfDay: 6000,
       position: { x: 0, y: 64, z: 0 },
     });
@@ -254,7 +260,7 @@ describe("Homesteader", () => {
       health: 20,
       hunger: 20,
       foodCount: 20,
-      nearbyThreats: ["zombie"],
+      nearbyThreats: [{ name: "zombie", distance: 5 }],
       timeOfDay: 6000,
       position: { x: 0, y: 64, z: 0 },
     });
@@ -280,8 +286,8 @@ describe("Homesteader", () => {
       success.getCalls().map((call) => call.args[0]),
       [
         "No survival action needed",
-        "Threat detected while health is low",
-        "Threat detected",
+        "Threat detected while health is low: zombie (5 blocks away)",
+        "Threat detected: zombie (5 blocks away)",
         "Hunger detected and food is available",
         "Low food reserves detected",
         "Allowed hunting target detected: chicken",

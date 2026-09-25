@@ -126,6 +126,7 @@ describe("domain query skills", () => {
           cow: { category: "Passive mobs" },
         },
       },
+      canSeeEntity: (entity) => entity !== distantZombie,
       nearestEntity: (predicate) => (predicate(zombie) ? zombie : null),
     };
 

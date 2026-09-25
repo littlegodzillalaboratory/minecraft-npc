@@ -20,6 +20,7 @@ describe("FleeSkill", () => {
       nearestEntity: (predicate) => (predicate(zombie) ? zombie : null),
       registry: { entitiesByName: { zombie: { category: "Hostile mobs" } } },
       entity: { position: { x: 0, y: 64, z: 0 } },
+      canSeeEntity: () => true,
       chat: sinon.spy(),
     };
     const skill = new FleeSkill(bot);
@@ -48,6 +49,7 @@ describe("FleeSkill", () => {
         },
       },
       entity: { position: { x: 0, y: 64, z: 0 } },
+      canSeeEntity: () => true,
       chat: sinon.spy(),
     };
     const skill = new FleeSkill(bot);
@@ -65,6 +67,24 @@ describe("FleeSkill", () => {
     };
     const skill = new FleeSkill(bot);
     skill.do({});
+    assert.equals(bot.chat.firstCall.args[0], "There is nothing to flee from");
+  });
+
+  it("should ignore a hostile mob hidden behind blocks", () => {
+    const zombie = {
+      name: "zombie",
+      position: { x: 2, y: 64, z: 0 },
+    };
+    const bot = {
+      nearestEntity: (predicate) => (predicate(zombie) ? zombie : null),
+      registry: { entitiesByName: { zombie: { category: "Hostile mobs" } } },
+      entity: { position: { x: 0, y: 64, z: 0 } },
+      canSeeEntity: () => false,
+      chat: sinon.spy(),
+    };
+
+    new FleeSkill(bot).do({});
+
     assert.equals(bot.chat.firstCall.args[0], "There is nothing to flee from");
   });
   it("should return class name as id", () => {
