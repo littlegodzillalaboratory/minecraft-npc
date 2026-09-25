@@ -63,6 +63,8 @@ describe("cli - start", function () {
         "auto_mode_allowed_hunt_animals",
         "auto_mode_maximum_hunting_distance",
         "auto_mode_threat_radius",
+        "auto_mode_home_radius",
+        "auto_mode_sleep_retry_cooldown_in_seconds",
       ]);
       assert.equals(opts.file, "someconffile.yaml");
       cb(null, {

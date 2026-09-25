@@ -136,8 +136,8 @@ describe("Npc", () => {
       sinon.stub(npc.autoMode, "disable").resolves("stopped");
       sinon.stub(npc.autoMode, "getStatus").returns({ enabled: true });
 
-      assert.equals(npc.enableAutoMode("survivor"), "started");
-      assert.equals(npc.autoMode.enable.firstCall.args, ["survivor"]);
+      assert.equals(npc.enableAutoMode("homesteader"), "started");
+      assert.equals(npc.autoMode.enable.firstCall.args, ["homesteader"]);
       assert.equals(await npc.disableAutoMode(), "stopped");
       assert.equals(npc.getAutoModeStatus(), { enabled: true });
     });

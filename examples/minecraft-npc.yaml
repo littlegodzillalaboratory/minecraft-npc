@@ -10,7 +10,7 @@ init_coords: [0, 0, 0]
 init_messages:
   - Herobrine is here, ready to help
 auto_mode_enabled: false
-auto_mode_engine: survivor
+auto_mode_engine: homesteader
 auto_mode_evaluation_interval_in_seconds: 2
 auto_mode_hunger_threshold: 14
 auto_mode_minimum_food_reserve: 12
@@ -18,6 +18,8 @@ auto_mode_flee_health_threshold: 8
 auto_mode_allowed_hunt_animals: [chicken]
 auto_mode_maximum_hunting_distance: 64
 auto_mode_threat_radius: 16
+auto_mode_home_radius: 3
+auto_mode_sleep_retry_cooldown_in_seconds: 30
 chatgpt_instructions: |
   You are an AI assistant known as Herobrine, who is a helpful and friendly companion to the Minecraft player.
   You can understand and respond to the player's messages in the Minecraft chat.

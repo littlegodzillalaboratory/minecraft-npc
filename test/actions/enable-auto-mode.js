@@ -21,12 +21,12 @@ describe("EnableAutoModeAction", () => {
       getRegister: () => ({ setActionInfo: setActionInfo }),
     });
 
-    await action.do({ messageElems: [undefined, "survivor"] });
+    await action.do({ messageElems: [undefined, "homesteader"] });
 
     assert.equals(enableAutoMode.callCount, 1);
-    assert.equals(enableAutoMode.firstCall.args, ["survivor"]);
+    assert.equals(enableAutoMode.firstCall.args, ["homesteader"]);
     assert.equals(logStepHeading.firstCall.args, [
-      "Enabling auto mode as survivor...",
+      "Enabling auto mode as homesteader...",
     ]);
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });
@@ -35,14 +35,14 @@ describe("EnableAutoModeAction", () => {
     const logStepHeading = sinon.stub(bag, "logStepHeading");
     const action = new EnableAutoModeAction({
       enableAutoMode: sinon.stub().returns("success"),
-      getAutoModeStatus: () => ({ engine: "survivor" }),
+      getAutoModeStatus: () => ({ engine: "homesteader" }),
       getRegister: () => ({ setActionInfo: sinon.spy() }),
     });
 
     await action.do({});
 
     assert.equals(logStepHeading.firstCall.args, [
-      "Enabling auto mode as survivor...",
+      "Enabling auto mode as homesteader...",
     ]);
   });
 });

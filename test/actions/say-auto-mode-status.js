@@ -12,7 +12,7 @@ describe("SayAutoModeStatusAction", () => {
     const setActionInfo = sinon.spy();
     const action = new SayAutoModeStatusAction({
       getAutoModeStatus: () => ({
-        engine: "survivor",
+        engine: "homesteader",
         enabled: true,
         currentGoal: "find food",
       }),
@@ -24,7 +24,7 @@ describe("SayAutoModeStatusAction", () => {
 
     assert.equals(
       sayMessage.firstCall.args[0],
-      "Auto mode is enabled as survivor; current goal: find food",
+      "Auto mode is enabled as homesteader; current goal: find food",
     );
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });

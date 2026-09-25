@@ -59,7 +59,7 @@ minecraft-npc start --conf-file minecraft-npc.yaml
 | chatgpt_cool_down_in_seconds | Cool-down period in seconds between ChatGPT responses | Optional | |
 | chatgpt_fallback_message | Message to send when ChatGPT cannot provide a response | Optional | |
 | auto_mode_enabled | Enable deterministic autonomous survival behaviour after spawning | Optional | `false` |
-| auto_mode_engine | Policy engine selected when auto-mode starts | Optional | `survivor` |
+| auto_mode_engine | Policy engine selected when auto-mode starts | Optional | `homesteader` |
 | auto_mode_evaluation_interval_in_seconds | Seconds between autonomous policy evaluations | Optional | `2` |
 | auto_mode_hunger_threshold | Food level at or below which the NPC eats | Optional | `14` |
 | auto_mode_minimum_food_reserve | Minimum inventory food count before the NPC hunts | Optional | `12` |
@@ -67,6 +67,8 @@ minecraft-npc start --conf-file minecraft-npc.yaml
 | auto_mode_allowed_hunt_animals | Animal names that autonomous hunting may target | Optional | `[cow, pig, chicken, sheep, rabbit]` |
 | auto_mode_maximum_hunting_distance | Maximum distance to an autonomous hunting target | Optional | `64` |
 | auto_mode_threat_radius | Radius used to detect hostile mobs | Optional | `16` |
+| auto_mode_home_radius | Maximum distance from `init_coords` at which the NPC is considered home | Optional | `3` |
+| auto_mode_sleep_retry_cooldown_in_seconds | Seconds to wait before retrying a failed sleep attempt | Optional | `30` |
 
 ## Debugging
 
@@ -162,15 +164,18 @@ policy used in that state. Long-running decision engines live under
 `BaseEngine`, which provides scheduling,
 lifecycle state, overlap prevention, status reporting, and consistent error
 handling. Concrete engines provide an identity, evaluation interval, and
-policy evaluation. The `survivor` engine uses a deterministic survival policy:
+policy evaluation. The `homesteader` engine uses a deterministic survival policy:
 flee a nearby threat when health is low, otherwise defend, eat when hungry,
-hunt an allowed animal when food reserves are low, and remain idle when no
-intervention is needed. The engine observes state through query skills and
-performs decisions through the same actions available to players.
+return to its `init_coords` home at night, sleep when it reaches home, hunt an
+allowed animal when food reserves are low, and remain idle when no intervention
+is needed. Home uses a configurable radius so exact block coordinates are not
+required, and failed sleep attempts are rate-limited. The engine observes state
+through query skills and performs decisions through the same actions available
+to players.
 
-Players can say `enable auto mode as survivor`, `disable auto mode`, or
-`auto mode status`. Omitting `as survivor` selects the configured
-`auto_mode_engine`, which defaults to `survivor`.
+Players can say `enable auto mode as homesteader`, `disable auto mode`, or
+`auto mode status`. Omitting `as homesteader` selects the configured
+`auto_mode_engine`, which defaults to `homesteader`.
 Disabling auto-mode cancels its timer and current movement. Disconnect and
 error handling also stop the engine. Hunting is constrained by
 `auto_mode_allowed_hunt_animals`; protected or baby animals are not selected.

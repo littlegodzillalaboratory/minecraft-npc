@@ -18,7 +18,7 @@ describe("DisableAutoModeAction", () => {
     const setActionInfo = sinon.spy();
     const action = new DisableAutoModeAction({
       disableAutoMode: disableAutoMode,
-      getAutoModeStatus: () => ({ engine: "survivor" }),
+      getAutoModeStatus: () => ({ engine: "homesteader" }),
       getRegister: () => ({ setActionInfo: setActionInfo }),
     });
 
@@ -26,7 +26,7 @@ describe("DisableAutoModeAction", () => {
 
     assert.equals(disableAutoMode.callCount, 1);
     assert.equals(logStepHeading.firstCall.args, [
-      "Disabling auto mode as survivor...",
+      "Disabling auto mode as homesteader...",
     ]);
     assert.equals(setActionInfo.firstCall.args[1], "success");
   });
