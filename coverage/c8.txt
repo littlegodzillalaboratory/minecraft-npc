@@ -1,4 +1,4 @@
-test | /opt/hostedtoolcache/node/22.23.2/x64/lib/node_modules/bob/node_modules/.bin/mocha --colors --reporter spec --recursive test/
+test | /opt/hostedtoolcache/node/24.21.0/x64/lib/node_modules/bob/node_modules/.bin/mocha --colors --reporter spec --recursive test/
 
 [0m[0m
 [0m  AttackNearestMobAction[0m
@@ -562,15 +562,15 @@ test | /opt/hostedtoolcache/node/22.23.2/x64/lib/node_modules/bob/node_modules/.
   [32m  [32m✔[39m[0m[90m should contain commands with actions[0m
 
 [0m  cli - start[0m
-  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (98ms)[0m
+  [32m  [32m✔[39m[0m[90m should contain start command and delegate to minecraftnpc start when exec is called[0m[31m (120ms)[0m
 AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1135:18)
-    at afterConnectMultiple (node:net:1716:7) {
+    at internalConnectMultiple (node:net:1430:18)
+    at afterConnectMultiple (node:net:2099:7) {
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:25565
-        at createConnectionError (node:net:1679:14)
-        at afterConnectMultiple (node:net:1709:16) {
+        at createConnectionError (node:net:2062:14)
+        at afterConnectMultiple (node:net:2092:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -578,8 +578,8 @@ AggregateError [ECONNREFUSED]:
       port: 25565
     },
     Error: connect ECONNREFUSED 127.0.0.1:25565
-        at createConnectionError (node:net:1679:14)
-        at afterConnectMultiple (node:net:1709:16) {
+        at createConnectionError (node:net:2062:14)
+        at afterConnectMultiple (node:net:2092:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -589,13 +589,13 @@ AggregateError [ECONNREFUSED]:
   ]
 }
 AggregateError [ECONNREFUSED]: 
-    at internalConnectMultiple (node:net:1135:18)
-    at afterConnectMultiple (node:net:1716:7) {
+    at internalConnectMultiple (node:net:1430:18)
+    at afterConnectMultiple (node:net:2099:7) {
   code: 'ECONNREFUSED',
   [errors]: [
     Error: connect ECONNREFUSED ::1:25565
-        at createConnectionError (node:net:1679:14)
-        at afterConnectMultiple (node:net:1709:16) {
+        at createConnectionError (node:net:2062:14)
+        at afterConnectMultiple (node:net:2092:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -603,8 +603,8 @@ AggregateError [ECONNREFUSED]:
       port: 25565
     },
     Error: connect ECONNREFUSED 127.0.0.1:25565
-        at createConnectionError (node:net:1679:14)
-        at afterConnectMultiple (node:net:1709:16) {
+        at createConnectionError (node:net:2062:14)
+        at afterConnectMultiple (node:net:2092:16) {
       errno: -111,
       code: 'ECONNREFUSED',
       syscall: 'connect',
@@ -659,7 +659,7 @@ AggregateError [ECONNREFUSED]:
   * [32mWebInventory plugin[39m
 [1m[36mSpawning bot...[39m[22m
   * [32mbob has been spawned[39m
-  [32m  [32m✔[39m[0m[90m should wire up plugins on spawn and route chat messages addressed to the bot[0m[33m (43ms)[0m
+  [32m  [32m✔[39m[0m[90m should wire up plugins on spawn and route chat messages addressed to the bot[0m[33m (56ms)[0m
 
 [0m  Npc[0m
 [0m    eat[0m
@@ -701,11 +701,11 @@ AggregateError [ECONNREFUSED]:
   * [32mbob is sending ChatGPT message: hello[39m
     [32m  [32m✔[39m[0m[90m should execute moveToLocation, guardLocation, messageChatGpt, and sayMessage[0m
 [0m    validation[0m
-    [32m  [32m✔[39m[0m[90m should fail validation branch[0m
-[0m    moveToObject[0m
   * [31mUnable to move bob to invalid location: a 2 3[39m
   * [31mUnable to say invalid message: [39m
   * [31mUnable to move bob 0 blocks forward[39m
+    [32m  [32m✔[39m[0m[90m should fail validation branch[0m
+[0m    moveToObject[0m
   * [32mbob found object: bed[39m
   * [31mUnable to find object: bedroom: I cannot find any bedroom nearby[39m
     [32m  [32m✔[39m[0m[90m should move to a discoverable object or say when it cannot be found[0m
@@ -735,9 +735,9 @@ AggregateError [ECONNREFUSED]:
 [0m    huntFood[0m
   * [32mbob is hunting for food[39m
     [32m  [32m✔[39m[0m[90m should execute huntFood[0m
-  * [31mUnable to hunt for food[39m
     [32m  [32m✔[39m[0m[90m should reject invalid hunting policy[0m
 [0m    defendPlayer[0m
+  * [31mUnable to hunt for food[39m
   * [32mbob is defending player: alice[39m
     [32m  [32m✔[39m[0m[90m should execute defendPlayer[0m
 [0m    flee[0m
@@ -920,7 +920,7 @@ AggregateError [ECONNREFUSED]:
 
 [0m  DanceSkill[0m
   [32m  [32m✔[39m[0m[90m should toggle dance moves on and off[0m
-  [32m  [32m✔[39m[0m[90m should default the step delay when not specified[0m[31m (2404ms)[0m
+  [32m  [32m✔[39m[0m[90m should default the step delay when not specified[0m[31m (2405ms)[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  DefendPlayerSkill[0m
@@ -1057,7 +1057,7 @@ AggregateError [ECONNREFUSED]:
 
 [0m  JumpSkill[0m
   [32m  [32m✔[39m[0m[90m should press and release jump control[0m
-  [32m  [32m✔[39m[0m[90m should default the jump duration when not specified[0m[31m (500ms)[0m
+  [32m  [32m✔[39m[0m[90m should default the jump duration when not specified[0m[31m (502ms)[0m
   [32m  [32m✔[39m[0m[90m should return class name as id[0m
 
 [0m  ListChestSkill[0m
